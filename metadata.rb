@@ -1,0 +1,7 @@
+name             'nxlog-ce'
+maintainer       'Simon Detheridge'
+maintainer_email 'simon@widgit.com'
+license          'Apache v2.0'
+description      'Installs/Configures nxlog-ce'
+long_description 'Installs/Configures nxlog-ce'
+version          '0.1.0'
