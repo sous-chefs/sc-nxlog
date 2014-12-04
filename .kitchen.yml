@@ -2,14 +2,26 @@
 driver:
   name: vagrant
 
+driver_config:
+  require_chef_omnibus: true
+
 provisioner:
   name: chef_solo
 
 platforms:
   - name: ubuntu-12.04
-  - name: centos-6.4
+    run_list: apt::default
+  - name: ubuntu-14.04
+    run_list: apt::default
+  - name: debian-7.2.0
+    run_list: apt::default
+  - name: debian-6.0.8
+    run_list: apt::default
+  - name: centos-6.5
+    run_list: yum-epel::default
 
 suites:
   - name: default
     run_list:
+      - recipe[nxlog-ce::default]
     attributes:
