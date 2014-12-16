@@ -6,5 +6,6 @@ describe 'nxlog-ce::default' do
   it 'installs nxlog-ce' do
     expect(chef_run).to create_remote_file('nxlog-ce')
     expect(chef_run).to install_dpkg_package('nxlog-ce')
+    expect(chef_run).to enable_service('nxlog')
   end
 end

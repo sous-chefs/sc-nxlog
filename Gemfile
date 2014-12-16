@@ -19,6 +19,7 @@ group :integration do
   gem 'kitchen-vagrant'
   gem 'kitchen-vagrant_winrm'
   gem 'windows_chef_zero'
+  gem 'serverspec'
 end
 
 group :development do

@@ -47,3 +47,7 @@ else
     source "#{Chef::Config[:file_cache_path]}/#{package_name}"
   end
 end
+
+service 'nxlog' do
+  action :enable
+end
