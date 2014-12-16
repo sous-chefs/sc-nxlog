@@ -9,7 +9,6 @@ namespace :test do
 
   desc 'Run all tests, including kitchen'
   task :all do
-    system "bundle exec strainer test"
+    system 'bundle exec strainer test'
   end
 end
-

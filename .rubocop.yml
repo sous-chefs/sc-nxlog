@@ -1,0 +1,6 @@
+AllCops:
+  Exclude:
+    - '.kitchen/**/*'
+
+Style/SingleSpaceBeforeFirstArg:
+  Enabled: false

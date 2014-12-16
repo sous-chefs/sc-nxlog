@@ -17,7 +17,6 @@
 # limitations under the License.
 #
 
-
 package 'libapr1'
 
 if node['platform_version'].to_f < 7.0

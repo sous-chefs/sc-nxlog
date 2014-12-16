@@ -17,18 +17,17 @@
 # limitations under the License.
 #
 
-
 case node['platform']
-  when 'ubuntu'
-    include_recipe 'nxlog-ce::ubuntu'
-  when 'debian'
-    include_recipe 'nxlog-ce::debian'
-  when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
-    include_recipe 'nxlog-ce::redhat'
-  when 'windows'
-    include_recipe 'nxlog-ce::windows'
-  else
-    Chef::Application.fatal!('Attempted to install on an unsupported platform')
+when 'ubuntu'
+  include_recipe 'nxlog-ce::ubuntu'
+when 'debian'
+  include_recipe 'nxlog-ce::debian'
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  include_recipe 'nxlog-ce::redhat'
+when 'windows'
+  include_recipe 'nxlog-ce::windows'
+else
+  Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
 
 package_name = node['nxlog-ce']['installer_package']
