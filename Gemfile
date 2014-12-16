@@ -25,4 +25,5 @@ group :development do
   gem 'chefspec'
   gem 'strainer'
   gem 'foodcritic'
+  gem 'rubocop'
 end
