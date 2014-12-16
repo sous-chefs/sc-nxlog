@@ -1,3 +1,5 @@
+# THIS ISN'T DONE YET. Don't use it
+
 # nxlog-ce-cookbook
 
 TODO: Enter the cookbook description here.

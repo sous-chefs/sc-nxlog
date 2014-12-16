@@ -3,4 +3,5 @@ source "https://supermarket.chef.io"
 metadata
 
 cookbook 'apt'
-cookbook 'yum-epel'
+cookbook 'yum'
+cookbook 'windows'

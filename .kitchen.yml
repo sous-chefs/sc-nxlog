@@ -2,23 +2,46 @@
 driver:
   name: vagrant
 
-driver_config:
-  require_chef_omnibus: true
-
 provisioner:
   name: chef_solo
+  require_chef_omnibus: true
 
 platforms:
   - name: ubuntu-12.04
-    run_list: apt::default
+    run_list:
+    - recipe[apt::default]
   - name: ubuntu-14.04
-    run_list: apt::default
+    run_list:
+    - recipe[apt::default]
   - name: debian-7.2.0
-    run_list: apt::default
+    run_list:
+    - recipe[apt::default]
   - name: debian-6.0.8
-    run_list: apt::default
+    run_list:
+    - recipe[apt::default]
   - name: centos-6.5
-    run_list: yum-epel::default
+    run_list:
+    - recipe[yum::default]
+  - name: windows-2008-r2
+    run_list:
+    - recipe[windows::default]
+    driver:
+      box: widgit_win2k8r2 # proprietary
+    provisioner:
+      name: windows_chef_zero
+      chef_omnibus_url: https://vagrant.widgit.com/chef/12.0.1-2008r2.msi # includes non-published fix for msi package provider
+    driver_config:
+      vm_hostname: kitchen-win2k8r2
+  - name: windows-2012-r2
+    run_list:
+    - recipe[windows::default]
+    driver:
+      box: widgit_win2k12r2 # proprietary
+    provisioner:
+      name: windows_chef_zero
+      chef_omnibus_url: https://vagrant.widgit.com/chef/12.0.1-2012r2.msi # includes non-published fix for msi package provider
+    driver_config:
+      vm_hostname: kitchen-win2k12r2
 
 suites:
   - name: default

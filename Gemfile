@@ -17,6 +17,8 @@ gem 'berkshelf'
 group :integration do
   gem 'test-kitchen'
   gem 'kitchen-vagrant'
+  gem 'kitchen-vagrant_winrm'
+  gem 'windows_chef_zero'
 end
 
 group :development do
