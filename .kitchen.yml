@@ -27,21 +27,19 @@ platforms:
     - recipe[windows::default]
     driver:
       box: widgit_win2k8r2 # proprietary
-    provisioner:
-      name: windows_chef_zero
-      chef_omnibus_url: https://vagrant.widgit.com/chef/12.0.1-1-widgit.msi # includes non-published fix for msi package provider
     driver_config:
-      vm_hostname: kitchen-win2k8r2
+      vm_hostname: nil
+    transport:
+      name: winrm
   - name: windows-2012-r2
     run_list:
     - recipe[windows::default]
     driver:
-      box: widgit_win2k12r2 # proprietary
-    provisioner:
-      name: windows_chef_zero
-      chef_omnibus_url: https://vagrant.widgit.com/chef/12.0.1-1-widgit.msi # includes non-published fix for msi package provider
+      box: widgit_win2k8r2 # proprietary
     driver_config:
-      vm_hostname: kitchen-win2k12r2
+      vm_hostname: nil
+    transport:
+      name: winrm
 
 suites:
   - name: default
