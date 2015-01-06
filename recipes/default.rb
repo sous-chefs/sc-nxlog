@@ -49,5 +49,5 @@ else
 end
 
 service 'nxlog' do
-  action :enable
+  action [:enable, :start]
 end
