@@ -56,4 +56,8 @@ end
 
 template "#{node['nxlog-ce']['conf_dir']}/nxlog.conf" do
   source 'nxlog.conf.erb'
+
+  notifies :restart, 'service[nxlog]', :delayed
 end
+
+directory "#{node['nxlog-ce']['conf_dir']}/nxlog.conf.d"
