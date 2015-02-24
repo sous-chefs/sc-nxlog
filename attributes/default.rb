@@ -18,3 +18,23 @@
 #
 
 default['nxlog-ce']['version'] = '2.8.1248'
+
+default['nxlog-ce']['log_level'] = 'INFO'
+default['nxlog-ce']['user'] = 'nxlog'
+default['nxlog-ce']['group'] = 'nxlog'
+
+case node['platform_family']
+when 'debian'
+  default['nxlog-ce']['conf_dir'] = '/etc/nxlog'
+  default['nxlog-ce']['log_file'] = '/var/log/nxlog/nxlog.log'
+when 'rhel'
+  default['nxlog-ce']['conf_dir'] = '/etc/'
+  default['nxlog-ce']['log_file'] = '/var/log/nxlog/nxlog.log'
+when 'windows'
+  root_dir = node['kernel']['machine'] == 'x86_64' ? 'c:/Program Files (x86)/nxlog' : 'c:/Program Files/nxlog'
+  default['nxlog-ce']['root_dir'] = root_dir
+  default['nxlog-ce']['conf_dir'] = "#{root_dir}/conf"
+  default['nxlog-ce']['log_file'] = "#{root_dir}/nxlog.log"
+else
+  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+end

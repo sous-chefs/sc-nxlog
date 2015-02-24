@@ -1,0 +1,20 @@
+<% if node.platform? 'windows' %>
+define ROOT <%= node['nxlog-ce']['root_dir'] %>
+
+ModuleDir %ROOT%/modules
+CacheDir  %ROOT%/data
+Pidfile   %ROOT%/data/nxlog.pid
+SpoolDir  %ROOT%/data
+<% else %>
+User      <%= node['nxlog-ce']['user'] %>
+Group     <%= node['nxlog-ce']['group'] %>
+<% end %>
+
+LogLevel  <%= node['nxlog-ce']['log_level'] %>
+LogFile   <%= node['nxlog-ce']['log_file'] %>
+
+<Extension syslog_module>
+  Module xm_syslog
+</Extension>
+
+Include   <%= node['nxlog-ce']['conf_dir'] %>/nxlog.conf.d/*.conf

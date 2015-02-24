@@ -17,12 +17,14 @@
 # limitations under the License.
 #
 
-case node['platform']
-when 'ubuntu'
-  include_recipe 'nxlog-ce::ubuntu'
+case node['platform_family']
 when 'debian'
-  include_recipe 'nxlog-ce::debian'
-when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  if node['platform'] == 'ubuntu'
+    include_recipe 'nxlog-ce::ubuntu'
+  else
+    include_recipe 'nxlog-ce::debian'
+  end
+when 'rhel'
   include_recipe 'nxlog-ce::redhat'
 when 'windows'
   include_recipe 'nxlog-ce::windows'
@@ -50,4 +52,8 @@ end
 
 service 'nxlog' do
   action [:enable, :start]
+end
+
+template "#{node['nxlog-ce']['conf_dir']}/nxlog.conf" do
+  source 'nxlog.conf.erb'
 end
