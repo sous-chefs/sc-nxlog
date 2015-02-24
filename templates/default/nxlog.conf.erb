@@ -1,4 +1,4 @@
-<% if node.platform? 'windows' %>
+<% if node['platform'] == 'windows' %>
 define ROOT <%= node['nxlog-ce']['root_dir'] %>
 
 ModuleDir %ROOT%/modules
