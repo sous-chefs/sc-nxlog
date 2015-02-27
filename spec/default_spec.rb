@@ -23,3 +23,27 @@ describe 'nxlog_ce::default' do
     expect(chef_run).to create_directory('/etc/nxlog/nxlog.conf.d')
   end
 end
+
+describe 'nxlog_ce::test_resources' do
+  let(:chef_run) do
+    ChefSpec::SoloRunner.new(step_into: ['nxlog_ce_destination'])
+      .converge(described_recipe)
+  end
+
+  it 'creates a log destination for a file' do
+    expect(chef_run).to create_nxlog_ce_destination('test_file')
+  end
+
+  it 'creates a config file for the file log destination' do
+    expect(chef_run).to create_template(
+      '/etc/nxlog/nxlog.conf.d/op_test_file.conf')
+
+    expect(chef_run).to render_file('/etc/nxlog/nxlog.conf.d/op_test_file.conf')
+      .with_content(<<EOT)
+<Output test_file>
+  Module om_file
+  File "/var/log/test.log"
+</Output>
+EOT
+  end
+end
