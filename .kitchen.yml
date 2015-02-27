@@ -44,5 +44,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[nxlog-ce::default]
+      - recipe[nxlog_ce::default]
     attributes:

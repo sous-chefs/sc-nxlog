@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog-ce
+# Cookbook Name:: nxlog_ce
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -20,32 +20,32 @@
 case node['platform_family']
 when 'debian'
   if node['platform'] == 'ubuntu'
-    include_recipe 'nxlog-ce::ubuntu'
+    include_recipe 'nxlog_ce::ubuntu'
   else
-    include_recipe 'nxlog-ce::debian'
+    include_recipe 'nxlog_ce::debian'
   end
 when 'rhel'
-  include_recipe 'nxlog-ce::redhat'
+  include_recipe 'nxlog_ce::redhat'
 when 'windows'
-  include_recipe 'nxlog-ce::windows'
+  include_recipe 'nxlog_ce::windows'
 else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
 
-package_name = node['nxlog-ce']['installer_package']
+package_name = node['nxlog_ce']['installer_package']
 
-remote_file 'nxlog-ce' do
+remote_file 'nxlog_ce' do
   path "#{Chef::Config[:file_cache_path]}/#{package_name}"
   source "http://nxlog.org/system/files/products/files/1/#{package_name}"
   mode 0644
 end
 
 if platform?('ubuntu', 'debian')
-  dpkg_package 'nxlog-ce' do
+  dpkg_package 'nxlog_ce' do
     source "#{Chef::Config[:file_cache_path]}/#{package_name}"
   end
 else
-  package 'nxlog-ce' do
+  package 'nxlog_ce' do
     source "#{Chef::Config[:file_cache_path]}/#{package_name}"
   end
 end
@@ -54,10 +54,10 @@ service 'nxlog' do
   action [:enable, :start]
 end
 
-template "#{node['nxlog-ce']['conf_dir']}/nxlog.conf" do
+template "#{node['nxlog_ce']['conf_dir']}/nxlog.conf" do
   source 'nxlog.conf.erb'
 
   notifies :restart, 'service[nxlog]', :delayed
 end
 
-directory "#{node['nxlog-ce']['conf_dir']}/nxlog.conf.d"
+directory "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d"

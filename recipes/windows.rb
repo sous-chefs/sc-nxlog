@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog-ce
+# Cookbook Name:: nxlog_ce
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-package_name = "nxlog-ce-#{node['nxlog-ce']['version']}.msi"
+package_name = "nxlog_ce-#{node['nxlog_ce']['version']}.msi"
 
-node.default['nxlog-ce']['installer_package'] = package_name
+node.default['nxlog_ce']['installer_package'] = package_name

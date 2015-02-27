@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog-ce
+# Cookbook Name:: nxlog_ce
 # Attributes:: default
 #
 # Copyright 2014, Symbols Worldwide Ltd.
@@ -17,19 +17,19 @@
 # limitations under the License.
 #
 
-default['nxlog-ce']['version'] = '2.8.1248'
+default['nxlog_ce']['version'] = '2.8.1248'
 
-default['nxlog-ce']['log_level'] = 'INFO'
-default['nxlog-ce']['user'] = 'nxlog'
-default['nxlog-ce']['group'] = 'nxlog'
+default['nxlog_ce']['log_level'] = 'INFO'
+default['nxlog_ce']['user'] = 'nxlog'
+default['nxlog_ce']['group'] = 'nxlog'
 
 case node['platform_family']
 when 'debian'
-  default['nxlog-ce']['conf_dir'] = '/etc/nxlog'
-  default['nxlog-ce']['log_file'] = '/var/log/nxlog/nxlog.log'
+  default['nxlog_ce']['conf_dir'] = '/etc/nxlog'
+  default['nxlog_ce']['log_file'] = '/var/log/nxlog/nxlog.log'
 when 'rhel'
-  default['nxlog-ce']['conf_dir'] = '/etc/'
-  default['nxlog-ce']['log_file'] = '/var/log/nxlog/nxlog.log'
+  default['nxlog_ce']['conf_dir'] = '/etc/'
+  default['nxlog_ce']['log_file'] = '/var/log/nxlog/nxlog.log'
 when 'windows'
   if node['kernel']['machine'] == 'x86_64'
     root_dir = 'c:/Program Files (x86)/nxlog'
@@ -37,9 +37,9 @@ when 'windows'
     root_dir = 'c:/Program Files/nxlog'
   end
 
-  default['nxlog-ce']['root_dir'] = root_dir
-  default['nxlog-ce']['conf_dir'] = "#{root_dir}/conf"
-  default['nxlog-ce']['log_file'] = "#{root_dir}/nxlog.log"
+  default['nxlog_ce']['root_dir'] = root_dir
+  default['nxlog_ce']['conf_dir'] = "#{root_dir}/conf"
+  default['nxlog_ce']['log_file'] = "#{root_dir}/nxlog.log"
 else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end

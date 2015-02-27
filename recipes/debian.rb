@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog-ce
+# Cookbook Name:: nxlog_ce
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -29,6 +29,6 @@ else
   package 'libdbi1'
 end
 
-package_name = "nxlog-ce_#{node['nxlog-ce']['version']}#{suffix}_amd64.deb"
+package_name = "nxlog_ce_#{node['nxlog_ce']['version']}#{suffix}_amd64.deb"
 
-node.default['nxlog-ce']['installer_package'] = package_name
+node.default['nxlog_ce']['installer_package'] = package_name
