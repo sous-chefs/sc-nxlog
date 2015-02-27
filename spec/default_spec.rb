@@ -10,9 +10,13 @@ describe 'nxlog-ce::default' do
   end
 
   it 'creates a config file' do
-    expect(chef_run).to render_file('/etc/nxlog/nxlog.conf').with_content(/User *nxlog/)
-    expect(chef_run).not_to render_file('/etc/nxlog/nxlog.conf').with_content(/SpoolDir/)
-    expect(chef_run.service('nxlog')).to subscribe_to('template[/etc/nxlog/nxlog.conf]')
+    expect(chef_run).to render_file('/etc/nxlog/nxlog.conf')
+      .with_content(/User *nxlog/)
+    expect(chef_run).not_to render_file('/etc/nxlog/nxlog.conf')
+      .with_content(/SpoolDir/)
+
+    expect(chef_run.service('nxlog')).to(
+      subscribe_to('template[/etc/nxlog/nxlog.conf]'))
   end
 
   it 'creates a config directory' do
