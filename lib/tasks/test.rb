@@ -12,6 +12,7 @@ namespace :test do
     system 'bundle exec strainer test'
   end
 
+  desc 'Runs a quick set of tests, with debugging enabled (the same as test:debug:quick)'
   task debug: 'test:debug:quick'
 
   namespace :debug do
