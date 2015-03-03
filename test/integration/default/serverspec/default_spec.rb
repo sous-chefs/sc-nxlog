@@ -29,7 +29,8 @@ describe file('/etc/nxlog/nxlog.conf.d/op_syslog_out.conf'),
 EOT
 end
 
-describe file('c:/Program Files (x86)/nxlog/conf/nxlog.conf.d/op_syslog_out.conf'),
+describe file('c:/Program Files (x86)/nxlog/conf/nxlog.conf.d/' \
+              'op_syslog_out.conf'),
          if: os[:family] == 'windows' do
   it { should be_file }
   its(:content) { should match(<<EOT) }
