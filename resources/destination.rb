@@ -23,7 +23,7 @@ default_action :create
 attribute :name, name_attribute: true, kind_of: String, required: true
 
 # global parameters
-attribute :module, kind_of: String, default: 'om_file' # required
+attribute :output_module, kind_of: String, default: 'om_file' # required
 attribute :exec, kind_of: String
 attribute :output_type, kind_of: String, regex: /^(LineBased|Dgram|Binary)$/
 

@@ -31,12 +31,12 @@ action :create do
 
     # common parameters
     params = []
-    params << ['Module', n.module]
+    params << ['Module', n.output_module]
     params << ['Exec', n.exec] if n.exec
     params << ['OutputType', n.output_type] if n.output_type
 
     # module-specific parameters
-    case n.module
+    case n.output_module
     when 'om_dbi'
       params << ['Driver', n.driver]
       params << ['SQL', n.sql]
@@ -106,7 +106,7 @@ action :create do
 
     else
       fail 'Tried to write nxlog config for unrecognised output module: ' +
-        n.module
+        n.output_module
 
     end
 
