@@ -11,4 +11,19 @@ namespace :test do
   task :all do
     system 'bundle exec strainer test'
   end
+
+  task debug: 'test:debug:quick'
+
+  namespace :debug do
+    desc 'Run all tests except kitchen (which takes a long time), with debugging enabled'
+    task :quick do
+      system 'bundle exec strainer test -e kitchen --log-level=debug'
+    end
+
+    desc 'Run all tests, including kitchen, with debugging enabled'
+    task :all do
+      system 'bundle exec strainer test --log-level=debug'
+    end
+  end
+
 end
