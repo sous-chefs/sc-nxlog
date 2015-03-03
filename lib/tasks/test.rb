@@ -12,9 +12,6 @@ namespace :test do
     system 'bundle exec strainer test'
   end
 
-  desc 'Runs a quick set of tests, with debugging enabled (test:debug:quick)'
-  task debug: 'test:debug:quick'
-
   namespace :debug do
     desc 'Run all tests except kitchen, with debugging enabled'
     task :quick do
