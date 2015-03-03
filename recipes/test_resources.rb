@@ -19,6 +19,10 @@
 
 include_recipe 'nxlog_ce::default'
 
-nxlog_ce_destination 'test_file' do
+nxlog_ce_destination 'test_om_file' do
   file '/var/log/test.log'
+end
+
+nxlog_ce_destination 'test_om_blocker' do
+  output_module 'om_blocker'
 end

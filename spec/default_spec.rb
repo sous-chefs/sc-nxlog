@@ -31,18 +31,36 @@ describe 'nxlog_ce::test_resources' do
   end
 
   it 'creates a log destination for a file' do
-    expect(chef_run).to create_nxlog_ce_destination('test_file')
+    expect(chef_run).to create_nxlog_ce_destination('test_om_file')
   end
 
   it 'creates a config file for the file log destination' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_file.conf')
+      '/etc/nxlog/nxlog.conf.d/op_test_om_file.conf')
 
-    expect(chef_run).to render_file('/etc/nxlog/nxlog.conf.d/op_test_file.conf')
+    expect(chef_run).to render_file(
+      '/etc/nxlog/nxlog.conf.d/op_test_om_file.conf')
       .with_content(<<EOT)
-<Output test_file>
+<Output test_om_file>
   Module om_file
   File "/var/log/test.log"
+</Output>
+EOT
+  end
+
+  it 'creates a log destination for the blocker module' do
+    expect(chef_run).to create_nxlog_ce_destination('test_om_blocker')
+  end
+
+  it 'creates a config file for the blocker module' do
+    expect(chef_run).to create_template(
+      '/etc/nxlog/nxlog.conf.d/op_test_om_blocker.conf')
+
+    expect(chef_run).to render_file(
+      '/etc/nxlog/nxlog.conf.d/op_test_om_blocker.conf')
+      .with_content(<<EOT)
+<Output test_om_blocker>
+  Module om_blocker
 </Output>
 EOT
   end
