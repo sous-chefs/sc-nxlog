@@ -78,8 +78,9 @@ action :create do
       params << ['HTTPSCRLDir',
                  n.https_crl_dir] if n.https_crl_dir
 
-      params << ['HTTPSAllowUntrusted',
-                 n.https_allow_untrusted] unless n.https_allow_untrusted.nil?
+      unless n.https_allow_untrusted.nil?
+        params << ['HTTPSAllowUntrusted', n.https_allow_untrusted.to_s.upcase]
+      end
 
     when 'om_null'
       # nothing to do!
@@ -87,22 +88,24 @@ action :create do
     when 'om_ssl'
       params << ['Host', n.host]
       params << ['Port', n.port]
-      params << ['CertFile', n.cert_file]
-      params << ['CertKeyFile', n.cert_key_file]
-      params << ['KeyPass', n.key_pass]
-      params << ['CAFile', n.ca_file]
-      params << ['CADir', n.ca_dir]
-      params << ['CRLFile', n.crl_file]
-      params << ['CRLDir', n.crl_dir]
-      params << ['AllowUntrusted', n.allow_untrusted]
+      params << ['CertFile', n.cert_file] unless n.cert_file.nil?
+      params << ['CertKeyFile', n.cert_key_file] unless n.cert_key_file.nil?
+      params << ['KeyPass', n.key_pass] unless n.key_pass.nil?
+      params << ['CAFile', n.ca_file] unless n.ca_file.nil?
+      params << ['CADir', n.ca_dir] unless n.ca_dir.nil?
+      params << ['CRLFile', n.crl_file] unless n.crl_file.nil?
+      params << ['CRLDir', n.crl_dir] unless n.crl_dir.nil?
+
+      params << ['AllowUntrusted',
+                 n.allow_untrusted.to_s.upcase] unless n.allow_untrusted.nil?
 
     when 'om_tcp', 'om_udp'
       params << ['Host', n.host]
       params << ['Port', n.port]
-      params << ['SockBufSize', n.sock_buf_size]
+      params << ['SockBufSize', n.sock_buf_size] unless n.sock_buf_size.nil?
 
     when 'om_uds'
-      params << ['UDS', n.uds]
+      params << ['uds', n.uds]
 
     else
       fail 'Tried to write nxlog config for unrecognised output module: ' +

@@ -61,7 +61,7 @@ end
 nxlog_ce_destination 'test_om_ssl' do
   output_module 'om_ssl'
   port 1234
-  host 'logs.example.org'
+  host 'foo.example.org'
   cert_file '%CERTDIR%/client-cert.pem'
   cert_key_file '%CERTDIR%/client-key.pem'
   ca_file '%CERTDIR%/ca.pem'
@@ -70,15 +70,15 @@ nxlog_ce_destination 'test_om_ssl' do
 end
 
 nxlog_ce_destination 'test_om_tcp' do
-  output_module 'om_ssl'
+  output_module 'om_tcp'
   port 1234
-  host 'logs.example.org'
+  host 'foo.example.org'
 end
 
 nxlog_ce_destination 'test_om_udp' do
-  output_module 'om_tcp'
+  output_module 'om_udp'
   port 1234
-  host 'logs.example.org'
+  host 'foo.example.org'
 end
 
 nxlog_ce_destination 'test_om_uds' do

@@ -172,6 +172,7 @@ EOT
       .with_content(<<EOT)
 <Output test_om_ssl>
   Module om_ssl
+  OutputType Binary
   Host foo.example.org
   Port 1234
   CertFile %CERTDIR%/client-cert.pem
