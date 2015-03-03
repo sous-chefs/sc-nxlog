@@ -35,7 +35,7 @@ platforms:
     run_list:
     - recipe[windows::default]
     driver:
-      box: widgit_win2k8r2 # proprietary
+      box: widgit_win2k12r2 # proprietary
     driver_config:
       vm_hostname: nil
     transport:
@@ -45,4 +45,5 @@ suites:
   - name: default
     run_list:
       - recipe[nxlog_ce::default]
+      - recipe[nxlog_ce::test_kitchen_syslog_file]
     attributes:
