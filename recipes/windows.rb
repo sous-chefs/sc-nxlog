@@ -17,6 +17,6 @@
 # limitations under the License.
 #
 
-package_name = "nxlog_ce-#{node['nxlog_ce']['version']}.msi"
+package_name = "nxlog-ce-#{node['nxlog_ce']['version']}.msi"
 
 node.default['nxlog_ce']['installer_package'] = package_name

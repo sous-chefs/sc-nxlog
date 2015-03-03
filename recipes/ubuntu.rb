@@ -28,6 +28,6 @@ else
   suffix = '_ubuntu_1204'
 end
 
-package_name = "nxlog_ce_#{node['nxlog_ce']['version']}#{suffix}_amd64.deb"
+package_name = "nxlog-ce_#{node['nxlog_ce']['version']}#{suffix}_amd64.deb"
 
 node.default['nxlog_ce']['installer_package'] = package_name
