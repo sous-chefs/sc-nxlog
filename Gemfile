@@ -11,9 +11,15 @@ group :integration do
                          branch: 'Transport'
 end
 
-group :development do
+group :development, :test do
   gem 'chefspec'
   gem 'strainer'
   gem 'foodcritic'
   gem 'rubocop'
+  gem 'rake'
+end
+
+group :development do
+  gem 'pry', '~> 0.9.0'
+  gem 'travis', '~> 1.7.5'
 end
