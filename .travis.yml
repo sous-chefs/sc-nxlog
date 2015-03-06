@@ -2,8 +2,6 @@ language: ruby
 gemfile:
 - Gemfile
 rvm:
-- 1.9.3
-- 2.1
 - 2.2
 bundler_args: "--without development integration"
 before_script: bundle exec berks install
