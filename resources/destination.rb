@@ -64,7 +64,6 @@ attribute :https_allow_untrusted, kind_of: [TrueClass, FalseClass]
 # om_ssl, om_tcp, om_udp
 attribute :host, kind_of: String # required
 attribute :port, kind_of: Fixnum # required
-attribute :sock_buf_size, kind_of: Fixnum
 
 # om_ssl
 attribute :cert_file, kind_of: String
@@ -75,6 +74,9 @@ attribute :ca_dir, kind_of: String
 attribute :crl_file, kind_of: String
 attribute :crl_dir, kind_of: String
 attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
+
+# om_udp
+attribute :sock_buf_size, kind_of: Fixnum
 
 # om_uds
 attribute :uds, kind_of: String # required
