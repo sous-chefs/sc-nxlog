@@ -40,8 +40,10 @@ action :create do
     when 'om_dbi'
       params << ['Driver', n.driver]
       params << ['SQL', n.sql]
-      n.options.each do |option|
-        params << ['Option', option]
+      unless n.options.nil?
+        n.options.each do |option|
+          params << ['Option', option]
+        end
       end
 
     when 'om_blocker'
@@ -49,8 +51,10 @@ action :create do
 
     when 'om_exec'
       params << ['Command', n.command]
-      n.args.each do |arg|
-        params << ['Arg', arg]
+      unless n.args.nil?
+        n.args.each do |arg|
+          params << ['Arg', arg]
+        end
       end
 
     when 'om_file'
