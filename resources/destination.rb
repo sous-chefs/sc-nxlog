@@ -25,7 +25,7 @@ attribute :name, name_attribute: true, kind_of: String, required: true
 # global parameters
 attribute :output_module, kind_of: String, default: 'om_file' # required
 attribute :exec, kind_of: String
-attribute :output_type, kind_of: String, regex: /^(LineBased|Dgram|Binary)$/
+attribute :output_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
 
 # om_blocker
 
@@ -75,5 +75,3 @@ attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
 
 # om_uds
 attribute :uds, kind_of: String # required
-
-attr_accessor :exists
