@@ -1,16 +1,18 @@
 language: ruby
 gemfile:
-  - Gemfile
+- Gemfile
 rvm:
-  - 1.9.3
-  - 2.1
-  - 2.2
-bundler_args: "--without integration"
+- 1.9.3
+- 2.1
+- 2.2
+bundler_args: "--without development integration"
 before_script: bundle exec berks install
 script: bundle exec strainer test -e kitchen
 notifications:
   email:
-    - travis-ci@widgit.com
+  - travis-ci@widgit.com
   hipchat:
     room:
       secure: aeMN+zb7BksIrr2i0Lj3mL2ZlLhrtXDtNFDCJG1yFWx/VuT49g9iM2Y3cNjASA6SJmXWN6jpLFwYfQ/IjyiaASPTogLxIzolBG73QCN9NTQ+b0YZSg/xi4nDpa5rXHABemlnA1GEYJQBSaJRaEePNTFxLGDjOygK6IeDNY5Pn1c=
+    rooms:
+      secure: C2dfJ2jYvKuS85lm+bfVwdonx82sN5y3lXSQeW7Az8cIRl6xri/SYxUo6zC+GKPAaWdohhcVebrO8GqmHv3bBAvIeY0/oEtOGNjNBfRM/UpNapMmKTgwgkQjlD11ob6S15gfOYUaQaLPR6pR3fvFXF/ECfnz9cKaOFp7aIGCdDs=
