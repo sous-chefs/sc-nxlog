@@ -66,7 +66,8 @@ attribute :utf8, kind_of: [TrueClass, FalseClass]
 # im_msvistalog
 attribute :query, kind_of: String
 attribute :channel, kind_of: String
-attribute :poll_interval, kind_of: Float
+# defined above
+# attribute :poll_interval, kind_of: Float
 
 # im_null
 
