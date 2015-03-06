@@ -11,6 +11,6 @@ notifications:
   - travis-ci@widgit.com
   hipchat:
     room:
-      secure: aeMN+zb7BksIrr2i0Lj3mL2ZlLhrtXDtNFDCJG1yFWx/VuT49g9iM2Y3cNjASA6SJmXWN6jpLFwYfQ/IjyiaASPTogLxIzolBG73QCN9NTQ+b0YZSg/xi4nDpa5rXHABemlnA1GEYJQBSaJRaEePNTFxLGDjOygK6IeDNY5Pn1c=
+      secure: W0Lh9bsy1k2XtUhRLjUpehH2wT0r2ulmnbHYo4qDfce76wo+1V0GgIf/K+YKTYpqvNrFiQVq5i7sVq8t7KWxnxgSqTP8x+mIIPNqbNkoB6NIsCMtiDqHTCc3zw8hNdAj9StV0F9usLhhZ7qLVZNlkxwHVxieJwrVEMexW1Lrpuw=
     rooms:
       secure: C2dfJ2jYvKuS85lm+bfVwdonx82sN5y3lXSQeW7Az8cIRl6xri/SYxUo6zC+GKPAaWdohhcVebrO8GqmHv3bBAvIeY0/oEtOGNjNBfRM/UpNapMmKTgwgkQjlD11ob6S15gfOYUaQaLPR6pR3fvFXF/ECfnz9cKaOFp7aIGCdDs=
