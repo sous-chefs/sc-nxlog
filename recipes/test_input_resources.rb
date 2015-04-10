@@ -50,9 +50,14 @@ nxlog_ce_source 'test_im_mark' do
   destination 'test_om_udp'
 end
 
+nxlog_ce_source 'test_im_mseventlog' do
+  input_module 'im_mseventlog'
+  utf8 true
+  destination 'test_om_udp'
+end
+
 nxlog_ce_source 'test_im_msvistalog' do
   input_module 'im_msvistalog'
-  utf8 true
   destination 'test_om_udp'
 end
 
