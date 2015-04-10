@@ -36,7 +36,7 @@ action :create do
     params << ['InputType', n.input_type] if n.input_type
 
     # module-specific parameters
-    case n.output_module
+    case n.input_module
     # undocumented in nxlog docs
     # when 'om_dbi'
     #   params << ['Driver', n.driver]
@@ -47,7 +47,7 @@ action :create do
 
     when 'im_exec'
       params << ['Command', n.command]
-      unless args.nil?
+      unless n.args.nil?
         n.args.each do |arg|
           params << ['Arg', arg]
         end

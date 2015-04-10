@@ -23,10 +23,10 @@ default_action :create
 attribute :name, name_attribute: true, kind_of: String, required: true
 
 # global parameters
-attribute :input_module, kind_of: String, default: 'om_file', required: true,
+attribute :input_module, kind_of: String, default: 'im_file', required: true,
                          equal_to: %w(im_exec im_file im_internal im_kernel
                                       im_mark im_mseventlog im_msvistalog
-                                      im_null im_ssl im_tcp im_udp )
+                                      im_null im_ssl im_tcp im_udp im_uds)
 attribute :destination, kind_of: String, required: true
 attribute :input_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
 attribute :exec, kind_of: String
