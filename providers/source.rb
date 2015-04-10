@@ -128,6 +128,7 @@ action :create do
       cookbook n.cookbook_name.to_s
       source 'resources/source.conf.erb'
       variables name: n.name, params: params, destination: n.destination
+      notifies :restart, 'service[nxlog]', :delayed
     end
   end
 end
@@ -138,6 +139,7 @@ action :delete do
       cookbook new_resource.cookbook_name.to_s
       source 'resources/source.conf.erb'
       action :delete
+      notifies :restart, 'service[nxlog]', :delayed
     end
   end
 end
