@@ -19,10 +19,17 @@
 
 include_recipe 'nxlog_ce::default'
 
-nxlog_ce_destination 'syslog_out' do
+nxlog_ce_destination 'test' do
   if platform? 'windows'
     file 'c:/windows/temp/test.log'
   else
-    file '/var/log/test.log'
+    file '/var/log/nxlog/test.log'
   end
+end
+
+nxlog_ce_source 'mark' do
+  input_module 'im_mark'
+  mark '-> -> MARK <- <-'
+  mark_interval 1
+  destination 'test'
 end
