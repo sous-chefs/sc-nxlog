@@ -115,7 +115,7 @@ action :create do
       params << ['SockBufSize', n.sock_buf_size] unless n.sock_buf_size.nil?
 
     when 'im_uds'
-      params << ['uds', n.uds]
+      params << ['UDS', n.uds]
 
     else
       fail 'Tried to write nxlog config for unrecognised input module: ' +
