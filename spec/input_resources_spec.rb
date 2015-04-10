@@ -37,7 +37,7 @@ EOT
   Module im_exec
   Command /sbin/log_processor
   Arg foo
-  Arg ba
+  Arg bar
   Arg baz
 </Input>
 EOT
@@ -79,7 +79,7 @@ EOT
 <Input test_im_mark>
   Module im_mark
   Mark marky mark
-  MarkInterval 50
+  MarkInterval 20
 </Input>
 EOT
   end
@@ -133,7 +133,7 @@ EOT
       .with_content(<<EOT)
 <Input test_im_ssl>
   Module im_ssl
-  OutputType Binary
+  InputType Binary
   Host log.example.org
   Port 666
   CertFile %CERTDIR%/client-cert.pem
@@ -153,7 +153,7 @@ EOT
       .with_content(<<EOT)
 <Input test_im_tcp>
   Module im_tcp
-  OutputType Binary
+  InputType Binary
   Host log.example.org
   Port 667
 </Input>
@@ -167,9 +167,9 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/ip_test_im_udp.conf')
       .with_content(<<EOT)
-<Input test_im_tcp>
+<Input test_im_udp>
   Module im_udp
-  OutputType Binary
+  InputType Binary
   Host log.example.org
   Port 666
 </Input>
