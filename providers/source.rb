@@ -127,7 +127,7 @@ action :create do
     template config_filename(n.name) do
       cookbook n.cookbook_name.to_s
       source 'resources/source.conf.erb'
-      variables name: n.name, params: params
+      variables name: n.name, params: params, destination: n.destination
     end
   end
 end
