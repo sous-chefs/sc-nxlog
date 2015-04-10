@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default['nxlog_ce']['version'] = '2.8.1248'
+default['nxlog_ce']['version'] = '2.9.1347'
 
 default['nxlog_ce']['log_level'] = 'INFO'
 default['nxlog_ce']['user'] = 'nxlog'
