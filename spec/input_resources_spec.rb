@@ -23,6 +23,10 @@ describe 'nxlog_ce::test_input_resources' do
   PollInterval 5.5
   File "/var/log/test.log"
 </Input>
+
+<Route r_test_im_file>
+  Path test_im_file => test_om_udp
+</Route>
 EOT
   end
 
@@ -40,6 +44,10 @@ EOT
   Arg bar
   Arg baz
 </Input>
+
+<Route r_test_im_exec>
+  Path test_im_exec => test_om_udp
+</Route>
 EOT
   end
 
@@ -53,6 +61,10 @@ EOT
 <Input test_im_internal>
   Module im_internal
 </Input>
+
+<Route r_test_im_internal>
+  Path test_im_internal => test_om_udp
+</Route>
 EOT
   end
 
@@ -66,6 +78,10 @@ EOT
 <Input test_im_kernel>
   Module im_kernel
 </Input>
+
+<Route r_test_im_kernel>
+  Path test_im_kernel => test_om_udp
+</Route>
 EOT
   end
 
@@ -81,6 +97,10 @@ EOT
   Mark marky mark
   MarkInterval 20
 </Input>
+
+<Route r_test_im_mark>
+  Path test_im_mark => test_om_udp
+</Route>
 EOT
   end
 
@@ -95,6 +115,10 @@ EOT
   Module im_mseventlog
   UTF8 TRUE
 </Input>
+
+<Route r_test_im_mseventlog>
+  Path test_im_mseventlog => test_om_udp
+</Route>
 EOT
   end
 
@@ -108,6 +132,10 @@ EOT
 <Input test_im_msvistalog>
   Module im_msvistalog
 </Input>
+
+<Route r_test_im_msvistalog>
+  Path test_im_msvistalog => test_om_udp
+</Route>
 EOT
   end
 
@@ -121,6 +149,10 @@ EOT
 <Input test_im_null>
   Module im_null
 </Input>
+
+<Route r_test_im_null>
+  Path test_im_null => test_om_udp
+</Route>
 EOT
   end
 
@@ -141,6 +173,10 @@ EOT
   CAFile %CERTDIR%/ca.pem
   AllowUntrusted FALSE
 </Input>
+
+<Route r_test_im_ssl>
+  Path test_im_ssl => test_om_udp
+</Route>
 EOT
   end
 
@@ -157,6 +193,10 @@ EOT
   Host log.example.org
   Port 667
 </Input>
+
+<Route r_test_im_tcp>
+  Path test_im_tcp => test_om_udp
+</Route>
 EOT
   end
 
@@ -173,6 +213,10 @@ EOT
   Host log.example.org
   Port 666
 </Input>
+
+<Route r_test_im_udp>
+  Path test_im_udp => test_om_udp
+</Route>
 EOT
   end
 
@@ -187,6 +231,10 @@ EOT
   Module im_uds
   UDS /dev/log
 </Input>
+
+<Route r_test_im_uds>
+  Path test_im_uds => test_om_udp
+</Route>
 EOT
   end
 end
