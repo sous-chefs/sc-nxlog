@@ -118,8 +118,8 @@ action :create do
       params << ['uds', n.uds]
 
     else
-      fail 'Tried to write nxlog config for unrecognised output module: ' +
-        n.output_module
+      fail 'Tried to write nxlog config for unrecognised input module: ' +
+        n.input_module
 
     end
 
