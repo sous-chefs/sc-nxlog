@@ -85,7 +85,7 @@ action :create do
 
     when 'im_mseventlog'
       params << ['Sources', n.sources.join(',')] unless n.sources.nil?
-      params << ['UTF8', n.utf8] unless n.utf8.nil?
+      params << ['UTF8', n.utf8.to_s.upcase] unless n.utf8.nil?
 
     when 'im_msvistalog'
       params << ['Query', n.query] unless n.query.nil?
