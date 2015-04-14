@@ -33,3 +33,17 @@ nxlog_ce_source 'mark' do
   mark_interval 1
   destination 'test'
 end
+
+# wait for the mark to appear in the log output by explicitly starting nxlog
+# and waiting for a set time
+service 'nxlog_ce_restart' do
+  service_name 'nxlog'
+  action :restart
+end
+
+ruby_block 'sleep' do
+  block do
+    sleep 70
+  end
+  action :run
+end

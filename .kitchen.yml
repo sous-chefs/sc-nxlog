@@ -51,5 +51,5 @@ suites:
   - name: default
     run_list:
       - recipe[nxlog_ce::default]
-      - recipe[nxlog_ce::test_kitchen_syslog_file]
+      - recipe[nxlog_ce::test_kitchen_log_file]
     attributes:

@@ -74,10 +74,6 @@ describe file('c:/Program Files (x86)/nxlog/conf/nxlog.conf.d/' \
   its(:content) { should match(input_contents) }
 end
 
-# mark should occur after 60 seconds
-$stderr.puts 'Sleeping for 70 seconds to collect log output'
-sleep 70
-
 describe file('/var/log/nxlog/test.log'),
          if: os[:family] != 'windows' do
   it { should be_file }
