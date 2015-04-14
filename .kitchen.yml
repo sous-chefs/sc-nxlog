@@ -13,13 +13,19 @@ platforms:
   - name: ubuntu-14.04
     run_list:
     - recipe[apt::default]
-  - name: debian-7.2.0
+  - name: debian-6.0.10
     run_list:
     - recipe[apt::default]
-  - name: debian-6.0.8
+  - name: debian-7.8
     run_list:
     - recipe[apt::default]
-  - name: centos-6.5
+  - name: centos-6.6
+    run_list:
+    - recipe[yum::default]
+  - name: centos-7.1
+    run_list:
+    - recipe[yum::default]
+  - name: fedora-21
     run_list:
     - recipe[yum::default]
   - name: windows-2008-r2
