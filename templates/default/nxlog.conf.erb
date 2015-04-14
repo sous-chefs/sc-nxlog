@@ -5,9 +5,14 @@ ModuleDir %ROOT%/modules
 CacheDir  %ROOT%/data
 Pidfile   %ROOT%/data/nxlog.pid
 SpoolDir  %ROOT%/data
+
+<% # this seems wrong, but it's what works -%>
+Include   %ROOT%/conf/nxlog.conf.d/\\*.conf
 <% else %>
 User      <%= node['nxlog_ce']['user'] %>
 Group     <%= node['nxlog_ce']['group'] %>
+
+Include   <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/*.conf
 <% end %>
 
 LogLevel  <%= node['nxlog_ce']['log_level'] %>
@@ -16,5 +21,3 @@ LogFile   <%= node['nxlog_ce']['log_file'] %>
 <Extension syslog_module>
   Module xm_syslog
 </Extension>
-
-Include   <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/*.conf
