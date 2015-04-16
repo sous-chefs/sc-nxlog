@@ -12,11 +12,14 @@ describe 'nxlog_ce::test_input_resources' do
 
   it 'creates a config file for the file log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_file.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_file.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_file>
   Module im_file
   CloseWhenIdle false
@@ -32,11 +35,14 @@ EOT
 
   it 'creates a config file for the exec log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_exec.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_exec.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_exec>
   Module im_exec
   Command /sbin/log_processor
@@ -53,11 +59,14 @@ EOT
 
   it 'creates a config file for the internal log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_internal.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_internal.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_internal>
   Module im_internal
 </Input>
@@ -70,11 +79,14 @@ EOT
 
   it 'creates a config file for the kernel log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_kernel.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_kernel.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_kernel>
   Module im_kernel
 </Input>
@@ -87,11 +99,14 @@ EOT
 
   it 'creates a config file for the mark log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_mark.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_mark.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_mark>
   Module im_mark
   Mark marky mark
@@ -106,11 +121,14 @@ EOT
 
   it 'creates a config file for the mseventlog log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_mseventlog.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_mseventlog.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_mseventlog>
   Module im_mseventlog
   UTF8 TRUE
@@ -124,11 +142,14 @@ EOT
 
   it 'creates a config file for the msvistalog log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_msvistalog.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_msvistalog.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_msvistalog>
   Module im_msvistalog
 </Input>
@@ -141,11 +162,14 @@ EOT
 
   it 'creates a config file for the null log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_null.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_null.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_null>
   Module im_null
 </Input>
@@ -158,11 +182,14 @@ EOT
 
   it 'creates a config file for the ssl log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_ssl.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_ssl.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_ssl>
   Module im_ssl
   InputType Binary
@@ -182,11 +209,14 @@ EOT
 
   it 'creates a config file for the tcp log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_tcp.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_tcp.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_tcp>
   Module im_tcp
   InputType Binary
@@ -202,11 +232,14 @@ EOT
 
   it 'creates a config file for the udp log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_udp.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_udp.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_udp>
   Module im_udp
   InputType Binary
@@ -222,11 +255,14 @@ EOT
 
   it 'creates a config file for the uds log source' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_uds.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/ip_test_im_uds.conf')
+      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
       .with_content(<<EOT)
+define DEFAULT_OUTPUTS
+include /conf/nxlog.conf.d/op_*.default
+
 <Input test_im_uds>
   Module im_uds
   UDS /dev/log

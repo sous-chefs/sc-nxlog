@@ -1,3 +1,10 @@
+define DEFAULT_OUTPUTS
+<% if node['platform'] == 'windows' -%>
+include <%= node['nxlog_ce']['root_dir'] %>/conf/nxlog.conf.d/op_\\*.default
+<% else -%>
+include <%= node['nxlog_ce']['root_dir'] %>/conf/nxlog.conf.d/op_*.default
+<% end %>
+
 <Input <%= @name %>>
   <% @params.each do |param| -%>
   <%= param[0] %> <%= param[1] %>
@@ -5,5 +12,5 @@
 </Input>
 
 <Route r_<%= @name %>>
-  Path <%= @name %> => <%= @destination %>
+  Path <%= @name %> => <%= @destinations.join(', ') %>
 </Route>

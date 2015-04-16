@@ -12,10 +12,10 @@ describe 'nxlog_ce::test_output_resources' do
 
   it 'creates a config file for the file log destination' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
       .with_content(<<EOT)
 <Output test_om_file>
   Module om_file
@@ -30,10 +30,10 @@ EOT
 
   it 'creates a config file for the blocker module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_blocker.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_blocker.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
       .with_content(<<EOT)
 <Output test_om_blocker>
   Module om_blocker
@@ -47,10 +47,10 @@ EOT
 
   it 'creates a config file for the dbi module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_dbi.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_dbi.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
       .with_content(<<EOT)
 <Output test_om_dbi>
   Module om_dbi
@@ -70,10 +70,10 @@ EOT
 
   it 'creates a config file for the exec module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_exec.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_exec.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
       .with_content(<<EOT)
 <Output test_om_exec>
   Module om_exec
@@ -91,12 +91,12 @@ EOT
 
   it 'creates config files for the http modules' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_http.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_https.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_http.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
       .with_content(<<EOT)
 <Output test_om_http>
   Module om_http
@@ -105,7 +105,7 @@ EOT
 EOT
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_https.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
       .with_content(<<EOT)
 <Output test_om_https>
   Module om_http
@@ -124,10 +124,10 @@ EOT
 
   it 'creates a config file for the null module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_null.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_null.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
       .with_content(<<EOT)
 <Output test_om_null>
   Module om_null
@@ -141,10 +141,10 @@ EOT
 
   it 'creates a config file for the ssl module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_ssl.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_ssl.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
       .with_content(<<EOT)
 <Output test_om_ssl>
   Module om_ssl
@@ -165,10 +165,10 @@ EOT
 
   it 'creates a config file for the tcp module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_tcp.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_tcp.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
       .with_content(<<EOT)
 <Output test_om_tcp>
   Module om_tcp
@@ -184,10 +184,10 @@ EOT
 
   it 'creates a config file for the udp module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_udp.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_udp.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
       .with_content(<<EOT)
 <Output test_om_udp>
   Module om_udp
@@ -203,10 +203,10 @@ EOT
 
   it 'creates a config file for the uds module' do
     expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_uds.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
 
     expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_uds.conf')
+      '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
       .with_content(<<EOT)
 <Output test_om_uds>
   Module om_uds

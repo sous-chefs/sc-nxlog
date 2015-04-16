@@ -29,6 +29,7 @@ attribute :output_module, kind_of: String, default: 'om_file', required: true,
                                        om_uds)
 attribute :exec, kind_of: String
 attribute :output_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
+attribute :default, kind_of: [TrueClass, FalseClass]
 
 # om_blocker
 

@@ -22,7 +22,11 @@ def whyrun_supported?
 end
 
 def config_filename(name)
-  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/op_#{name}.conf"
+  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/10_op_#{name}.conf"
+end
+
+def default_filename(name)
+  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/op_#{name}.default"
 end
 
 action :create do
@@ -124,16 +128,35 @@ action :create do
       variables name: n.name, params: params
       notifies :restart, 'service[nxlog]', :delayed
     end
+
+    # create default definition file if this is a default destination
+    template default_filename(n.name) do
+      cookbook n.cookbook_name.to_s
+      source 'resources/destination.default.erb'
+      variables name: n.name
+      notifies :restart, 'service[nxlog]', :delayed
+      only_if { n.default }
+    end
   end
 end
 
 action :delete do
   converge_by("Delete #{new_resource}") do
+    n = new_resource
+
     template config_filename(new_resource.name) do
-      cookbook new_resource.cookbook_name.to_s
+      cookbook n.cookbook_name.to_s
       source 'resources/destination.conf.erb'
       action :delete
       notifies :restart, 'service[nxlog]', :delayed
+    end
+
+    template default_filename(n.name) do
+      cookbook n.cookbook_name.to_s
+      source 'resources/destination.default.erb'
+      action :delete
+      notifies :restart, 'service[nxlog]', :delayed
+      only_if { n.default }
     end
   end
 end

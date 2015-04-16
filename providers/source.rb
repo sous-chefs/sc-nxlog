@@ -22,7 +22,7 @@ def whyrun_supported?
 end
 
 def config_filename(name)
-  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/ip_#{name}.conf"
+  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/20_ip_#{name}.conf"
 end
 
 action :create do
@@ -123,11 +123,19 @@ action :create do
 
     end
 
+    destinations = [*n.destination].map do |v|
+      v == :defaults ? '%DEFAULT_OUTPUTS%' : v
+    end
+
     # create template with above parameters
     template config_filename(n.name) do
       cookbook n.cookbook_name.to_s
       source 'resources/source.conf.erb'
-      variables name: n.name, params: params, destination: n.destination
+
+      variables name: n.name,
+                params: params,
+                destinations: destinations
+
       notifies :restart, 'service[nxlog]', :delayed
     end
   end

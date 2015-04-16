@@ -27,7 +27,7 @@ attribute :input_module, kind_of: String, default: 'im_file', required: true,
                          equal_to: %w(im_exec im_file im_internal im_kernel
                                       im_mark im_mseventlog im_msvistalog
                                       im_null im_ssl im_tcp im_udp im_uds)
-attribute :destination, kind_of: String, required: true
+attribute :destination, kind_of: [String, Array], default: :defaults
 attribute :input_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
 attribute :exec, kind_of: String
 
