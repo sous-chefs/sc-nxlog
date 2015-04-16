@@ -21,6 +21,12 @@ package 'apr'
 package 'libdbi'
 package 'perl'
 
-package_name = "nxlog-ce-#{node['nxlog_ce']['version']}-1.x86_64.rpm"
+if node['platform_version'].to_f < 7
+  rv = 6
+else
+  rv = 7
+end
+
+package_name = "nxlog-ce-#{node['nxlog_ce']['version']}-1_rhel#{rv}.x86_64.rpm"
 
 node.default['nxlog_ce']['installer_package'] = package_name

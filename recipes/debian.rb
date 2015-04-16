@@ -19,14 +19,18 @@
 
 package 'libapr1'
 
-if node['platform_version'].to_f < 7.0
-  suffix = '_debian_squeeze'
-  package 'libperl5.10'
-  package 'libdbi0'
-else
+if node['platform_version'].to_f >= 8.0
+  suffix = '_debian_jessie'
+  package 'libperl5.20'
+  package 'libdbi1'
+elsif node['platform_version'].to_f >= 7.0
   suffix = '_debian_wheezy'
   package 'libperl5.14'
   package 'libdbi1'
+else
+  suffix = '_debian_squeeze'
+  package 'libperl5.10'
+  package 'libdbi0'
 end
 
 package_name = "nxlog-ce_#{node['nxlog_ce']['version']}#{suffix}_amd64.deb"

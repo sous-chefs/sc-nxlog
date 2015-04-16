@@ -25,9 +25,6 @@ platforms:
   - name: centos-7.0
     run_list:
     - recipe[yum::default]
-  - name: fedora-21
-    run_list:
-    - recipe[yum::default]
   - name: windows-2008-r2
     run_list:
     - recipe[windows::default]
