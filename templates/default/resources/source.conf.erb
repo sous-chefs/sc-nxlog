@@ -1,8 +1,8 @@
 define DEFAULT_OUTPUTS
 <% if node['platform'] == 'windows' -%>
-include <%= node['nxlog_ce']['root_dir'] %>/conf/nxlog.conf.d/op_\\*.default
+include <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/op_\\*.default
 <% else -%>
-include <%= node['nxlog_ce']['root_dir'] %>/conf/nxlog.conf.d/op_*.default
+include <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/op_*.default
 <% end %>
 
 <Input <%= @name %>>

@@ -18,7 +18,7 @@ describe 'nxlog_ce::test_input_resources' do
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_file>
   Module im_file
@@ -41,7 +41,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_exec>
   Module im_exec
@@ -65,7 +65,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_internal>
   Module im_internal
@@ -85,7 +85,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_kernel>
   Module im_kernel
@@ -105,7 +105,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark>
   Module im_mark
@@ -127,7 +127,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mseventlog>
   Module im_mseventlog
@@ -148,7 +148,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_msvistalog>
   Module im_msvistalog
@@ -168,7 +168,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_null>
   Module im_null
@@ -188,7 +188,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_ssl>
   Module im_ssl
@@ -215,7 +215,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_tcp>
   Module im_tcp
@@ -238,7 +238,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_udp>
   Module im_udp
@@ -261,7 +261,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_uds>
   Module im_uds

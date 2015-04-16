@@ -23,7 +23,7 @@ describe 'nxlog_ce::test_default_resources' do
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_1>
   Module im_mark
@@ -44,7 +44,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_2>
   Module im_mark
@@ -65,7 +65,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_3>
   Module im_mark
@@ -86,7 +86,7 @@ EOT
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS
-include /conf/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_4>
   Module im_mark
