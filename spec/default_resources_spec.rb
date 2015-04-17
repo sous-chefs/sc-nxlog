@@ -22,7 +22,8 @@ describe 'nxlog_ce::test_default_resources' do
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_1>
@@ -43,7 +44,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_2>
@@ -64,7 +66,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_3>
@@ -85,7 +88,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark_4>

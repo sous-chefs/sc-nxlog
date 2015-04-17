@@ -27,11 +27,20 @@ nxlog_ce_destination 'test' do
   end
 end
 
+nxlog_ce_destination 'test_2' do
+  if platform? 'windows'
+    file 'c:/windows/temp/test2.log'
+  else
+    file '/var/log/nxlog/test2.log'
+  end
+  default true
+end
+
 nxlog_ce_source 'mark' do
   input_module 'im_mark'
   mark '-> -> MARK <- <-'
   mark_interval 1
-  destination 'test'
+  destination ['test', :defaults]
 end
 
 # wait for the mark to appear in the log output by explicitly starting nxlog

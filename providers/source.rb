@@ -123,9 +123,8 @@ action :create do
 
     end
 
-    destinations = [*n.destination].map do |v|
-      v == :defaults ? '%DEFAULT_OUTPUTS%' : v
-    end
+    destinations = [*n.destination]
+    destinations.map! { |v| v == :defaults ? '%DEFAULT_OUTPUTS%' : v }
 
     # create template with above parameters
     template config_filename(n.name) do

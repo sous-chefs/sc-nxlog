@@ -17,7 +17,8 @@ describe 'nxlog_ce::test_input_resources' do
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_file>
@@ -40,7 +41,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_exec>
@@ -64,7 +66,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_internal>
@@ -84,7 +87,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_kernel>
@@ -104,7 +108,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mark>
@@ -126,7 +131,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_mseventlog>
@@ -147,7 +153,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_msvistalog>
@@ -167,7 +174,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_null>
@@ -187,7 +195,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_ssl>
@@ -214,7 +223,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_tcp>
@@ -237,7 +247,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_udp>
@@ -260,7 +271,8 @@ EOT
     expect(chef_run).to render_file(
       '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
       .with_content(<<EOT)
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 include /etc/nxlog/nxlog.conf.d/op_*.default
 
 <Input test_im_uds>

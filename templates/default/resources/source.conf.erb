@@ -1,4 +1,5 @@
-define DEFAULT_OUTPUTS
+define DEFAULT_OUTPUTS null_output
+
 <% if node['platform'] == 'windows' -%>
 include <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/op_\\*.default
 <% else -%>
