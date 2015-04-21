@@ -10,7 +10,7 @@ when 'debian', 'ubuntu'
   conf_dir = '/etc/nxlog'
   log_dir = '/var/log/nxlog'
 when 'redhat'
-  conf_dir = '/etc/'
+  conf_dir = '/etc'
   log_dir = '/var/log/nxlog/nxlog.log'
 when 'windows'
   if os[:arch] == 'x86_64'
@@ -55,7 +55,7 @@ describe file("#{conf_dir}/nxlog.conf.d/20_ip_mark.conf") do
   its(:content) { should match(<<EOT) }
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include #{conf_dir}/nxlog.conf.d/op_*.default
 
 <Input mark>
   Module im_mark
