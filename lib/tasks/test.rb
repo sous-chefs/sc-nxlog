@@ -12,6 +12,13 @@ namespace :test do
     fail 'tests failed' unless system 'bundle exec strainer test'
   end
 
+  desc 'Run all tests, including kitchen, suppressing color output'
+  task :teamcity do
+    fail 'tests failed' \
+      unless system 'bundle exec strainer test --no-color ' \
+       '--strainer-file=Strainerfile.teamcity'
+  end
+
   namespace :debug do
     desc 'Run all tests except kitchen, with debugging enabled'
     task :quick do
