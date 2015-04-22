@@ -49,7 +49,6 @@ GEM
       varia_model (~> 0.4)
     buff-extensions (1.0.0)
     buff-ignore (1.1.1)
-    buff-platform (0.1.0)
     buff-ruby_engine (0.1.0)
     buff-shell_out (0.2.0)
       buff-ruby_engine (~> 0.1.0)
@@ -266,9 +265,6 @@ GEM
     specinfra (2.28.2)
       net-scp
       net-ssh
-    strainer (3.4.0)
-      berkshelf (>= 2.0, < 4.0)
-      buff-platform (~> 0.1)
     systemu (2.6.5)
     thor (0.19.1)
     timers (4.0.1)
@@ -320,9 +316,9 @@ DEPENDENCIES
   kitchen-vagrant!
   pry (~> 0.9.0)
   rake
+  rspec_junit_formatter
   rubocop
   serverspec
-  strainer
   test-kitchen!
   travis (~> 1.7.5)
   windows_chef_zero

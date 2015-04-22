@@ -13,8 +13,8 @@ group :integration do
 end
 
 group :development, :test do
+  gem 'rspec_junit_formatter'
   gem 'chefspec'
-  gem 'strainer'
   gem 'foodcritic'
   gem 'rubocop'
   gem 'rake'

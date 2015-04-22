@@ -20,3 +20,7 @@ bin/*
 
 # Jetbrains
 .idea
+
+# Tests
+.junit/*
+
