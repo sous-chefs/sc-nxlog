@@ -61,7 +61,7 @@ namespace :test do
     desc 'Run test-kitchen to test the cookbook on multiple platforms'
     task :kitchen do
       fail 'tests failed' unless system 'bundle exec kitchen test all ' \
-        '--no-color --destroy always'
+        '--destroy always | cat'
     end
 
     desc 'Run the cookbook unit tests'
