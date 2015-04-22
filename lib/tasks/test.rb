@@ -4,23 +4,23 @@ task test: 'test:quick'
 namespace :test do
   desc 'Run all tests except kitchen (which takes a long time)'
   task :quick do
-    system 'bundle exec strainer test -e kitchen'
+    raise "tests failed" unless system 'bundle exec strainer test -e kitchen'
   end
 
   desc 'Run all tests, including kitchen'
   task :all do
-    system 'bundle exec strainer test'
+    raise "tests failed" unless system 'bundle exec strainer test'
   end
 
   namespace :debug do
     desc 'Run all tests except kitchen, with debugging enabled'
     task :quick do
-      system 'bundle exec strainer test -e kitchen --log-level=debug'
+      raise "tests failed" unless system 'bundle exec strainer test -e kitchen --log-level=debug'
     end
 
     desc 'Run all tests, including kitchen, with debugging enabled'
     task :all do
-      system 'bundle exec strainer test --log-level=debug'
+      raise "tests failed" unless system 'bundle exec strainer test --log-level=debug'
     end
   end
 end
