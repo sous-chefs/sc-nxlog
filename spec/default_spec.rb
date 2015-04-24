@@ -1,11 +1,11 @@
 require_relative 'spec_helper'
 
-describe 'nxlog_ce::default' do
+describe 'nxlog::default' do
   let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
 
-  it 'installs nxlog_ce' do
-    expect(chef_run).to create_remote_file('nxlog_ce')
-    expect(chef_run).to install_dpkg_package('nxlog_ce')
+  it 'installs nxlog' do
+    expect(chef_run).to create_remote_file('nxlog')
+    expect(chef_run).to install_dpkg_package('nxlog')
     expect(chef_run).to enable_service('nxlog')
   end
 

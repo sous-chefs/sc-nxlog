@@ -1,5 +1,5 @@
 <% if node['platform'] == 'windows' %>
-define ROOT <%= node['nxlog_ce']['root_dir'] %>
+define ROOT <%= node['nxlog']['root_dir'] %>
 
 ModuleDir %ROOT%/modules
 CacheDir  %ROOT%/data
@@ -9,14 +9,14 @@ SpoolDir  %ROOT%/data
 <% # this seems wrong, but it's what works -%>
 Include   %ROOT%/conf/nxlog.conf.d/\\*.conf
 <% else %>
-User      <%= node['nxlog_ce']['user'] %>
-Group     <%= node['nxlog_ce']['group'] %>
+User      <%= node['nxlog']['user'] %>
+Group     <%= node['nxlog']['group'] %>
 
-Include   <%= node['nxlog_ce']['conf_dir'] %>/nxlog.conf.d/*.conf
+Include   <%= node['nxlog']['conf_dir'] %>/nxlog.conf.d/*.conf
 <% end %>
 
-LogLevel  <%= node['nxlog_ce']['log_level'] %>
-LogFile   <%= node['nxlog_ce']['log_file'] %>
+LogLevel  <%= node['nxlog']['log_level'] %>
+LogFile   <%= node['nxlog']['log_file'] %>
 
 <Extension syslog_module>
   Module xm_syslog

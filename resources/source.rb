@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Resouce:: log_destination
 #
 # Copyright (C) 2014 Simon Detheridge

@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -28,6 +28,6 @@ else
   suffix = '_ubuntu_1204'
 end
 
-package_name = "nxlog-ce_#{node['nxlog_ce']['version']}#{suffix}_amd64.deb"
+package_name = "nxlog-ce_#{node['nxlog']['version']}#{suffix}_amd64.deb"
 
-node.default['nxlog_ce']['installer_package'] = package_name
+node.default['nxlog']['installer_package'] = package_name

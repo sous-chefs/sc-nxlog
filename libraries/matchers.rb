@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Provider:: log_destination
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -18,13 +18,13 @@
 #
 
 if defined? ChefSpec
-  def create_nxlog_ce_destination(resource_name)
+  def create_nxlog_destination(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_ce_destination', 'create', resource_name)
+      'nxlog_destination', 'create', resource_name)
   end
 
-  def create_nxlog_ce_source(resource_name)
+  def create_nxlog_source(resource_name)
     ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_ce_source', 'create', resource_name)
+      'nxlog_source', 'create', resource_name)
   end
 end

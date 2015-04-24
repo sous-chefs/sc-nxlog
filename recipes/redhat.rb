@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -27,6 +27,6 @@ else
   rv = 7
 end
 
-package_name = "nxlog-ce-#{node['nxlog_ce']['version']}-1_rhel#{rv}.x86_64.rpm"
+package_name = "nxlog-ce-#{node['nxlog']['version']}-1_rhel#{rv}.x86_64.rpm"
 
-node.default['nxlog_ce']['installer_package'] = package_name
+node.default['nxlog']['installer_package'] = package_name
