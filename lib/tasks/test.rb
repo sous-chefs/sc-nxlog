@@ -10,7 +10,7 @@ end
 def run_tests(tests)
   failed = false
   tests.each do |tn|
-    failed ||= invoke_task(tn)
+    failed = invoke_task(tn) || failed
   end
   fail 'One or more tests failed' if failed
 end
