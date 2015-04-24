@@ -47,7 +47,7 @@ describe file("#{conf_dir}/nxlog.conf.d/10_op_papertrail.conf") do
   Exec $Hostmame = hostname(); to_syslog_ietf();
   Host logs2.papertrailapp.com
   Port 17992
-  CAFile /etc/nxlog/certs/papertrail-bundle.pem
+  CAFile #{conf_dir}/certs/papertrail-bundle.pem
   AllowUntrusted FALSE
 </Output>
 EOT
