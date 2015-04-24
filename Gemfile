@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'berkshelf'
 
 group :integration do
+  gem 'rspec_junit_formatter'
   gem 'rubocop-junit-formatter'
   gem 'serverspec'
   gem 'windows_chef_zero'
@@ -14,7 +15,6 @@ group :integration do
 end
 
 group :development, :test do
-  gem 'rspec_junit_formatter'
   gem 'chefspec'
   gem 'foodcritic'
   gem 'rubocop'
