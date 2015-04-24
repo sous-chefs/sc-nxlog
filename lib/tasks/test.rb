@@ -55,7 +55,9 @@ namespace :test do
   namespace :teamcity do
     desc 'Run rubocop, a code standards enforcer'
     task :rubocop do
-      fail 'tests failed' unless system 'bundle exec rubocop --no-color'
+      fail 'tests failed' unless system 'bundle exec rubocop ' \
+        '--no-color --require rubocop/formatter/junit_formatter '\
+        '--format RuboCop::Formatter::JUnitFormatter --out .junit/rubocop.xml'
     end
 
     desc 'Run test-kitchen to test the cookbook on multiple platforms'

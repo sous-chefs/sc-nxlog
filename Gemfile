@@ -3,6 +3,7 @@ source 'https://rubygems.org'
 gem 'berkshelf'
 
 group :integration do
+  gem 'rubocop-junit-formatter'
   gem 'serverspec'
   gem 'windows_chef_zero'
   gem 'winrm-transport'
