@@ -22,5 +22,5 @@ bin/*
 .idea
 
 # Tests
-.junit/*
+.junit/*.xml
 
