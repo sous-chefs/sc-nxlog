@@ -15,7 +15,8 @@ end
 # (directory is only mounted for tc builds)
 if File.exist? "#{junit_path}/git-keep"
   RSpec.configure do |c|
-    c.output_stream = File.open("#{File.join(junit_path, Socket.gethostname)}.xml", 'w')
+    c.output_stream = File.open(
+      "#{File.join(junit_path, Socket.gethostname)}.xml", 'w')
     c.formatter = 'RspecJunitFormatter'
   end
 end
