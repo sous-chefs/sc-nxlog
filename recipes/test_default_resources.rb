@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,40 +17,40 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog_ce::default'
+include_recipe 'nxlog::default'
 
-nxlog_ce_destination 'test_om_file_1' do
+nxlog_destination 'test_om_file_1' do
   file '/var/log/mark.log'
   default true
 end
 
-nxlog_ce_destination 'test_om_file_2' do
+nxlog_destination 'test_om_file_2' do
   file '/var/log/mark2.log'
   default true
 end
 
-nxlog_ce_destination 'test_om_file_3' do
+nxlog_destination 'test_om_file_3' do
   file '/var/log/mark3.log'
 end
 
-nxlog_ce_source 'test_im_mark_1' do
+nxlog_source 'test_im_mark_1' do
   input_module 'im_mark'
   mark_interval 1
 end
 
-nxlog_ce_source 'test_im_mark_2' do
+nxlog_source 'test_im_mark_2' do
   input_module 'im_mark'
   mark_interval 1
   destination 'foo'
 end
 
-nxlog_ce_source 'test_im_mark_3' do
+nxlog_source 'test_im_mark_3' do
   input_module 'im_mark'
   mark_interval 1
   destination %w(foo bar)
 end
 
-nxlog_ce_source 'test_im_mark_4' do
+nxlog_source 'test_im_mark_4' do
   input_module 'im_mark'
   mark_interval 1
   destination ['foo', 'bar', :defaults]

@@ -1,6 +1,6 @@
 # THIS ISN'T DONE YET. Don't use it
 
-# nxlog_ce-cookbook
+# nxlog-cookbook
 
 TODO: Enter the cookbook description here.
 
@@ -18,7 +18,7 @@ TODO: List your supported platforms.
     <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['nxlog_ce']['bacon']</tt></td>
+    <td><tt>['nxlog']['bacon']</tt></td>
     <td>Boolean</td>
     <td>whether to include bacon</td>
     <td><tt>true</tt></td>
@@ -27,14 +27,14 @@ TODO: List your supported platforms.
 
 ## Usage
 
-### nxlog_ce::default
+### nxlog::default
 
-Include `nxlog_ce` in your node's `run_list`:
+Include `nxlog` in your node's `run_list`:
 
 ```json
 {
   "run_list": [
-    "recipe[nxlog_ce::default]"
+    "recipe[nxlog::default]"
   ]
 }
 ```

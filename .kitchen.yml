@@ -43,6 +43,6 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[nxlog_ce::default]
-      - recipe[nxlog_ce::test_kitchen_log_file]
+      - recipe[nxlog::default]
+      - recipe[nxlog::test_kitchen_log_file]
     attributes:
