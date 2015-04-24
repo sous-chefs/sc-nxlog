@@ -23,3 +23,4 @@ default_action :create
 attribute :name, name_attribute: true, kind_of: String, required: true
 attribute :port, kind_of: Integer, required: true
 attribute :host, kind_of: String, default: 'logs'
+attribute :default, kind_of: [TrueClass, FalseClass], default: false

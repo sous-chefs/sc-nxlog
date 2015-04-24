@@ -33,6 +33,7 @@ action :create do
       ca_file ::File.join(node['nxlog']['conf_dir'], 'certs',
                           'papertrail-bundle.pem')
       allow_untrusted false
+      default n.default
     end
   end
 end
@@ -49,6 +50,7 @@ action :delete do
       ca_file ::File.join(node['nxlog']['conf_dir'], 'certs',
                           'papertrail-bundle.pem')
       allow_untrusted false
+      default n.default
     end
   end
 end
