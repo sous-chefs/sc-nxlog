@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe 'nxlog_ce::papertrail' do
+describe 'nxlog::papertrail' do
   let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
 
   it 'creates the certificates directory' do

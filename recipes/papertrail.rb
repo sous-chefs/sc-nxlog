@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: papertrail
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,11 +17,11 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog_ce::default'
+include_recipe 'nxlog::default'
 
-directory File.join(node['nxlog_ce']['conf_dir'], 'certs')
+directory File.join(node['nxlog']['conf_dir'], 'certs')
 
-remote_file File.join(node['nxlog_ce']['conf_dir'],
+remote_file File.join(node['nxlog']['conf_dir'],
                       'certs', 'papertrail-bundle.pem') do
-  source node['nxlog_ce']['papertrail']['bundle_url']
+  source node['nxlog']['papertrail']['bundle_url']
 end

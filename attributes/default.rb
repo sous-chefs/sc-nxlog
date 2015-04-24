@@ -44,5 +44,5 @@ else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
 
-default['nxlog_ce']['papertrail']['bundle_url'] =
+default['nxlog']['papertrail']['bundle_url'] =
   'https://papertrailapp.com/tools/papertrail-bundle.pem'
