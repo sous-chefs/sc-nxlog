@@ -25,22 +25,18 @@ platforms:
   - name: centos-7.0
     run_list:
     - recipe[yum::default]
-  - name: windows-2008-r2
+  - name: opentable/win-2008r2-standard-amd64-nocm
+    os_type: windows
+    shell_type: powershell
     run_list:
     - recipe[windows::default]
-    driver:
-      box: widgit_win2k8r2 # proprietary
-    driver_config:
-      vm_hostname: nil
     transport:
       name: winrm
-  - name: windows-2012-r2
+  - name: opentable/win-2012r2-standard-amd64-nocm
+    os_type: windows
+    shell_type: powershell
     run_list:
     - recipe[windows::default]
-    driver:
-      box: widgit_win2k12r2 # proprietary
-    driver_config:
-      vm_hostname: nil
     transport:
       name: winrm
 
