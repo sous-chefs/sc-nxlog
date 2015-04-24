@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,30 +17,30 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog_ce::default'
+include_recipe 'nxlog::default'
 
-nxlog_ce_destination 'test_om_file' do
+nxlog_destination 'test_om_file' do
   file '/var/log/test.log'
 end
 
-nxlog_ce_destination 'test_om_blocker' do
+nxlog_destination 'test_om_blocker' do
   output_module 'om_blocker'
 end
 
-nxlog_ce_destination 'test_om_dbi' do
+nxlog_destination 'test_om_dbi' do
   output_module 'om_dbi'
   driver 'mysql'
   sql 'INSERT INTO log VALUES ($SyslogFacility, $SyslogSeverity, $Message)'
   options ['host 127.0.0.1', 'username foo', 'password bar', 'dbname nxlog']
 end
 
-nxlog_ce_destination 'test_om_exec' do
+nxlog_destination 'test_om_exec' do
   output_module 'om_exec'
   command '/usr/bin/foo'
   args %w(bar baz)
 end
 
-nxlog_ce_destination 'test_om_https' do
+nxlog_destination 'test_om_https' do
   output_module 'om_http'
   url 'https://example.org/foo'
   https_cert_file '%CERTDIR%/client-cert.pem'
@@ -49,16 +49,16 @@ nxlog_ce_destination 'test_om_https' do
   https_allow_untrusted false
 end
 
-nxlog_ce_destination 'test_om_http' do
+nxlog_destination 'test_om_http' do
   output_module 'om_http'
   url 'http://example.org/bar'
 end
 
-nxlog_ce_destination 'test_om_null' do
+nxlog_destination 'test_om_null' do
   output_module 'om_null'
 end
 
-nxlog_ce_destination 'test_om_ssl' do
+nxlog_destination 'test_om_ssl' do
   output_module 'om_ssl'
   port 1234
   host 'foo.example.org'
@@ -69,19 +69,19 @@ nxlog_ce_destination 'test_om_ssl' do
   output_type 'Binary'
 end
 
-nxlog_ce_destination 'test_om_tcp' do
+nxlog_destination 'test_om_tcp' do
   output_module 'om_tcp'
   port 1234
   host 'foo.example.org'
 end
 
-nxlog_ce_destination 'test_om_udp' do
+nxlog_destination 'test_om_udp' do
   output_module 'om_udp'
   port 1234
   host 'foo.example.org'
 end
 
-nxlog_ce_destination 'test_om_uds' do
+nxlog_destination 'test_om_uds' do
   output_module 'om_uds'
   exec 'parse_syslog_bsd(); to_syslog_bsd();'
   uds '/dev/log'

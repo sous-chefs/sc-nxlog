@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Provider:: log_source
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -22,7 +22,7 @@ def whyrun_supported?
 end
 
 def config_filename(name)
-  "#{node['nxlog_ce']['conf_dir']}/nxlog.conf.d/20_ip_#{name}.conf"
+  "#{node['nxlog']['conf_dir']}/nxlog.conf.d/20_ip_#{name}.conf"
 end
 
 action :create do
