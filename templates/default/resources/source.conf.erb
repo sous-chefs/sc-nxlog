@@ -1,6 +1,10 @@
 define DEFAULT_OUTPUTS null_output
 
+<% if node['platform'] == 'windows' -%>
+include <%= node['nxlog']['conf_dir'] %>/nxlog.conf.d/op_\\*.default
+<% else -%>
 include <%= node['nxlog']['conf_dir'] %>/nxlog.conf.d/op_*.default
+<% end %>
 
 <Input <%= @name %>>
   <% @params.each do |param| -%>
