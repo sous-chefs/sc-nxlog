@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nxlog
-# Provider:: log_destination
+# Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
 #
@@ -17,19 +17,14 @@
 # limitations under the License.
 #
 
-if defined? ChefSpec
-  def create_nxlog_destination(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_destination', 'create', resource_name)
-  end
+include_recipe 'nxlog::default'
+include_recipe 'nxlog::papertrail'
 
-  def create_nxlog_source(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_source', 'create', resource_name)
-  end
+nxlog_papertrail 'my_papertrail' do
+  port 11111
+end
 
-  def create_nxlog_papertrail(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_papertrail', 'create', resource_name)
-  end
+nxlog_papertrail 'my_papertrail_2' do
+  port 11111
+  host 'logs2'
 end
