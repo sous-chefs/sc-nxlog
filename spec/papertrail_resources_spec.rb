@@ -23,6 +23,7 @@ describe 'nxlog::test_papertrail_resources' do
       .with_content(<<EOT)
 <Output my_papertrail>
   Module om_ssl
+  Exec $Hostmame = hostname(); to_syslog_ietf();
   Host logs.papertrailapp.com
   Port 11111
   CAFile /etc/nxlog/certs/papertrail-bundle.pem
@@ -40,6 +41,7 @@ EOT
       .with_content(<<EOT)
 <Output my_papertrail_2>
   Module om_ssl
+  Exec $Hostmame = hostname(); to_syslog_ietf();
   Host logs2.papertrailapp.com
   Port 11111
   CAFile /etc/nxlog/certs/papertrail-bundle.pem

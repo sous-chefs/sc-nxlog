@@ -33,6 +33,7 @@ action :create do
       ca_file ::File.join(node['nxlog']['conf_dir'], 'certs',
                           'papertrail-bundle.pem')
       allow_untrusted false
+      exec '$Hostmame = hostname(); to_syslog_ietf();'
       default n.default
     end
   end
@@ -50,6 +51,7 @@ action :delete do
       ca_file ::File.join(node['nxlog']['conf_dir'], 'certs',
                           'papertrail-bundle.pem')
       allow_untrusted false
+      exec '$Hostmame = hostname(); to_syslog_ietf();'
       default n.default
     end
   end

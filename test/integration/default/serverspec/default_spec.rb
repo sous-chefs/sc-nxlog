@@ -46,11 +46,14 @@ end
 describe file("#{conf_dir}/nxlog.conf.d/10_op_papertrail.conf") do
   it { should be_file }
   its(:content) { should match(<<EOT) }
+<Output papertrail>
   Module om_ssl
+  Exec $Hostmame = hostname(); to_syslog_ietf();
   Host logs2.papertrailapp.com
   Port 17992
   CAFile /etc/nxlog/certs/papertrail-bundle.pem
   AllowUntrusted FALSE
+</Output>
 EOT
 end
 
