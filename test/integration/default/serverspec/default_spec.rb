@@ -43,6 +43,17 @@ describe file("#{conf_dir}/nxlog.conf.d/10_op_test_2.conf") do
 EOT
 end
 
+describe file("#{conf_dir}/nxlog.conf.d/10_op_papertrail.conf") do
+  it { should be_file }
+  its(:content) { should match(<<EOT) }
+  Module om_ssl
+  Host logs2.papertrailapp.com
+  Port 17992
+  CAFile /etc/nxlog/certs/papertrail-bundle.pem
+  AllowUntrusted FALSE
+EOT
+end
+
 describe file("#{conf_dir}/nxlog.conf.d/op_test_2.default") do
   it { should be_file }
   its(:content) { should match(<<EOT) }
@@ -77,4 +88,9 @@ end
 describe file("#{log_dir}/test2.log") do
   it { should be_file }
   its(:content) { should contain('-> -> MARK <- <-') }
+end
+
+describe file("#{conf_dir}/certs/papertrail-bundle.pem") do
+  it { should be_file }
+  its(:content) { should contain('ca-bundle.crt') }
 end
