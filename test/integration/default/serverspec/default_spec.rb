@@ -9,19 +9,22 @@ case os[:family]
 when 'debian', 'ubuntu'
   conf_dir = '/etc/nxlog'
   log_dir = '/var/log/nxlog'
+  a_prefix = ''
 when 'redhat'
   conf_dir = '/etc'
   log_dir = '/var/log/nxlog'
+  a_prefix = ''
 when 'windows'
   conf_dir = 'c:/Program Files (x86)/nxlog/conf'
   log_dir = 'c:/windows/temp'
+  a_prefix = '\\'
 else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_test.conf") do
   it { should be_file }
-  its(:content) { should match(<<EOT) }
+  its(:content) { should contain(<<EOT) }
 <Output test>
   Module om_file
   File "#{log_dir}/test.log"
@@ -31,7 +34,7 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_test_2.conf") do
   it { should be_file }
-  its(:content) { should match(<<EOT) }
+  its(:content) { should contain(<<EOT) }
 <Output test_2>
   Module om_file
   File "#{log_dir}/test2.log"
@@ -41,7 +44,7 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_papertrail.conf") do
   it { should be_file }
-  its(:content) { should match(<<EOT) }
+  its(:content) { should contain(<<EOT) }
 <Output papertrail>
   Module om_ssl
   Exec $Hostmame = hostname(); to_syslog_ietf();
@@ -55,17 +58,17 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/op_test_2.default") do
   it { should be_file }
-  its(:content) { should match(<<EOT) }
+  its(:content) { should contain(<<EOT) }
 define DEFAULT_OUTPUTS %DEFAULT_OUTPUTS%, test_2
 EOT
 end
 
 describe file("#{conf_dir}/nxlog.conf.d/20_ip_mark.conf") do
   it { should be_file }
-  its(:content) { should match(<<EOT) }
+  its(:content) { should contain(<<EOT) }
 define DEFAULT_OUTPUTS null_output
 
-include #{conf_dir}/nxlog.conf.d/op_*.default
+include #{conf_dir}/nxlog.conf.d/#{a_prefix}*.default
 
 <Input mark>
   Module im_mark
