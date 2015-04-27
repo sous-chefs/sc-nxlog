@@ -24,7 +24,7 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_test.conf") do
   it { should be_file }
-  its(:content) { should contain(<<EOT) }
+  its(:content) { should start_with(<<EOT) }
 <Output test>
   Module om_file
   File "#{log_dir}/test.log"
@@ -34,7 +34,7 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_test_2.conf") do
   it { should be_file }
-  its(:content) { should contain(<<EOT) }
+  its(:content) { should start_with(<<EOT) }
 <Output test_2>
   Module om_file
   File "#{log_dir}/test2.log"
@@ -44,7 +44,7 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/10_op_papertrail.conf") do
   it { should be_file }
-  its(:content) { should contain(<<EOT) }
+  its(:content) { should start_with(<<EOT) }
 <Output papertrail>
   Module om_ssl
   Exec $Hostmame = hostname(); to_syslog_ietf();
@@ -58,14 +58,14 @@ end
 
 describe file("#{conf_dir}/nxlog.conf.d/op_test_2.default") do
   it { should be_file }
-  its(:content) { should contain(<<EOT) }
+  its(:content) { should start_with(<<EOT) }
 define DEFAULT_OUTPUTS %DEFAULT_OUTPUTS%, test_2
 EOT
 end
 
 describe file("#{conf_dir}/nxlog.conf.d/20_ip_mark.conf") do
   it { should be_file }
-  its(:content) { should contain(<<EOT) }
+  its(:content) { should start_with(<<EOT) }
 define DEFAULT_OUTPUTS null_output
 
 include #{conf_dir}/nxlog.conf.d/#{a_prefix}*.default
