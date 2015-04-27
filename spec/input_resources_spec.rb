@@ -1,13 +1,13 @@
 require_relative 'spec_helper'
 
-describe 'nxlog_ce::test_input_resources' do
+describe 'nxlog::test_input_resources' do
   let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into: ['nxlog_ce_source'])
+    ChefSpec::SoloRunner.new(step_into: ['nxlog_source'])
       .converge(described_recipe)
   end
 
   it 'creates a log source for a file' do
-    expect(chef_run).to create_nxlog_ce_source('test_im_file')
+    expect(chef_run).to create_nxlog_source('test_im_file')
   end
 
   it 'creates a config file for the file log source' do
@@ -19,7 +19,7 @@ describe 'nxlog_ce::test_input_resources' do
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_file>
   Module im_file
@@ -43,7 +43,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_exec>
   Module im_exec
@@ -68,7 +68,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_internal>
   Module im_internal
@@ -89,7 +89,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_kernel>
   Module im_kernel
@@ -110,7 +110,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark>
   Module im_mark
@@ -133,7 +133,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mseventlog>
   Module im_mseventlog
@@ -155,7 +155,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_msvistalog>
   Module im_msvistalog
@@ -176,7 +176,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_null>
   Module im_null
@@ -197,7 +197,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_ssl>
   Module im_ssl
@@ -225,7 +225,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_tcp>
   Module im_tcp
@@ -249,7 +249,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_udp>
   Module im_udp
@@ -273,7 +273,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_uds>
   Module im_uds

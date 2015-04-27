@@ -1,18 +1,18 @@
 require_relative 'spec_helper'
 
-describe 'nxlog_ce::test_default_resources' do
+describe 'nxlog::test_default_resources' do
   let(:chef_run) do
     ChefSpec::SoloRunner.new(step_into:
-                               %w(nxlog_ce_source nxlog_ce_destination))
+                               %w(nxlog_source nxlog_destination))
       .converge(described_recipe)
   end
 
   it 'creates a mark log source' do
-    expect(chef_run).to create_nxlog_ce_source('test_im_mark_1')
+    expect(chef_run).to create_nxlog_source('test_im_mark_1')
   end
 
   it 'creates a file log destination' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_file_1')
+    expect(chef_run).to create_nxlog_destination('test_om_file_1')
   end
 
   it 'creates a config file for a source with no destination specified' do
@@ -24,7 +24,7 @@ describe 'nxlog_ce::test_default_resources' do
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_1>
   Module im_mark
@@ -46,7 +46,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_2>
   Module im_mark
@@ -68,7 +68,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_3>
   Module im_mark
@@ -90,7 +90,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_4>
   Module im_mark

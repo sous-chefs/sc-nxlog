@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nxlog
-# Recipe:: default
+# Resouce:: papertrail
 #
 # Copyright (C) 2014 Simon Detheridge
 #
@@ -17,6 +17,10 @@
 # limitations under the License.
 #
 
-package_name = "nxlog-ce-#{node['nxlog']['version']}.msi"
+actions :create, :delete
+default_action :create
 
-node.default['nxlog']['installer_package'] = package_name
+attribute :name, name_attribute: true, kind_of: String, required: true
+attribute :port, kind_of: Integer, required: true
+attribute :host, kind_of: String, default: 'logs'
+attribute :default, kind_of: [TrueClass, FalseClass], default: false

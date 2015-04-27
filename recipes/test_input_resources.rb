@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,56 +17,56 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog_ce::default'
+include_recipe 'nxlog::default'
 
-nxlog_ce_source 'test_im_file' do
+nxlog_source 'test_im_file' do
   file '/var/log/test.log'
   poll_interval 5.5
   close_when_idle false
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_exec' do
+nxlog_source 'test_im_exec' do
   input_module 'im_exec'
   command '/sbin/log_processor'
   args %w(foo bar baz)
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_internal' do
+nxlog_source 'test_im_internal' do
   input_module 'im_internal'
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_kernel' do
+nxlog_source 'test_im_kernel' do
   input_module 'im_kernel'
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_mark' do
+nxlog_source 'test_im_mark' do
   input_module 'im_mark'
   mark 'marky mark'
   mark_interval 20
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_mseventlog' do
+nxlog_source 'test_im_mseventlog' do
   input_module 'im_mseventlog'
   utf8 true
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_msvistalog' do
+nxlog_source 'test_im_msvistalog' do
   input_module 'im_msvistalog'
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_null' do
+nxlog_source 'test_im_null' do
   input_module 'im_null'
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_ssl' do
+nxlog_source 'test_im_ssl' do
   input_module 'im_ssl'
   host 'log.example.org'
   port 666
@@ -78,7 +78,7 @@ nxlog_ce_source 'test_im_ssl' do
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_tcp' do
+nxlog_source 'test_im_tcp' do
   input_module 'im_tcp'
   host 'log.example.org'
   port 667
@@ -86,7 +86,7 @@ nxlog_ce_source 'test_im_tcp' do
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_udp' do
+nxlog_source 'test_im_udp' do
   input_module 'im_udp'
   host 'log.example.org'
   port 666
@@ -94,7 +94,7 @@ nxlog_ce_source 'test_im_udp' do
   destination 'test_om_udp'
 end
 
-nxlog_ce_source 'test_im_uds' do
+nxlog_source 'test_im_uds' do
   input_module 'im_uds'
   uds '/dev/log'
   destination 'test_om_udp'

@@ -5,3 +5,6 @@ AllCops:
 
 Style/SingleSpaceBeforeFirstArg:
   Enabled: false
+
+Style/NumericLiterals:
+  Enabled: false

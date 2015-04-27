@@ -1,13 +1,13 @@
 require_relative 'spec_helper'
 
-describe 'nxlog_ce::test_output_resources' do
+describe 'nxlog::test_output_resources' do
   let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into: ['nxlog_ce_destination'])
+    ChefSpec::SoloRunner.new(step_into: ['nxlog_destination'])
       .converge(described_recipe)
   end
 
   it 'creates a log destination for a file' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_file')
+    expect(chef_run).to create_nxlog_destination('test_om_file')
   end
 
   it 'creates a config file for the file log destination' do
@@ -25,7 +25,7 @@ EOT
   end
 
   it 'creates a log destination for the blocker module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_blocker')
+    expect(chef_run).to create_nxlog_destination('test_om_blocker')
   end
 
   it 'creates a config file for the blocker module' do
@@ -42,7 +42,7 @@ EOT
   end
 
   it 'creates a log destination for the dbi module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_dbi')
+    expect(chef_run).to create_nxlog_destination('test_om_dbi')
   end
 
   it 'creates a config file for the dbi module' do
@@ -65,7 +65,7 @@ EOT
   end
 
   it 'creates a log destination for the exec module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_exec')
+    expect(chef_run).to create_nxlog_destination('test_om_exec')
   end
 
   it 'creates a config file for the exec module' do
@@ -85,8 +85,8 @@ EOT
   end
 
   it 'creates log destinations for the http module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_http')
-    expect(chef_run).to create_nxlog_ce_destination('test_om_https')
+    expect(chef_run).to create_nxlog_destination('test_om_http')
+    expect(chef_run).to create_nxlog_destination('test_om_https')
   end
 
   it 'creates config files for the http modules' do
@@ -119,7 +119,7 @@ EOT
   end
 
   it 'creates a log destination for the null module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_null')
+    expect(chef_run).to create_nxlog_destination('test_om_null')
   end
 
   it 'creates a config file for the null module' do
@@ -136,7 +136,7 @@ EOT
   end
 
   it 'creates a log destination for the ssl module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_ssl')
+    expect(chef_run).to create_nxlog_destination('test_om_ssl')
   end
 
   it 'creates a config file for the ssl module' do
@@ -160,7 +160,7 @@ EOT
   end
 
   it 'creates a log destination for the tcp module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_tcp')
+    expect(chef_run).to create_nxlog_destination('test_om_tcp')
   end
 
   it 'creates a config file for the tcp module' do
@@ -179,7 +179,7 @@ EOT
   end
 
   it 'creates a log destination for the udp module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_udp')
+    expect(chef_run).to create_nxlog_destination('test_om_udp')
   end
 
   it 'creates a config file for the udp module' do
@@ -198,7 +198,7 @@ EOT
   end
 
   it 'creates a log destination for the uds module' do
-    expect(chef_run).to create_nxlog_ce_destination('test_om_uds')
+    expect(chef_run).to create_nxlog_destination('test_om_uds')
   end
 
   it 'creates a config file for the uds module' do

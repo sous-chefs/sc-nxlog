@@ -1,3 +1,3 @@
 # 0.1.0
 
-Initial release of nxlog_ce
+Initial release of nxlog

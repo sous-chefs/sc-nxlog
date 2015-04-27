@@ -10,7 +10,7 @@ end
 def run_tests(tests)
   failed = false
   tests.each do |tn|
-    failed ||= invoke_task(tn)
+    failed = invoke_task(tn) || failed
   end
   fail 'One or more tests failed' if failed
 end
@@ -63,7 +63,7 @@ namespace :test do
     desc 'Run test-kitchen to test the cookbook on multiple platforms'
     task :kitchen do
       fail 'tests failed' unless system 'TEAMCITY=1 bundle exec kitchen ' \
-        'test all --destroy always | cat'
+        'test all --destroy always | cat; exit ${PIPESTATUS[0]}'
     end
 
     desc 'Run the cookbook unit tests'

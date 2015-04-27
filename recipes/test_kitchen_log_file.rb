@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: nxlog_ce
+# Cookbook Name:: nxlog
 # Recipe:: default
 #
 # Copyright (C) 2014 Simon Detheridge
@@ -17,9 +17,10 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog_ce::default'
+include_recipe 'nxlog::default'
+include_recipe 'nxlog::papertrail'
 
-nxlog_ce_destination 'test' do
+nxlog_destination 'test' do
   if platform? 'windows'
     file 'c:/windows/temp/test.log'
   else
@@ -27,7 +28,7 @@ nxlog_ce_destination 'test' do
   end
 end
 
-nxlog_ce_destination 'test_2' do
+nxlog_destination 'test_2' do
   if platform? 'windows'
     file 'c:/windows/temp/test2.log'
   else
@@ -36,7 +37,13 @@ nxlog_ce_destination 'test_2' do
   default true
 end
 
-nxlog_ce_source 'mark' do
+nxlog_papertrail 'papertrail' do
+  port 17992
+  host 'logs2'
+  default true
+end
+
+nxlog_source 'mark' do
   input_module 'im_mark'
   mark '-> -> MARK <- <-'
   mark_interval 1
@@ -45,7 +52,7 @@ end
 
 # wait for the mark to appear in the log output by explicitly starting nxlog
 # and waiting for a set time
-service 'nxlog_ce_restart' do
+service 'nxlog_restart' do
   service_name 'nxlog'
   action :restart
 end

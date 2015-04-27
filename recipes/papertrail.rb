@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: nxlog
-# Recipe:: default
+# Recipe:: papertrail
 #
 # Copyright (C) 2014 Simon Detheridge
 #
@@ -17,6 +17,11 @@
 # limitations under the License.
 #
 
-package_name = "nxlog-ce-#{node['nxlog']['version']}.msi"
+include_recipe 'nxlog::default'
 
-node.default['nxlog']['installer_package'] = package_name
+directory File.join(node['nxlog']['conf_dir'], 'certs')
+
+remote_file File.join(node['nxlog']['conf_dir'],
+                      'certs', 'papertrail-bundle.pem') do
+  source node['nxlog']['papertrail']['bundle_url']
+end

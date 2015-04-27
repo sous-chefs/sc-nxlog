@@ -17,6 +17,14 @@
 # limitations under the License.
 #
 
-package_name = "nxlog-ce-#{node['nxlog']['version']}.msi"
+include_recipe 'nxlog::default'
+include_recipe 'nxlog::papertrail'
 
-node.default['nxlog']['installer_package'] = package_name
+nxlog_papertrail 'my_papertrail' do
+  port 11111
+end
+
+nxlog_papertrail 'my_papertrail_2' do
+  port 11111
+  host 'logs2'
+end
