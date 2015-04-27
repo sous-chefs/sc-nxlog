@@ -24,7 +24,7 @@ describe 'nxlog::test_default_resources' do
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_1>
   Module im_mark
@@ -46,7 +46,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_2>
   Module im_mark
@@ -68,7 +68,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_3>
   Module im_mark
@@ -90,7 +90,7 @@ EOT
       .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
-include /etc/nxlog/nxlog.conf.d/op_*.default
+include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_mark_4>
   Module im_mark
