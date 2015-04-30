@@ -62,8 +62,8 @@ namespace :test do
 
     desc 'Run test-kitchen to test the cookbook on multiple platforms'
     task :kitchen do
-      fail 'tests failed' unless system 'TEAMCITY=1 bundle exec kitchen ' \
-        'test all --destroy always | cat; exit ${PIPESTATUS[0]}'
+      fail 'tests failed' unless system 'TEAMCITY=1 bash -c \'bundle exec ' \
+        'kitchen test all --destroy always | cat; exit ${PIPESTATUS[0]}\''
     end
 
     desc 'Run the cookbook unit tests'
