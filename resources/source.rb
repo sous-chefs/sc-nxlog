@@ -41,6 +41,7 @@ attribute :read_from_last, kind_of: [TrueClass, FalseClass]
 # im_exec
 attribute :command, kind_of: String # required
 attribute :args, kind_of: Array
+attribute :restart, kind_of: [TrueClass, FalseClass]
 
 # im_file
 attribute :file, kind_of: String # required

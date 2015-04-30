@@ -52,6 +52,7 @@ action :create do
           params << ['Arg', arg]
         end
       end
+      params << ['Restart', n.restart] unless n.restart.nil?
 
     when 'im_file'
       params << ['SavePos',
