@@ -1,7 +1,7 @@
 # NXLog Cookbook 
 
-[![Build Status](https://gemnasium.com/widgit-cookbooks/nxlog.svg)](https://gemnasium.com/widgit-cookbooks/nxlog)
-[![Dependency Status](https://secure.travis-ci.org/widgit-cookbooks/nxlog.svg?branch=master)](https://travis-ci.org/widgit-cookbooks/nxlog)
+[![Build Status](https://secure.travis-ci.org/widgit-cookbooks/nxlog.svg?branch=master)](https://travis-ci.org/widgit-cookbooks/nxlog)
+[![Dependency Status](https://gemnasium.com/widgit-cookbooks/nxlog.svg)](https://gemnasium.com/widgit-cookbooks/nxlog)
 
 This cookbook sets up NXLog on a Windows or Linux host.
 
