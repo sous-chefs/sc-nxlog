@@ -17,7 +17,7 @@ when 'redhat'
 when 'windows'
   conf_dir = 'c:/Program Files (x86)/nxlog/conf'
   log_dir = 'c:/windows/temp'
-  a_prefix = '\\'
+  a_prefix = '\\\\'
 else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
