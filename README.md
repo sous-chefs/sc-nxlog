@@ -66,8 +66,9 @@ logs can be written into different formats and sent to multiple places.
 The cookbook provides LWRPs for log sources and destinations, and makes it easy
 to set up routes between them.
 
-Additionally, this cookbook includes a papertrail LWRP to simplify the
-publishing of logs to that service.
+Additionally, this cookbook includes a Papertrail LWRP to simplify the
+publishing of logs to that service. [Papertrail](https://papertrailapp.com/?thank=d131bd) is a web-based log aggregation
+service that can receive logs from multiple servers and display them all in once place.
 
 It is worth reading the [nxlog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928) 
 to get a better idea of how this stuff works.
