@@ -1,0 +1,1 @@
+../../lwrp_resources/serverspec/lwrp_resources_spec.rb

@@ -45,8 +45,12 @@ platforms:
       name: winrm
 
 suites:
-  - name: default
+  - name: lwrp_resources
     run_list:
       - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file]
     attributes:
+  - name: attribute_resources
+    run_list:
+      - recipe[nxlog::default]
+      - recipe[nxlog::test_kitchen_log_file_attrs]
