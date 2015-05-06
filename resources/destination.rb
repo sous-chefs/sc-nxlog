@@ -80,4 +80,4 @@ attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
 attribute :sock_buf_size, kind_of: Fixnum
 
 # om_uds
-attribute :uds, kind_of: String # required
+attribute :uds, kind_of: String, default: '/dev/log'

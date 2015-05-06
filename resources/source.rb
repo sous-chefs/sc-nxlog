@@ -73,7 +73,7 @@ attribute :channel, kind_of: String
 # im_null
 
 # im_ssl, im_tcp, im_udp
-attribute :host, kind_of: String # required
+attribute :host, kind_of: String, default: 'localhost'
 attribute :port, kind_of: Fixnum # required
 
 # im_ssl
@@ -90,4 +90,4 @@ attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
 attribute :sock_buf_size, kind_of: Fixnum
 
 # im_uds
-attribute :uds, kind_of: String # required
+attribute :uds, kind_of: String, default: '/dev/log'
