@@ -8,10 +8,8 @@ group :integration do
   gem 'serverspec'
   gem 'windows_chef_zero'
   gem 'winrm-transport'
-  gem 'test-kitchen', git: 'https://github.com/test-kitchen/test-kitchen',
-                      tag: 'v1.4.0.rc.1'
-  gem 'kitchen-vagrant', git: 'https://github.com/test-kitchen/kitchen-vagrant',
-                         tag: 'v0.17.0.rc.1'
+  gem 'test-kitchen', '~> 1.4.0'
+  gem 'kitchen-vagrant', '~> 0.17.0'
 end
 
 group :development, :test do
