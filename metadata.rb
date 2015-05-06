@@ -17,8 +17,8 @@ supports         'redhat', '>= 6.0'
 supports         'centos', '>= 6.0'
 supports         'windows'
 
-recipe           'nxlog::default'
-recipe           'nxlog::papertrail'
+recipe           'nxlog::default', 'Install and configure nxlog'
+recipe           'nxlog::papertrail', 'Enable nxlog Papertrail support'
 
 maintainer       'Simon Detheridge'
 maintainer_email 'simon@widgit.com'
