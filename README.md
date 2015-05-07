@@ -550,5 +550,6 @@ You know the drill:
 
 ## License and Authors
 
-Author:: Simon Detheridge, Widgidt Software (<simon@widgit.com>)
+Author:: Simon Detheridge, Widgit Software (<simon@widgit.com>)
+
 License:: Apache Version 2.0
