@@ -66,3 +66,5 @@ directory "#{node['nxlog']['conf_dir']}/nxlog.conf.d"
 zap_directory "#{node['nxlog']['conf_dir']}/nxlog.conf.d" do
   pattern '*.conf'
 end
+
+include_recipe 'nxlog::resources_from_attributes'
