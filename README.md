@@ -3,53 +3,6 @@
 [![Build Status](https://secure.travis-ci.org/widgit-cookbooks/nxlog.svg?branch=master)](https://travis-ci.org/widgit-cookbooks/nxlog)
 [![Dependency Status](https://gemnasium.com/widgit-cookbooks/nxlog.svg)](https://gemnasium.com/widgit-cookbooks/nxlog)
 
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-**Table of Contents**  *generated with [DocToc](https://github.com/thlorenz/doctoc)*
-
-- [About this cookbook](#about-this-cookbook)
-- [Supported Platforms](#supported-platforms)
-- [Usage](#usage)
-- [Resources](#resources)
-  - [nxlog_source](#nxlog_source)
-    - [Syntax](#syntax)
-    - [nxlog_source attributes](#nxlog_source-attributes)
-      - [Attributes common to all modules](#attributes-common-to-all-modules)
-      - ['im_file' module](#im_file-module)
-      - ['im_exec' module](#im_exec-module)
-      - ['im_internal' module](#im_internal-module)
-      - ['im_kernel' module](#im_kernel-module)
-      - ['im_mark' module](#im_mark-module)
-      - ['im_mseventlog' module](#im_mseventlog-module)
-      - ['im_msvistalog' module](#im_msvistalog-module)
-      - ['im_null' module](#im_null-module)
-      - ['im_ssl' module](#im_ssl-module)
-      - ['im_tcp' module](#im_tcp-module)
-      - ['im_udp' module](#im_udp-module)
-      - ['im_uds' module](#im_uds-module)
-  - [nxlog_destination](#nxlog_destination)
-    - [Syntax](#syntax-1)
-    - [nxlog_destination attributes](#nxlog_destination-attributes)
-      - [Attributes common to all modules](#attributes-common-to-all-modules-1)
-      - ['om_file' module](#om_file-module)
-      - ['om_blocker' module](#om_blocker-module)
-      - ['om_dbi' module](#om_dbi-module)
-      - ['om_exec' module](#om_exec-module)
-      - ['om_http' module](#om_http-module)
-      - ['om_null' module](#om_null-module)
-      - ['om_ssl' module](#om_ssl-module)
-      - ['om_tcp' module](#om_tcp-module)
-      - ['om_udp' module](#om_udp-module)
-      - ['om_uds' module](#om_uds-module)
-  - [nxlog_papertrail](#nxlog_papertrail)
-    - [Syntax](#syntax-2)
-    - [nxlog_papertrail attributes](#nxlog_papertrail-attributes)
-- [Cookbook Attributes](#cookbook-attributes)
-- [Contributing](#contributing)
-- [License and Authors](#license-and-authors)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## About this cookbook
 
 This cookbook sets up NXLog on a Windows or Linux host.
@@ -597,5 +550,6 @@ You know the drill:
 
 ## License and Authors
 
-Author:: Simon Detheridge, Widgidt Software (<simon@widgit.com>)
+Author:: Simon Detheridge, Widgit Software (<simon@widgit.com>)
+
 License:: Apache Version 2.0

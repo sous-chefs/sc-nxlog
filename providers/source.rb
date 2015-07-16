@@ -129,7 +129,7 @@ action :create do
 
     # create template with above parameters
     template config_filename(n.name) do
-      cookbook n.cookbook_name.to_s
+      cookbook 'nxlog'
       source 'resources/source.conf.erb'
 
       variables name: n.name,
