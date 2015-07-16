@@ -17,85 +17,82 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+# creates the same resources as test_default_resources, but as node attributes
 
-# nxlog_source 'test_im_file' do
-#   file '/var/log/test.log'
-#   poll_interval 5.5
-#   close_when_idle false
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_exec' do
-#   input_module 'im_exec'
-#   command '/sbin/log_processor'
-#   args %w(foo bar baz)
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_internal' do
-#   input_module 'im_internal'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_kernel' do
-#   input_module 'im_kernel'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_mark' do
-#   input_module 'im_mark'
-#   mark 'marky mark'
-#   mark_interval 20
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_mseventlog' do
-#   input_module 'im_mseventlog'
-#   utf8 true
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_msvistalog' do
-#   input_module 'im_msvistalog'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_null' do
-#   input_module 'im_null'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_ssl' do
-#   input_module 'im_ssl'
-#   host 'log.example.org'
-#   port 666
-#   cert_file '%CERTDIR%/client-cert.pem'
-#   cert_key_file '%CERTDIR%/client-key.pem'
-#   ca_file '%CERTDIR%/ca.pem'
-#   allow_untrusted false
-#   input_type 'Binary'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_tcp' do
-#   input_module 'im_tcp'
-#   host 'log.example.org'
-#   port 667
-#   input_type 'Binary'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_udp' do
-#   input_module 'im_udp'
-#   host 'log.example.org'
-#   port 666
-#   input_type 'Binary'
-#   destination 'test_om_udp'
-# end
-#
-# nxlog_source 'test_im_uds' do
-#   input_module 'im_uds'
-#   uds '/dev/log'
-#   destination 'test_om_udp'
-# end
+node.override['nxlog'] = JSON.parse(<<EOT)
+{
+  "sources": {
+    "test_im_file": {
+      "file": "/var/log/test.log",
+      "poll_interval": 5.5,
+      "close_when_idle": false,
+      "destination": "test_om_udp"
+    },
+    "test_im_exec": {
+      "input_module": "im_exec",
+      "command": "/sbin/log_processor",
+      "args": ["foo", "bar", "baz"],
+      "destination": "test_om_udp"
+    },
+    "test_im_internal": {
+      "input_module": "im_internal",
+      "destination": "test_om_udp"
+    },
+    "test_im_kernel": {
+      "input_module": "im_kernel",
+      "destination": "test_om_udp"
+    },
+    "test_im_mark": {
+      "input_module": "im_mark",
+      "mark_interval": 20,
+      "mark": "marky mark",
+      "destination": "test_om_udp"
+    },
+    "test_im_mseventlog": {
+      "input_module": "im_mseventlog",
+      "utf8": true,
+      "destination": "test_om_udp"
+    },
+    "test_im_msvistalog": {
+      "input_module": "im_msvistalog",
+      "destination": "test_om_udp"
+    },
+    "test_im_null": {
+      "input_module": "im_null",
+      "destination": "test_om_udp"
+    },
+    "test_im_ssl": {
+      "input_module": "im_ssl",
+      "host": "log.example.org",
+      "port": 666,
+      "cert_file": "%CERTDIR%/client-cert.pem",
+      "cert_key_file": "%CERTDIR%/client-key.pem",
+      "ca_file": "%CERTDIR%/ca.pem",
+      "allow_untrusted": false,
+      "input_type": "Binary",
+      "destination": "test_om_udp"
+    },
+    "test_im_tcp": {
+      "input_module": "im_tcp",
+      "host": "log.example.org",
+      "port": 667,
+      "input_type": "Binary",
+      "destination": "test_om_udp"
+    },
+    "test_im_udp": {
+      "input_module": "im_udp",
+      "host": "log.example.org",
+      "port": 666,
+      "input_type": "Binary",
+      "destination": "test_om_udp"
+    },
+    "test_im_uds": {
+      "input_module": "im_uds",
+      "uds": "/dev/log",
+      "destination": "test_om_udp"
+    }
+  }
+}
+EOT
+
+include_recipe 'nxlog::default'

@@ -17,41 +17,45 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+# creates the same resources as test_default_resources, but as node attributes
 
-# nxlog_destination 'test_om_file_1' do
-#   file '/var/log/mark.log'
-#   default true
-# end
-#
-# nxlog_destination 'test_om_file_2' do
-#   file '/var/log/mark2.log'
-#   default true
-# end
-#
-# nxlog_destination 'test_om_file_3' do
-#   file '/var/log/mark3.log'
-# end
-#
-# nxlog_source 'test_im_mark_1' do
-#   input_module 'im_mark'
-#   mark_interval 1
-# end
-#
-# nxlog_source 'test_im_mark_2' do
-#   input_module 'im_mark'
-#   mark_interval 1
-#   destination 'foo'
-# end
-#
-# nxlog_source 'test_im_mark_3' do
-#   input_module 'im_mark'
-#   mark_interval 1
-#   destination %w(foo bar)
-# end
-#
-# nxlog_source 'test_im_mark_4' do
-#   input_module 'im_mark'
-#   mark_interval 1
-#   destination ['foo', 'bar', :defaults]
-# end
+node.override['nxlog'] = JSON.parse(<<EOT)
+{
+  "destinations": {
+    "test_om_file_1": {
+      "file": "/var/log/mark.log",
+      "default": true
+    },
+    "test_om_file_2": {
+      "file": "/var/log/mark2.log",
+      "default": true
+    },
+    "test_om_file_3": {
+      "file": "/var/log/mark3.log"
+    }
+  },
+  "sources": {
+    "test_im_mark_1": {
+      "input_module": "im_mark",
+      "mark_interval": 1
+    },
+    "test_im_mark_2": {
+      "input_module": "im_mark",
+      "mark_interval": 1,
+      "destination": "foo"
+    },
+    "test_im_mark_3": {
+      "input_module": "im_mark",
+      "mark_interval": 1,
+      "destination": ["foo", "bar"]
+    },
+    "test_im_mark_4": {
+      "input_module": "im_mark",
+      "mark_interval": 1,
+      "destination": ["foo", "bar", ":defaults"]
+    }
+  }
+}
+EOT
+
+include_recipe 'nxlog::default'

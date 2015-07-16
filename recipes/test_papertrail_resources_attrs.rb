@@ -17,14 +17,21 @@
 # limitations under the License.
 #
 
+# creates the same resources as test_default_resources, but as node attributes
+
+node.override['nxlog'] = JSON.parse(<<EOT)
+{
+  "papertrails": {
+    "my_papertrail": {
+      "port": 11111
+    },
+    "my_papertrail_2": {
+      "port": 11111,
+      "host": "logs2"
+    }
+  }
+}
+EOT
+
 include_recipe 'nxlog::default'
 include_recipe 'nxlog::papertrail'
-
-# nxlog_papertrail 'my_papertrail' do
-#   port 11111
-# end
-#
-# nxlog_papertrail 'my_papertrail_2' do
-#   port 11111
-#   host 'logs2'
-# end

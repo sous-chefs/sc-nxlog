@@ -17,38 +17,48 @@
 # limitations under the License.
 #
 
+if platform? 'windows'
+  log_dir 'c:/windows/temp/'
+else
+  log_dir '/var/log/nxlog/'
+end
+
+# creates the same resources as test_default_resources, but as node attributes
+
+node.override['nxlog'] = JSON.parse(<<EOT)
+{
+  "destinations": {
+    "test": {
+      "file": "#{log_dir}test.log"
+    },
+    "test_2": {
+      "file": "#{log_dir}test2.log",
+      "default": true
+    },
+    "test_om_file_2": {
+      "file": "/var/log/mark3.log"
+    }
+  },
+  "papertrails": {
+    "papertrail": {
+      "port": 17992,
+      "host": "logs2",
+      "default": true
+    }
+  },
+  "sources": {
+    "mark": {
+      "input_module": "im_mark",
+      "mark_interval": 1,
+      "mark": "-> -> MARK <- <-",
+      "destination": ["test", ":defaults"]
+    }
+  }
+}
+EOT
+
 include_recipe 'nxlog::default'
 include_recipe 'nxlog::papertrail'
-
-# nxlog_destination 'test' do
-#   if platform? 'windows'
-#     file 'c:/windows/temp/test.log'
-#   else
-#     file '/var/log/nxlog/test.log'
-#   end
-# end
-#
-# nxlog_destination 'test_2' do
-#   if platform? 'windows'
-#     file 'c:/windows/temp/test2.log'
-#   else
-#     file '/var/log/nxlog/test2.log'
-#   end
-#   default true
-# end
-#
-# nxlog_papertrail 'papertrail' do
-#   port 17992
-#   host 'logs2'
-#   default true
-# end
-#
-# nxlog_source 'mark' do
-#   input_module 'im_mark'
-#   mark '-> -> MARK <- <-'
-#   mark_interval 1
-#   destination ['test', :defaults]
-# end
 
 # wait for the mark to appear in the log output by explicitly starting nxlog
 # and waiting for a set time
