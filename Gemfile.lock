@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/gh2k/kitchen-vagrant
+  revision: 98cdc69605988219d22a52e4399a2e64c01be9b1
+  branch: boot-timeout
+  specs:
+    kitchen-vagrant (0.18.1.dev)
+      test-kitchen (~> 1.4)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -117,8 +125,6 @@ GEM
     httpclient (2.6.0.1)
     ipaddress (0.8.0)
     json (1.8.2)
-    kitchen-vagrant (0.17.0)
-      test-kitchen (~> 1.4)
     launchy (2.4.3)
       addressable (~> 2.3)
     libyajl2 (1.2.0)
@@ -135,7 +141,7 @@ GEM
     mixlib-cli (1.5.0)
     mixlib-config (2.1.0)
     mixlib-log (1.6.0)
-    mixlib-shellout (2.0.1)
+    mixlib-shellout (2.1.0)
     multi_json (1.11.0)
     multipart-post (2.0.0)
     net-http-persistent (2.9.4)
@@ -247,7 +253,7 @@ GEM
       net-scp
       net-ssh
     systemu (2.6.5)
-    test-kitchen (1.4.0)
+    test-kitchen (1.4.1)
       mixlib-shellout (>= 1.2, < 3.0)
       net-scp (~> 1.1)
       net-ssh (~> 2.7)
@@ -300,7 +306,7 @@ DEPENDENCIES
   berkshelf
   chefspec
   foodcritic
-  kitchen-vagrant (~> 0.17.0)
+  kitchen-vagrant!
   pry (~> 0.9.0)
   rake
   rspec_junit_formatter
