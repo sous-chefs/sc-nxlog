@@ -2,7 +2,7 @@
 driver:
   name: vagrant
   config:
-    boot_timeout: 600
+    boot_timeout: 1200
 <% if ENV['TEAMCITY'] == '1' %>
   synced_folders:
     - ['.junit', '/.junit']
