@@ -9,7 +9,7 @@ group :integration do
   gem 'windows_chef_zero'
   gem 'winrm-transport'
   gem 'test-kitchen', '~> 1.4.0'
-  gem 'kitchen-vagrant', '~> 0.17.0'
+  gem 'kitchen-vagrant', git: 'https://github.com/gh2k/kitchen-vagrant', branch: 'boot-timeout'
 end
 
 group :development, :test do
