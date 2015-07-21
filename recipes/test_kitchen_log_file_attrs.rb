@@ -17,45 +17,7 @@
 # limitations under the License.
 #
 
-if platform? 'windows'
-  log_dir 'c:/windows/temp/'
-else
-  log_dir '/var/log/nxlog/'
-end
-
-# creates the same resources as test_default_resources, but as node attributes
-
-node.override['nxlog'] = JSON.parse(<<EOT)
-{
-  "destinations": {
-    "test": {
-      "file": "#{log_dir}test.log"
-    },
-    "test_2": {
-      "file": "#{log_dir}test2.log",
-      "default": true
-    },
-    "test_om_file_2": {
-      "file": "/var/log/mark3.log"
-    }
-  },
-  "papertrails": {
-    "papertrail": {
-      "port": 17992,
-      "host": "logs2",
-      "default": true
-    }
-  },
-  "sources": {
-    "mark": {
-      "input_module": "im_mark",
-      "mark_interval": 1,
-      "mark": "-> -> MARK <- <-",
-      "destination": ["test", ":defaults"]
-    }
-  }
-}
-EOT
+# create the resources from the node attributes, restart and wait
 
 include_recipe 'nxlog::default'
 include_recipe 'nxlog::papertrail'
