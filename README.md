@@ -23,6 +23,11 @@ Additionally, this cookbook includes a Papertrail LWRP to simplify the
 publishing of logs to that service. [Papertrail](https://papertrailapp.com/?thank=d131bd) is a web-based log aggregation
 service that can receive logs from multiple servers and display them all in once place.
 
+You may also create nxlog resources via node attributes, which saves you from
+having to write a recipe for each one. This cookbook uses the `zap` cookbook
+to ensure that resources configs are automatically removed from nodes when they
+are removed from node attributes.
+
 It is worth reading the [nxlog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928) 
 to get a better idea of how this stuff works.
 
@@ -76,6 +81,25 @@ nxlog_source 'event_log' do
 end
 ```
 
+This can also be accomplished using node attributes as follows:
+```json
+{
+  "nxlog": {
+    "destinations": {
+      "windows_events_file": {
+        "file": "c:/windows/temp/events.log"
+      }
+    },
+    "sources": {
+      "event_log": {
+        "input_module": "im_msvistalog",
+        "destination": "windows_events_file"
+      }
+    }
+  }
+}
+```
+
 A more advanced recipe to log multiple sources to papertrail might look like:
 
 ```ruby
@@ -97,7 +121,44 @@ nxlog_source 'apache_access' do
 end
 ```
 
+Again, this can be accomplished using node attributes:
+
+```json
+{
+  "nxlog": {
+    "papertrails": {
+      "papertrail": {
+        "default": true,
+        "host": "logs2",
+        "port": 11111
+      }
+    },
+    "sources": {
+      "apache_errors": {
+        "file": "/var/log/apache2/errors.log"
+      },
+      "apache_access": {
+        "file": "/var/log/apache2/access.log"
+      }
+    }
+  }
+}
+```
+
 ## Resources
+
+The following describes each LWRP provided by this cookbook.
+
+It is also possible to create the resources using node attributes as described
+above. To do so, create them as hashes within:
+```node['nxlog']['sources']```
+```node['nxlog']['destinations']```
+or
+```node['nxlog']['papertrails']```
+
+The name attribute should be the hash key for the object, and all attributes 
+supported by the relevant LWRP are supported as name/value pairs inside the
+object. See above for examples.
 
 ### nxlog_source
 
@@ -112,6 +173,8 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#m
 
 #### Syntax
 
+**ruby**:
+
 ```ruby
 nxlog_source "name" do
   attribute "value" # see attributes section below
@@ -123,6 +186,24 @@ end
 * `name` is a unique name for the log resource
 * `attributes` define how the log source should be configured
 * `action` should be either :create, or :delete *\[default: :create\]*
+
+**json**:
+
+```json
+{
+  "nxlog": {
+    "sources": {
+      "<name>": {
+        "<attribute>": "<value>"
+      }
+    }
+  }
+}
+```
+
+* `name` is a unique name for the log resource
+* `attributes` define how the log source should be configured
+* `action` is always :create and should not be specified
 
 #### nxlog_source attributes
 
@@ -326,6 +407,8 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#m
 
 #### Syntax
 
+**ruby**:
+
 ```ruby
 nxlog_destination "name" do
   attribute "value" # see attributes section below
@@ -337,6 +420,24 @@ end
 * `name` is a unique name for the destination resource
 * `attributes` define how the log destination should be configured
 * `action` should be either :create, or :delete *\[default: :create\]*
+
+**json**:
+
+```json
+{
+  "nxlog": {
+    "destinations": {
+      "<name>": {
+        "<attribute>": "<value>"
+      }
+    }
+  }
+}
+```
+
+* `name` is a unique name for the destination resource
+* `attributes` define how the log destination should be configured
+* `action` is always :create and should not be specified
 
 #### nxlog_destination attributes
 
@@ -503,6 +604,8 @@ to set up.
 
 #### Syntax
 
+**ruby**:
+
 ```ruby
 nxlog_papertrail "name" do
   attribute "value" # see attributes section below
@@ -514,6 +617,24 @@ end
 * `name` is a unique name for the papertrail resource
 * `attributes` define how the papertrail log destination should be configured
 * `action` should be either :create, or :delete *\[default: :create\]*
+
+**json**:
+
+```json
+{
+  "nxlog": {
+    "sources": {
+      "<name>": {
+        "<attribute>": "<value>"
+      }
+    }
+  }
+}
+```
+
+* `name` is a unique name for the papertrail resource
+* `attributes` define how the papertrail log destination should be configured
+* `action` is always :create and should not be specified
 
 #### nxlog_papertrail attributes
 
@@ -537,6 +658,9 @@ for your platform without modification.
 | conf_dir               | The directory for the nxlog configuration files       | platform-specific                                                              |
 | log_file               | The location of the nxlog log file                    | platform-specific                                                              |
 | papertrail::bundle_url | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
+| sources                | An array of log source objects                        | nil                                                                            |
+| destinations           | An array of log destination objects                   | nil                                                                            |
+| papertrails            | An array of papertrail log destination objects        | nil                                                                            |
 
 ## Contributing
 
