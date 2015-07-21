@@ -51,6 +51,7 @@ suites:
       - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file]
     attributes:
+    
   - name: attribute_resources_linux
     run_list:
       - recipe[nxlog::default]
@@ -81,6 +82,7 @@ suites:
             destination:
               - test
               - :defaults
+
   - name: attribute_resources_windows
     run_list:
       - recipe[nxlog::default]
