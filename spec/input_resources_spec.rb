@@ -1,22 +1,25 @@
 require_relative 'spec_helper'
 
-describe 'nxlog::test_input_resources' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into: ['nxlog_source'])
-      .converge(described_recipe)
-  end
+recipes = %w(nxlog::test_input_resources nxlog::test_input_resources_attrs)
 
-  it 'creates a log source for a file' do
-    expect(chef_run).to create_nxlog_source('test_im_file')
-  end
+recipes.each do |test_recipe|
+  describe test_recipe do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(step_into: ['nxlog_source'])
+        .converge(described_recipe)
+    end
 
-  it 'creates a config file for the file log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
+    it 'creates a log source for a file' do
+      expect(chef_run).to create_nxlog_source('test_im_file')
+    end
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
-      .with_content(<<EOT)
+    it 'creates a config file for the file log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
+
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_file.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -32,15 +35,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_file => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the exec log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
+    it 'creates a config file for the exec log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_exec.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -57,15 +60,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_exec => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the internal log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
+    it 'creates a config file for the internal log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_internal.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -78,15 +81,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_internal => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the kernel log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
+    it 'creates a config file for the kernel log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_kernel.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -99,15 +102,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_kernel => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the mark log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
+    it 'creates a config file for the mark log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -122,15 +125,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mark => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the mseventlog log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
+    it 'creates a config file for the mseventlog log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mseventlog.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -144,15 +147,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mseventlog => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the msvistalog log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
+    it 'creates a config file for the msvistalog log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_msvistalog.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -165,15 +168,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_msvistalog => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the null log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
+    it 'creates a config file for the null log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_null.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -186,15 +189,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_null => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the ssl log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
+    it 'creates a config file for the ssl log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_ssl.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -214,15 +217,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_ssl => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the tcp log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
+    it 'creates a config file for the tcp log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_tcp.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -238,15 +241,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_tcp => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the udp log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
+    it 'creates a config file for the udp log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_udp.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -262,15 +265,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_udp => test_om_udp
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for the uds log source' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
+    it 'creates a config file for the uds log source' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_uds.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -284,5 +287,6 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_uds => test_om_udp
 </Route>
 EOT
+    end
   end
 end

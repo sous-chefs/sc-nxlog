@@ -1,57 +1,60 @@
 require_relative 'spec_helper'
 
-describe 'nxlog::test_output_resources' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into: ['nxlog_destination'])
-      .converge(described_recipe)
-  end
+recipes = %w(nxlog::test_output_resources nxlog::test_output_resources_attrs)
 
-  it 'creates a log destination for a file' do
-    expect(chef_run).to create_nxlog_destination('test_om_file')
-  end
+recipes.each do |test_recipe|
+  describe test_recipe do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(step_into: ['nxlog_destination'])
+        .converge(described_recipe)
+    end
 
-  it 'creates a config file for the file log destination' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
+    it 'creates a log destination for a file' do
+      expect(chef_run).to create_nxlog_destination('test_om_file')
+    end
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
-      .with_content(<<EOT)
+    it 'creates a config file for the file log destination' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
+
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file.conf')
+        .with_content(<<EOT)
 <Output test_om_file>
   Module om_file
   File "/var/log/test.log"
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the blocker module' do
-    expect(chef_run).to create_nxlog_destination('test_om_blocker')
-  end
+    it 'creates a log destination for the blocker module' do
+      expect(chef_run).to create_nxlog_destination('test_om_blocker')
+    end
 
-  it 'creates a config file for the blocker module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
+    it 'creates a config file for the blocker module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_blocker.conf')
+        .with_content(<<EOT)
 <Output test_om_blocker>
   Module om_blocker
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the dbi module' do
-    expect(chef_run).to create_nxlog_destination('test_om_dbi')
-  end
+    it 'creates a log destination for the dbi module' do
+      expect(chef_run).to create_nxlog_destination('test_om_dbi')
+    end
 
-  it 'creates a config file for the dbi module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
+    it 'creates a config file for the dbi module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_dbi.conf')
+        .with_content(<<EOT)
 <Output test_om_dbi>
   Module om_dbi
   Driver mysql
@@ -62,19 +65,19 @@ EOT
   Option dbname nxlog
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the exec module' do
-    expect(chef_run).to create_nxlog_destination('test_om_exec')
-  end
+    it 'creates a log destination for the exec module' do
+      expect(chef_run).to create_nxlog_destination('test_om_exec')
+    end
 
-  it 'creates a config file for the exec module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
+    it 'creates a config file for the exec module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_exec.conf')
+        .with_content(<<EOT)
 <Output test_om_exec>
   Module om_exec
   Command /usr/bin/foo
@@ -82,31 +85,31 @@ EOT
   Arg baz
 </Output>
 EOT
-  end
+    end
 
-  it 'creates log destinations for the http module' do
-    expect(chef_run).to create_nxlog_destination('test_om_http')
-    expect(chef_run).to create_nxlog_destination('test_om_https')
-  end
+    it 'creates log destinations for the http module' do
+      expect(chef_run).to create_nxlog_destination('test_om_http')
+      expect(chef_run).to create_nxlog_destination('test_om_https')
+    end
 
-  it 'creates config files for the http modules' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
+    it 'creates config files for the http modules' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_http.conf')
+        .with_content(<<EOT)
 <Output test_om_http>
   Module om_http
   Url http://example.org/bar
 </Output>
 EOT
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_https.conf')
+        .with_content(<<EOT)
 <Output test_om_https>
   Module om_http
   Url https://example.org/foo
@@ -116,36 +119,36 @@ EOT
   HTTPSAllowUntrusted FALSE
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the null module' do
-    expect(chef_run).to create_nxlog_destination('test_om_null')
-  end
+    it 'creates a log destination for the null module' do
+      expect(chef_run).to create_nxlog_destination('test_om_null')
+    end
 
-  it 'creates a config file for the null module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
+    it 'creates a config file for the null module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_null.conf')
+        .with_content(<<EOT)
 <Output test_om_null>
   Module om_null
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the ssl module' do
-    expect(chef_run).to create_nxlog_destination('test_om_ssl')
-  end
+    it 'creates a log destination for the ssl module' do
+      expect(chef_run).to create_nxlog_destination('test_om_ssl')
+    end
 
-  it 'creates a config file for the ssl module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
+    it 'creates a config file for the ssl module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_ssl.conf')
+        .with_content(<<EOT)
 <Output test_om_ssl>
   Module om_ssl
   OutputType Binary
@@ -157,62 +160,63 @@ EOT
   AllowUntrusted FALSE
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the tcp module' do
-    expect(chef_run).to create_nxlog_destination('test_om_tcp')
-  end
+    it 'creates a log destination for the tcp module' do
+      expect(chef_run).to create_nxlog_destination('test_om_tcp')
+    end
 
-  it 'creates a config file for the tcp module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
+    it 'creates a config file for the tcp module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_tcp.conf')
+        .with_content(<<EOT)
 <Output test_om_tcp>
   Module om_tcp
   Host foo.example.org
   Port 1234
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the udp module' do
-    expect(chef_run).to create_nxlog_destination('test_om_udp')
-  end
+    it 'creates a log destination for the udp module' do
+      expect(chef_run).to create_nxlog_destination('test_om_udp')
+    end
 
-  it 'creates a config file for the udp module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
+    it 'creates a config file for the udp module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_udp.conf')
+        .with_content(<<EOT)
 <Output test_om_udp>
   Module om_udp
   Host foo.example.org
   Port 1234
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a log destination for the uds module' do
-    expect(chef_run).to create_nxlog_destination('test_om_uds')
-  end
+    it 'creates a log destination for the uds module' do
+      expect(chef_run).to create_nxlog_destination('test_om_uds')
+    end
 
-  it 'creates a config file for the uds module' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
+    it 'creates a config file for the uds module' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_uds.conf')
+        .with_content(<<EOT)
 <Output test_om_uds>
   Module om_uds
   Exec parse_syslog_bsd(); to_syslog_bsd();
   uds /dev/log
 </Output>
 EOT
+    end
   end
 end

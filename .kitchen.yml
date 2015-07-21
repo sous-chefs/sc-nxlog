@@ -46,8 +46,70 @@ platforms:
       name: winrm
 
 suites:
-  - name: default
+  - name: lwrp_resources
     run_list:
       - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file]
     attributes:
+    
+  - name: attribute_resources_linux
+    run_list:
+      - recipe[nxlog::default]
+      - recipe[nxlog::test_kitchen_log_file_attrs]
+    excludes:
+      - opentable/win-2012r2-standard-amd64-nocm
+      - opentable/win-2008r2-standard-amd64-nocm
+    attributes:
+      nxlog:
+        destinations:
+          test:
+            file: /var/log/nxlog/test.log
+          test_2:
+            file: /var/log/nxlog/test2.log
+            default: true
+          test_om_file_2:
+            file: /var/log/nxlog/mark3.log
+        papertrails:
+          papertrail:
+            port: 17992
+            host: logs2
+            default: true
+        sources:
+          mark:
+            input_module: im_mark
+            mark_interval: 1
+            mark: -> -> MARK <- <-
+            destination:
+              - test
+              - :defaults
+
+  - name: attribute_resources_windows
+    run_list:
+      - recipe[nxlog::default]
+      - recipe[nxlog::test_kitchen_log_file_attrs]
+    includes:
+      - opentable/win-2012r2-standard-amd64-nocm
+      - opentable/win-2008r2-standard-amd64-nocm
+    attributes:
+      nxlog:
+        destinations:
+          test:
+            file: c:/windows/temp/test.log
+          test_2:
+            file: c:/windows/temp/test2.log
+            default: true
+          test_om_file_2:
+            file: c:/windows/temp/mark3.log
+        papertrails:
+          papertrail:
+            port: 17992
+            host: logs2
+            default: true
+        sources:
+          mark:
+            input_module: im_mark
+            mark_interval: 1
+            mark: -> -> MARK <- <-
+            destination:
+              - test
+              - :defaults

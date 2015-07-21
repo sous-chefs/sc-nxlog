@@ -1,5 +1,5 @@
 name             'nxlog'
-version          '0.6.0'
+version          '0.7.0'
 
 description      'Installs and configures NXLog_ce on Linux or Windows'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
@@ -16,6 +16,8 @@ supports         'debian', '>= 6.0'
 supports         'redhat', '>= 6.0'
 supports         'centos', '>= 6.0'
 supports         'windows'
+
+depends          'zap'
 
 recipe           'nxlog::default', 'Install and configure nxlog'
 recipe           'nxlog::papertrail', 'Enable nxlog Papertrail support'

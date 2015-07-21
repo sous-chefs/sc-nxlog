@@ -1,27 +1,30 @@
 require_relative 'spec_helper'
 
-describe 'nxlog::test_default_resources' do
-  let(:chef_run) do
-    ChefSpec::SoloRunner.new(step_into:
-                               %w(nxlog_source nxlog_destination))
-      .converge(described_recipe)
-  end
+recipes = %w(nxlog::test_default_resources nxlog::test_default_resources_attrs)
 
-  it 'creates a mark log source' do
-    expect(chef_run).to create_nxlog_source('test_im_mark_1')
-  end
+recipes.each do |test_recipe|
+  describe test_recipe do
+    let(:chef_run) do
+      ChefSpec::SoloRunner.new(step_into:
+                                 %w(nxlog_source nxlog_destination))
+        .converge(described_recipe)
+    end
 
-  it 'creates a file log destination' do
-    expect(chef_run).to create_nxlog_destination('test_om_file_1')
-  end
+    it 'creates a mark log source' do
+      expect(chef_run).to create_nxlog_source('test_im_mark_1')
+    end
 
-  it 'creates a config file for a source with no destination specified' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
+    it 'creates a file log destination' do
+      expect(chef_run).to create_nxlog_destination('test_om_file_1')
+    end
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
-      .with_content(<<EOT)
+    it 'creates a config file for a source with no destination specified' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
+
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_1.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -35,15 +38,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mark_1 => %DEFAULT_OUTPUTS%
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for a source with one destination specified' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
+    it 'creates a config file for a source with one destination specified' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_2.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -57,15 +60,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mark_2 => foo
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for a source with several destinations specified' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
+    it 'creates a config file for a source with >1 destinations specified' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -79,15 +82,15 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mark_3 => foo, bar
 </Route>
 EOT
-  end
+    end
 
-  it 'creates a config file for a source with default + other destinations' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
+    it 'creates a config file for a source with default + other destinations' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_4.conf')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS null_output
 
 include /etc/nxlog/nxlog.conf.d/*.default
@@ -101,60 +104,61 @@ include /etc/nxlog/nxlog.conf.d/*.default
   Path test_im_mark_4 => foo, bar, %DEFAULT_OUTPUTS%
 </Route>
 EOT
-  end
+    end
 
-  it 'creates config files for the log destinations' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_1.conf')
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_2.conf')
+    it 'creates config files for the log destinations' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_1.conf')
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_2.conf')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_1.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_1.conf')
+        .with_content(<<EOT)
 <Output test_om_file_1>
   Module om_file
   File "/var/log/mark.log"
 </Output>
 EOT
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_2.conf')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/10_op_test_om_file_2.conf')
+        .with_content(<<EOT)
 <Output test_om_file_2>
   Module om_file
   File "/var/log/mark2.log"
 </Output>
 EOT
-  end
+    end
 
-  it 'creates a default output definition for the first log file' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file_1.default')
+    it 'creates a default output definition for the first log file' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/op_test_om_file_1.default')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file_1.default')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/op_test_om_file_1.default')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS %DEFAULT_OUTPUTS%, test_om_file_1
 EOT
-  end
+    end
 
-  it 'creates a default output definition for the second log file' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file_2.default')
+    it 'creates a default output definition for the second log file' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/op_test_om_file_2.default')
 
-    expect(chef_run).to render_file(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file_2.default')
-      .with_content(<<EOT)
+      expect(chef_run).to render_file(
+        '/etc/nxlog/nxlog.conf.d/op_test_om_file_2.default')
+        .with_content(<<EOT)
 define DEFAULT_OUTPUTS %DEFAULT_OUTPUTS%, test_om_file_2
 EOT
-  end
+    end
 
-  it 'does not create a default output definition for the third log file' do
-    expect(chef_run).to create_template(
-      '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
+    it 'does not create a default output definition for the third log file' do
+      expect(chef_run).to create_template(
+        '/etc/nxlog/nxlog.conf.d/20_ip_test_im_mark_3.conf')
 
-    expect(chef_run).not_to create_template(
-      '/etc/nxlog/nxlog.conf.d/op_test_om_file_3.default')
+      expect(chef_run).not_to create_template(
+        '/etc/nxlog/nxlog.conf.d/op_test_om_file_3.default')
+    end
   end
 end
