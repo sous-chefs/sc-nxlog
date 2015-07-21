@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/gh2k/kitchen-vagrant
-  revision: 091d606c889f49a0732047adedd04aadf1cf90e6
+  revision: e2d07f53aebe94148711586815255f10e241d5f1
   branch: boot-timeout
   specs:
     kitchen-vagrant (0.18.1.dev)
