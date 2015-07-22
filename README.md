@@ -217,6 +217,7 @@ end
 | destination    | destination(s) to send the data to   | String or Array | :defaults |
 | input_type     | nxlog InputType (see nxlog docs)     | String          | none      |
 | exec           | commands to execute on the log data  | String          | none      |
+| flow_control   | enables or disables flow control     | Boolean         | false     |
 
 **Notes:**
 

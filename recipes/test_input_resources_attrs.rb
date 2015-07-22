@@ -89,6 +89,7 @@ node.override['nxlog'] = JSON.parse(<<EOT)
     "test_im_uds": {
       "input_module": "im_uds",
       "uds": "/dev/log",
+      "flow_control": false,
       "destination": "test_om_udp"
     }
   }

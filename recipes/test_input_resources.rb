@@ -97,5 +97,6 @@ end
 nxlog_source 'test_im_uds' do
   input_module 'im_uds'
   uds '/dev/log'
+  flow_control false
   destination 'test_om_udp'
 end

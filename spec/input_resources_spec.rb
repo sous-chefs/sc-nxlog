@@ -280,6 +280,7 @@ include /etc/nxlog/nxlog.conf.d/*.default
 
 <Input test_im_uds>
   Module im_uds
+  FlowControl FALSE
   UDS /dev/log
 </Input>
 

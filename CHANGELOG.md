@@ -1,3 +1,19 @@
+# 0.7.2
+
+* Add support for the FlowControl directive in input modules
+
+# 0.7.1
+
+* Update documentation to link to github page, as it looks better than on the supermarket
+
+# 0.7.0
+
+* Add support for creating log resources from node attributes
+
+# 0.6.0
+
+* Fix issue with LWRPs not working in other recipes
+
 # 0.5.0
 
 * Initial release of nxlog cookbook

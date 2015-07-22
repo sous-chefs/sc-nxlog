@@ -34,6 +34,8 @@ action :create do
     params << ['Module', n.input_module]
     params << ['Exec', n.exec] if n.exec
     params << ['InputType', n.input_type] if n.input_type
+    params << ['FlowControl',
+               n.flow_control.to_s.upcase] unless n.flow_control.nil?
 
     # module-specific parameters
     case n.input_module

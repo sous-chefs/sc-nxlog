@@ -30,6 +30,7 @@ attribute :input_module, kind_of: String, default: 'im_file', required: true,
 attribute :destination, kind_of: [String, Array], default: :defaults
 attribute :input_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
 attribute :exec, kind_of: String
+attribute :flow_control, kind_of: [TrueClass, FalseClass]
 
 # not quite global, but somewhat common
 attribute :save_pos, kind_of: [TrueClass, FalseClass]
