@@ -21,6 +21,8 @@ logs can be written into different formats and sent to multiple places.
 The cookbook provides LWRPs for log sources and destinations, and makes it easy
 to set up routes between them.
 
+The nxlog::syslog recipe sets up nxlog as the default system logger on Linux.
+
 Additionally, this cookbook includes a Papertrail LWRP to simplify the
 publishing of logs to that service. [Papertrail](https://papertrailapp.com/?thank=d131bd) is a web-based log aggregation
 service that can receive logs from multiple servers and display them all in once place.
@@ -45,7 +47,7 @@ This cookbook requires Chef 12
 
 Include `nxlog` in your node's `run_list`:
 
-```json
+```
 {
     "run_list": [
         "recipe[nxlog::default]"
@@ -55,7 +57,7 @@ Include `nxlog` in your node's `run_list`:
 
 If you wish to enable Papertrail support, also include the papertrail recipe:
 
-```json
+```
 {
     "run_list": [
          "recipe[nxlog::default]"
@@ -63,6 +65,22 @@ If you wish to enable Papertrail support, also include the papertrail recipe:
     ]
 }
 ```
+
+To set up nxlog as the sytem logger you should include the syslog recipe:
+
+```
+{
+    "run_list": [
+         "recipe[nxlog::default]"
+         "recipe[nxlog::syslog]"
+    ]
+}
+```
+
+The syslog recipe will disable rsyslog. If you are expecting another logging 
+daemon you should specify this in node attributes. The default behaviour is
+to send its log output to the default destinations, but this can be reconfigured
+in node attributes.
 
 This should be enough to get nxlog installed and running. However, it won't do
 much on its own. In order for it to do something useful you need to configure
@@ -84,7 +102,7 @@ end
 ```
 
 This can also be accomplished using node attributes as follows:
-```json
+```
 {
   "nxlog": {
     "destinations": {
@@ -125,7 +143,7 @@ end
 
 Again, this can be accomplished using node attributes:
 
-```json
+```
 {
   "nxlog": {
     "papertrails": {
@@ -191,7 +209,7 @@ end
 
 **json**:
 
-```json
+```
 {
   "nxlog": {
     "sources": {
@@ -426,7 +444,7 @@ end
 
 **json**:
 
-```json
+```
 {
   "nxlog": {
     "destinations": {
@@ -623,7 +641,7 @@ end
 
 **json**:
 
-```json
+```
 {
   "nxlog": {
     "sources": {
@@ -661,6 +679,8 @@ for your platform without modification.
 | conf_dir               | The directory for the nxlog configuration files       | platform-specific                                                              |
 | log_file               | The location of the nxlog log file                    | platform-specific                                                              |
 | papertrail::bundle_url | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
+| syslog::logger_disable | The logger service to disable in favour of nxlog      | 'rsyslog'                                                                      |
+| syslog::destinations   | The destinations to log syslog data to                | :defaults                                                                      |
 | sources                | An array of log source objects                        | nil                                                                            |
 | destinations           | An array of log destination objects                   | nil                                                                            |
 | papertrails            | An array of papertrail log destination objects        | nil                                                                            |

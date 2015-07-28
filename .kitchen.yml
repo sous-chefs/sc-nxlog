@@ -53,13 +53,11 @@ platforms:
 suites:
   - name: lwrp_resources
     run_list:
-      - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file]
     attributes:
     
   - name: attribute_resources_linux
     run_list:
-      - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file_attrs]
     excludes:
       - opentable/win-2012r2-standard-amd64-nocm
@@ -90,7 +88,6 @@ suites:
 
   - name: attribute_resources_windows
     run_list:
-      - recipe[nxlog::default]
       - recipe[nxlog::test_kitchen_log_file_attrs]
     includes:
       - opentable/win-2012r2-standard-amd64-nocm
@@ -118,3 +115,14 @@ suites:
             destination:
               - test
               - :defaults
+
+  - name: syslog
+    run_list:
+      - recipe[nxlog::test_kitchen_syslog]
+    excludes:
+      - opentable/win-2012r2-standard-amd64-nocm
+      - opentable/win-2008r2-standard-amd64-nocm
+    attributes:
+      nxlog:
+        syslog:
+          destinations: ['test']

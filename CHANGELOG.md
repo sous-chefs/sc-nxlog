@@ -1,3 +1,7 @@
+# 0.8.0
+
+* Add syslog recipe
+
 # 0.7.2
 
 * Add support for the FlowControl directive in input modules
