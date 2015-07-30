@@ -60,5 +60,5 @@ end
 
 describe file('/tmp/test.log') do
   it { should be_file }
-  its(:content) { should contain('session opened for user root') }
+  its(:content) { should contain('sudo:') }
 end
