@@ -257,7 +257,7 @@ GEM
     solve (1.2.1)
       dep_selector (~> 1.0)
       semverse (~> 1.1)
-    specinfra (2.38.0)
+    specinfra (2.39.1)
       net-scp
       net-ssh (~> 2.7)
       net-telnet
