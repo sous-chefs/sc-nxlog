@@ -28,7 +28,7 @@ attribute :input_module, kind_of: String, default: 'im_file', required: true,
                                       im_mark im_mseventlog im_msvistalog
                                       im_null im_ssl im_tcp im_udp im_uds)
 attribute :destination, kind_of: [String, Array], default: :defaults
-attribute :input_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
+attribute :input_type, kind_of: String
 attribute :exec, kind_of: String
 attribute :flow_control, kind_of: [TrueClass, FalseClass]
 
