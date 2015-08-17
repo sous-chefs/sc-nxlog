@@ -1,3 +1,7 @@
+# 0.8.1
+
+* Remove input_type equal_to validation
+
 # 0.8.0
 
 * Add syslog recipe
