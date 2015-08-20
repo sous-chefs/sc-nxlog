@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-recipes = %w(nxlog::test_output_resources nxlog::test_output_resources_attrs)
+recipes = %w(test::output_resources test::output_resources_attrs)
 
 recipes.each do |test_recipe|
   describe test_recipe do

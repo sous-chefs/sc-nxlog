@@ -1,7 +1,6 @@
 require_relative 'spec_helper'
 
-recipes = %w(nxlog::test_papertrail_resources
-             nxlog::test_papertrail_resources_attrs)
+recipes = %w(test::papertrail_resources test::papertrail_resources_attrs)
 
 recipes.each do |test_recipe|
   describe test_recipe do
