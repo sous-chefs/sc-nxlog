@@ -670,20 +670,21 @@ end
 The attributes mostly concern default config locations and will most likely work
 for your platform without modification. 
 
-| Key                    | Description                                           | Default                                                                        |
-| ---------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
-| version                | The version of nxlog_ce to download and install       | '2.9.1347'                                                                     |
-| log_level              | nxlog's log level                                     | 'INFO'                                                                         |
-| user                   | The unix user to run nxlog as (no effect on Windows)  | 'nxlog'                                                                        |
-| group                  | The unix group to run nxlog as (no effect on Windows) | 'nxlog'                                                                        |
-| conf_dir               | The directory for the nxlog configuration files       | platform-specific                                                              |
-| log_file               | The location of the nxlog log file                    | platform-specific                                                              |
-| papertrail::bundle_url | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
-| syslog::logger_disable | The logger service to disable in favour of nxlog      | 'rsyslog'                                                                      |
-| syslog::destinations   | The destinations to log syslog data to                | :defaults                                                                      |
-| sources                | An array of log source objects                        | nil                                                                            |
-| destinations           | An array of log destination objects                   | nil                                                                            |
-| papertrails            | An array of papertrail log destination objects        | nil                                                                            |
+| Key                             | Description                                           | Default                                                                        |
+| ------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
+| version                         | The version of nxlog_ce to download and install       | '2.9.1347'                                                                     |
+| log_level                       | nxlog's log level                                     | 'INFO'                                                                         |
+| user                            | The unix user to run nxlog as (no effect on Windows)  | 'nxlog'                                                                        |
+| group                           | The unix group to run nxlog as (no effect on Windows) | 'nxlog'                                                                        |
+| conf_dir                        | The directory for the nxlog configuration files       | platform-specific                                                              |
+| log_file                        | The location of the nxlog log file                    | platform-specific                                                              |
+| checksums::\<package_filename\> | The sha256sum of the specified package                | nxlog version-specific                                                         |
+| papertrail::bundle_url          | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
+| syslog::logger_disable          | The logger service to disable in favour of nxlog      | 'rsyslog'                                                                      |
+| syslog::destinations            | The destinations to log syslog data to                | :defaults                                                                      |
+| sources                         | An array of log source objects                        | nil                                                                            |
+| destinations                    | An array of log destination objects                   | nil                                                                            |
+| papertrails                     | An array of papertrail log destination objects        | nil                                                                            |
 
 ## Contributing
 

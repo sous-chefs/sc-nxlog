@@ -34,10 +34,19 @@ end
 
 package_name = node['nxlog']['installer_package']
 
-remote_file 'nxlog' do
-  path "#{Chef::Config[:file_cache_path]}/#{package_name}"
-  source "http://nxlog.org/system/files/products/files/1/#{package_name}"
-  mode 0644
+if node['nxlog']['checksums'][package_name]
+  remote_file 'nxlog' do
+    path "#{Chef::Config[:file_cache_path]}/#{package_name}"
+    source "http://nxlog.org/system/files/products/files/1/#{package_name}"
+    mode 0644
+    checksum node['nxlog']['checksums'][package_name]
+  end
+else
+  remote_file 'nxlog' do
+    path "#{Chef::Config[:file_cache_path]}/#{package_name}"
+    source "http://nxlog.org/system/files/products/files/1/#{package_name}"
+    mode 0644
+  end
 end
 
 if platform?('ubuntu', 'debian')
