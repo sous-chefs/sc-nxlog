@@ -1,3 +1,7 @@
+# 0.8.2
+
+* Added checksum validation to nxlog remote_file packages
+
 # 0.8.1
 
 * Remove input_type equal_to validation
