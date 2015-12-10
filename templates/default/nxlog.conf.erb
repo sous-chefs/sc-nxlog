@@ -22,6 +22,10 @@ LogFile   <%= node['nxlog']['log_file'] %>
   Module xm_syslog
 </Extension>
 
+<Extension _json>
+    Module xm_json
+</Extension>
+
 # defines a null output to work around issue with commas in default output
 # list
 <Output null_output>
