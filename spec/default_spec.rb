@@ -5,7 +5,7 @@ describe 'nxlog::default' do
 
   it 'installs nxlog' do
     expect(chef_run).to create_remote_file('nxlog').with_checksum(
-      '0dd942ee06c8c364e7c929102ae0a6174ddc2e3c6e9a9fe863f5b94bdb93da3c'
+      '5908a1efcfc87830eb03f3f08f00576aa98950e41ec11b96f9491e02f0d130c9'
     )
     expect(chef_run).to install_dpkg_package('nxlog')
     expect(chef_run).to enable_service('nxlog')

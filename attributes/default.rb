@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default['nxlog']['version'] = '2.9.1347'
+default['nxlog']['version'] = '2.9.1504'
 
 default['nxlog']['log_level'] = 'INFO'
 default['nxlog']['user'] = 'nxlog'
@@ -44,22 +44,22 @@ else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
 
-default['nxlog']['checksums']['nxlog-ce-2.9.1347-1_rhel6.x86_64.rpm'] =
-  '1d86249c306f284d9b040d6eba02248126889f30fba8efabefe81e2a0a54846b'
-default['nxlog']['checksums']['nxlog-ce-2.9.1347-1_rhel7.x86_64.rpm'] =
-  '6d18081e31acd968bffceabec56b157706837562dc8e22bd294228883118baca'
-default['nxlog']['checksums']['nxlog-ce_2.9.1347_debian_jessie_amd64.deb'] =
-  '59819367ca6c44dd699d4db8ca1b7139f81ce777332821c12eb6e42767713560'
-default['nxlog']['checksums']['nxlog-ce_2.9.1347_debian_squeeze_amd64.deb'] =
-  '5404954f431826fbc8adc81b2187d43a3d43daec92812d200457e19d6e6f0056'
-default['nxlog']['checksums']['nxlog-ce_2.9.1347_debian_wheezy_amd64.deb'] =
-  'cfc77f71ceb8604bd745ace439e02bc949ae611b5e9bd9fd6cef100b092e64da'
-default['nxlog']['checksums']['nxlog-ce-2.9.1347.msi'] =
-  '930148e3bb4501adf3a78b4d3417d9165dffa0e3215b8a26fea9f1c27f0978b6'
-default['nxlog']['checksums']['nxlog-ce_2.9.1347_ubuntu_1204_amd64.deb'] =
-  '0dd942ee06c8c364e7c929102ae0a6174ddc2e3c6e9a9fe863f5b94bdb93da3c'
-default['nxlog']['checksums']['nxlog-ce_2.9.1347_ubuntu_1404_amd64.deb'] =
-  '67d17bc3f6e49a4b4df67a630b58dcb08fda287af3f02e47048b67845665c028'
+default['nxlog']['checksums']['nxlog-ce-2.9.1504-1_rhel6.x86_64.rpm'] =
+  'c58858e82202cbb0c78c78e90058d57bf4f1e136bc6335916bcf45789ca9b153'
+default['nxlog']['checksums']['nxlog-ce-2.9.1504-1_rhel7.x86_64.rpm'] =
+  '095adf02c3d93c7358a9c1a4e601529d8773714310ad4df3117585c48a2ac7a6'
+default['nxlog']['checksums']['nxlog-ce_2.9.1504.deb'] =
+  '16996f4bc56a46bd1b186b52f903f5fe4be11b92cf3560171ba134c400295a06'
+default['nxlog']['checksums']['nxlog-ce_2.9.1504_debian_squeeze_amd64.deb'] =
+  'da5e2712a9a045af345fcb9e92406cdace2c6e1b1d40c5fb458e23548322c0e3'
+default['nxlog']['checksums']['nxlog-ce_2.9.1504_debian_wheezy_amd64.deb'] =
+  'cfd76a6fcacc53c4a2172393ef7ca751439892feff26f949444606c16e28025f'
+default['nxlog']['checksums']['nxlog-ce-2.9.1504.msi'] =
+  'd49b7bf1a631361dc2b701848bd370668bb08d11bd869c2c48c7a31e21b3c154'
+default['nxlog']['checksums']['nxlog-ce_2.9.1504_ubuntu_1204_amd64.deb'] =
+  '5908a1efcfc87830eb03f3f08f00576aa98950e41ec11b96f9491e02f0d130c9'
+default['nxlog']['checksums']['nxlog-ce_2.9.1504_ubuntu_1404_amd64.deb'] =
+  'f5342194fa0938c9a604b0a6f3d58c247cd0a8feae8f4fb8d8863f946d667f13'
 
 default['nxlog']['papertrail']['bundle_url'] =
   'https://papertrailapp.com/tools/papertrail-bundle.pem'
