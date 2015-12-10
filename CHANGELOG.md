@@ -1,3 +1,7 @@
+# 0.8.3
+
+* Added json extension module
+
 # 0.8.2
 
 * Added checksum validation to nxlog remote_file packages
