@@ -4,6 +4,6 @@ metadata
 
 cookbook 'apt'
 cookbook 'yum'
-cookbook 'windows'
+cookbook 'windows', '1.38.2'
 
 cookbook 'test', path: 'test/fixtures/cookbooks/test'
