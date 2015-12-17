@@ -23,6 +23,8 @@ default['nxlog']['log_level'] = 'INFO'
 default['nxlog']['user'] = 'nxlog'
 default['nxlog']['group'] = 'nxlog'
 
+default['nxlog']['package_source'] = 'https://mirror.widgit.com/nxlog'
+
 case node['platform_family']
 when 'debian'
   default['nxlog']['conf_dir'] = '/etc/nxlog'

@@ -679,6 +679,7 @@ for your platform without modification.
 | conf_dir                        | The directory for the nxlog configuration files       | platform-specific                                                              |
 | log_file                        | The location of the nxlog log file                    | platform-specific                                                              |
 | checksums::\<package_filename\> | The sha256sum of the specified package                | nxlog version-specific                                                         |
+| package_source                  | The base URL for downloading nxlog packages           | https://mirror.widgit.com/nxlog                                                |
 | papertrail::bundle_url          | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
 | syslog::logger_disable          | The logger service to disable in favour of nxlog      | 'rsyslog'                                                                      |
 | syslog::destinations            | The destinations to log syslog data to                | :defaults                                                                      |
