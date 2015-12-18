@@ -1,3 +1,7 @@
+# 0.8.6
+
+* Update nokogiri gem due to security alert
+
 # 0.8.5
 
 * Point nxlog base URL at mirror, as nxlog keep taking down old versions and breaking the cookbook
