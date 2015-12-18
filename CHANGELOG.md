@@ -1,3 +1,13 @@
+# 0.8.5
+
+* Point nxlog base URL at mirror, as nxlog keep taking down old versions and breaking the cookbook
+* Add cookbook attribute to allow different base URLs
+
+# 0.8.4
+
+* Nxlog version bump
+* Fix integration tests for Chef 12.5
+
 # 0.8.3
 
 * Added json extension module
