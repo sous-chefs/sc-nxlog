@@ -1,3 +1,7 @@
+# 0.8.7
+
+* Prevent installation of package config from .deb packages
+
 # 0.8.6
 
 * Update nokogiri gem due to security alert
