@@ -52,6 +52,7 @@ end
 if platform?('ubuntu', 'debian')
   dpkg_package 'nxlog' do
     source "#{Chef::Config[:file_cache_path]}/#{package_name}"
+    options '--force-confold'
   end
 else
   package 'nxlog' do
