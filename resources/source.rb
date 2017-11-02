@@ -51,7 +51,7 @@ attribute :rename_check, kind_of: [TrueClass, FalseClass]
 attribute :close_when_idle, kind_of: [TrueClass, FalseClass]
 attribute :poll_interval, kind_of: Float
 attribute :dir_check_interval, kind_of: Float
-attribute :active_files, kind_of: Fixnum
+attribute :active_files, kind_of: Integer
 
 # im_internal
 
@@ -59,7 +59,7 @@ attribute :active_files, kind_of: Fixnum
 
 # im_mark
 attribute :mark, kind_of: String
-attribute :mark_interval, kind_of: Fixnum
+attribute :mark_interval, kind_of: Integer
 
 # im_mseventlog
 attribute :sources, kind_of: Array
@@ -75,7 +75,7 @@ attribute :channel, kind_of: String
 
 # im_ssl, im_tcp, im_udp
 attribute :host, kind_of: String, default: 'localhost'
-attribute :port, kind_of: Fixnum # required
+attribute :port, kind_of: Integer # required
 
 # im_ssl
 attribute :cert_file, kind_of: String
@@ -88,7 +88,7 @@ attribute :crl_dir, kind_of: String
 attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
 
 # im_udp
-attribute :sock_buf_size, kind_of: Fixnum
+attribute :sock_buf_size, kind_of: Integer
 
 # im_uds
 attribute :uds, kind_of: String, default: '/dev/log'
