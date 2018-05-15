@@ -94,5 +94,4 @@ end
 
 describe file("#{conf_dir}/certs/papertrail-bundle.pem") do
   it { should be_file }
-  its(:content) { should contain('ca-bundle.crt') }
 end
