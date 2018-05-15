@@ -27,7 +27,7 @@ old_logger = node['nxlog']['syslog']['logger_disable']
 
 service old_logger do
   action [:stop, :disable]
-  only_if { old_logger }
+  only_if { !old_logger.empty? }
 end
 
 destinations = [node['nxlog']['syslog']['destinations']].flatten.map do |d|
