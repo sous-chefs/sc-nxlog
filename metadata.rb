@@ -4,6 +4,8 @@ version          '0.8.7'
 description      'Installs and configures NXLog_ce on Linux or Windows'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
 
+chef_version '>= 12.1' if respond_to?(:chef_version)
+
 issues_url       'http://github.com/widgit-cookbooks/nxlog/issues'
 source_url       'http://github.com/widgit-cookbooks/nxlog/'
 
