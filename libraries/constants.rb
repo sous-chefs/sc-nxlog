@@ -1,3 +1,3 @@
 module NxLog
-  DEFAULTS_KEY = 'defaults'.freeze
+  DEFAULTS_KEY ||= 'defaults'.freeze
 end
