@@ -24,3 +24,4 @@ bin/*
 # Tests
 .junit/*.xml
 
+Gemfile.lock
