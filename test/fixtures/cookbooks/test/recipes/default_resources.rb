@@ -53,5 +53,5 @@ end
 nxlog_source 'test_im_mark_4' do
   input_module 'im_mark'
   mark_interval 1
-  destination %w(foo bar defaults)
+  destination ['foo', 'bar', NxLog::DEFAULTS_KEY]
 end
