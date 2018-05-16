@@ -47,7 +47,7 @@ nxlog_source 'mark' do
   input_module 'im_mark'
   mark '-> -> MARK <- <-'
   mark_interval 1
-  destination ['test', :defaults]
+  destination %w(test defaults)
 end
 
 # wait for the mark to appear in the log output by explicitly starting nxlog
