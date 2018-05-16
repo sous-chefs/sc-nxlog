@@ -4,9 +4,7 @@ describe 'nxlog::default' do
   let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
 
   it 'installs nxlog' do
-    expect(chef_run).to create_remote_file('nxlog').with_checksum(
-      '5908a1efcfc87830eb03f3f08f00576aa98950e41ec11b96f9491e02f0d130c9'
-    )
+    expect(chef_run).to create_remote_file('nxlog')
     expect(chef_run).to install_dpkg_package('nxlog')
     expect(chef_run).to enable_service('nxlog')
   end

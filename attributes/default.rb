@@ -33,11 +33,11 @@ when 'rhel'
   default['nxlog']['conf_dir'] = '/etc'
   default['nxlog']['log_file'] = '/var/log/nxlog/nxlog.log'
 when 'windows'
-  if node['kernel']['machine'] == 'x86_64'
-    root_dir = 'c:/Program Files (x86)/nxlog'
-  else
-    root_dir = 'c:/Program Files/nxlog'
-  end
+  root_dir = if node['kernel']['machine'] == 'x86_64'
+               'c:/Program Files (x86)/nxlog'
+             else
+               'c:/Program Files/nxlog'
+             end
 
   default['nxlog']['root_dir'] = root_dir
   default['nxlog']['conf_dir'] = "#{root_dir}/conf"

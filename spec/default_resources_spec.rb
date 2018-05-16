@@ -5,9 +5,8 @@ recipes = %w(test::default_resources test::default_resources_attrs)
 recipes.each do |test_recipe|
   describe test_recipe do
     let(:chef_run) do
-      ChefSpec::SoloRunner.new(step_into:
-                                 %w(nxlog_source nxlog_destination))
-        .converge(described_recipe)
+      ChefSpec::SoloRunner.new(step_into: %w(nxlog_source nxlog_destination))
+                          .converge(described_recipe)
     end
 
     it 'creates a mark log source' do

@@ -50,7 +50,7 @@ action :create do
         end
       end
 
-    when 'om_blocker'
+    when 'om_blocker' # rubocop:disable Lint/EmptyWhen
       # nothing to do!
 
     when 'om_exec'
@@ -90,7 +90,7 @@ action :create do
         params << ['HTTPSAllowUntrusted', n.https_allow_untrusted.to_s.upcase]
       end
 
-    when 'om_null'
+    when 'om_null' # rubocop:disable Lint/EmptyWhen
       # nothing to do!
 
     when 'om_ssl'
@@ -116,8 +116,8 @@ action :create do
       params << ['uds', n.uds]
 
     else
-      fail 'Tried to write nxlog config for unrecognised output module: ' +
-        n.output_module
+      raise 'Tried to write nxlog config for unrecognised output module: ' +
+            n.output_module
 
     end
 

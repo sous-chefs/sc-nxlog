@@ -6,7 +6,7 @@ recipes.each do |test_recipe|
   describe test_recipe do
     let(:chef_run) do
       ChefSpec::SoloRunner.new(step_into: ['nxlog_destination'])
-        .converge(described_recipe)
+                          .converge(described_recipe)
     end
 
     it 'creates a log destination for a file' do

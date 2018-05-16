@@ -38,14 +38,14 @@ if node['nxlog']['checksums'][package_name]
   remote_file 'nxlog' do
     path "#{Chef::Config[:file_cache_path]}/#{package_name}"
     source "#{node['nxlog']['package_source']}/#{package_name}"
-    mode 0644
+    mode 0o644
     checksum node['nxlog']['checksums'][package_name]
   end
 else
   remote_file 'nxlog' do
     path "#{Chef::Config[:file_cache_path]}/#{package_name}"
     source "#{node['nxlog']['package_source']}/#{package_name}"
-    mode 0644
+    mode 0o644
   end
 end
 
@@ -61,7 +61,7 @@ else
 end
 
 service 'nxlog' do
-  action [:enable, :start]
+  action %i(enable start)
 end
 
 template "#{node['nxlog']['conf_dir']}/nxlog.conf" do

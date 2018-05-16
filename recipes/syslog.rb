@@ -26,7 +26,7 @@ end
 old_logger = node['nxlog']['syslog']['logger_disable']
 
 service old_logger do
-  action [:stop, :disable]
+  action %i(stop disable)
   only_if { !old_logger.empty? }
 end
 

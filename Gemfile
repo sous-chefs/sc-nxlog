@@ -14,8 +14,8 @@ end
 
 group :development, :test do
   gem 'chefspec'
+  gem 'cookstyle'
   gem 'foodcritic'
-  gem 'rubocop'
   gem 'rake'
   gem 'stove'
 end
