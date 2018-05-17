@@ -30,9 +30,7 @@ service old_logger do
   only_if { !old_logger.empty? }
 end
 
-destinations = [node['nxlog']['syslog']['destinations']].flatten.map do |d|
-  d == ':defaults' ? :defaults : d
-end
+destinations = [node['nxlog']['syslog']['destinations']].flatten
 
 bash 'remove_log_node' do
   code 'rm -f /dev/log'
