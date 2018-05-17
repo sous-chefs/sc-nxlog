@@ -15,7 +15,7 @@ provides         'nxlog::syslog'
 provides         'service[nxlog]'
 
 supports         'ubuntu', '>= 14.04'
-supports         'debian', '>= 6.0'
+supports         'debian', '>= 8.0'
 supports         'redhat', '>= 6.0'
 supports         'centos', '>= 6.0'
 supports         'windows'
