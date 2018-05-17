@@ -34,20 +34,14 @@ platforms:
   - name: centos-7.0
     run_list:
     - recipe[yum::default]
-  - name: opentable/win-2008r2-standard-amd64-nocm
-    os_type: windows
-    shell_type: powershell
-    run_list:
-    - recipe[windows::default]
-    transport:
-      name: winrm
-  - name: opentable/win-2012r2-standard-amd64-nocm
-    os_type: windows
-    shell_type: powershell
-    run_list:
-    - recipe[windows::default]
-    transport:
-      name: winrm
+  - name: windows-2016
+    driver:
+      box: mwrock/Windows2016
+      gui: false
+  - name: windows-2012r2
+    driver:
+      box: mwrock/Windows2012R2
+      gui: false
 
 suites:
   - name: lwrp_resources
@@ -58,9 +52,9 @@ suites:
   - name: attribute_resources_linux
     run_list:
       - recipe[test::kitchen_log_file_attrs]
-    excludes:
-      - opentable/win-2012r2-standard-amd64-nocm
-      - opentable/win-2008r2-standard-amd64-nocm
+    excludes: &linux_excludes
+      - windows-2016
+      - windows-2012r2
     verifier:
       suite_name: attribute_resources
     attributes:
@@ -91,8 +85,8 @@ suites:
     run_list:
       - recipe[test::kitchen_log_file_attrs]
     includes:
-      - opentable/win-2012r2-standard-amd64-nocm
-      - opentable/win-2008r2-standard-amd64-nocm
+      - windows-2016
+      - windows-2012r2
     verifier:
       suite_name: attribute_resources
     attributes:
@@ -117,14 +111,12 @@ suites:
             mark: -> -> MARK <- <-
             destination:
               - test
-              - :defaults
+              - defaults
 
   - name: syslog
     run_list:
       - recipe[test::kitchen_syslog]
-    excludes:
-      - opentable/win-2012r2-standard-amd64-nocm
-      - opentable/win-2008r2-standard-amd64-nocm
+    excludes: *linux_excludes
     attributes:
       nxlog:
         syslog:
