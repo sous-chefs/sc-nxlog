@@ -1,8 +1,5 @@
 # NXLog Chef Cookbook 
 
-[![Build Status](https://secure.travis-ci.org/widgit-cookbooks/nxlog.svg?branch=master)](https://travis-ci.org/widgit-cookbooks/nxlog)
-[![Dependency Status](https://gemnasium.com/widgit-cookbooks/nxlog.svg)](https://gemnasium.com/widgit-cookbooks/nxlog)
-
 **This documentation uses Github markdown and looks best on [the Github project page](http://github.com/widgit-cookbooks/nxlog)**
 
 ## About this cookbook
@@ -21,27 +18,29 @@ logs can be written into different formats and sent to multiple places.
 The cookbook provides LWRPs for log sources and destinations, and makes it easy
 to set up routes between them.
 
-The nxlog::syslog recipe sets up nxlog as the default system logger on Linux.
+The `nxlog::syslog` recipe sets up NXLog as the default system logger on Linux.
 
 Additionally, this cookbook includes a Papertrail LWRP to simplify the
 publishing of logs to that service. [Papertrail](https://papertrailapp.com/?thank=d131bd) is a web-based log aggregation
 service that can receive logs from multiple servers and display them all in once place.
 
 You may also create nxlog resources via node attributes, which saves you from
-having to write a recipe for each one. This cookbook uses the `zap` cookbook
-to ensure that resources configs are automatically removed from nodes when they
-are removed from node attributes.
+having to write a recipe for each one.
 
-It is worth reading the [nxlog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928) 
+It is worth reading the [NXLog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928) 
 to get a better idea of how this stuff works.
+
+You will also need a download mirror to store the installation packages, as the NXLog website does not allow unattended
+downloads and may block your IP address if you try! The original author of this cookbook provided a mirror at
+[https://mirror.widgit.com/nxlog](https://mirror.widgit.com/nxlog), but this does not contain newer versions.
 
 ## Supported Platforms
 
- * Windows Server 2008r2-2012r2
+ * Windows Server 2012r2-2016 (2008r2 did work, but is no longer tested)
  * Ubuntu/Debian Linux
  * RHEL/Centos Linux
 
-This cookbook requires Chef 12
+This cookbook supports Chef 12 through 14
 
 ## Usage
 
