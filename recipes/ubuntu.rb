@@ -21,13 +21,14 @@ package 'libapr1'
 package 'libdbi1'
 
 if node['platform_version'].to_f > 14.0
-  package 'libperl5.18'
-  suffix = '_ubuntu_1404'
+  perl_package         = 'libperl5.18'
+  nxlog_package_suffix = '_ubuntu_1404'
 else
-  package 'libperl5.14'
-  suffix = '_ubuntu_1204'
+  raise "Ubuntu #{node['platform_version']} is not supported"
 end
 
-package_name = "nxlog-ce_#{node['nxlog']['version']}#{suffix}_amd64.deb"
+package perl_package
+
+package_name = "nxlog-ce_#{node['nxlog']['version']}#{nxlog_package_suffix}_amd64.deb"
 
 node.default['nxlog']['installer_package'] = package_name

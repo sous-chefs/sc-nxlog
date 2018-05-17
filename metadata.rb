@@ -14,7 +14,7 @@ provides         'nxlog::papertrail'
 provides         'nxlog::syslog'
 provides         'service[nxlog]'
 
-supports         'ubuntu', '>= 12.04'
+supports         'ubuntu', '>= 14.04'
 supports         'debian', '>= 6.0'
 supports         'redhat', '>= 6.0'
 supports         'centos', '>= 6.0'
