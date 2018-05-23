@@ -7,7 +7,7 @@ addons:
     sources:
       - chef-stable-trusty
     packages:
-      - chefdk
+      - chefdk=2.4.17-1
 
 # Don't `bundle install` which takes a long time
 install: echo "skip bundle install"
