@@ -3,6 +3,7 @@ dist: trusty
 
 addons:
   apt:
+    update: true
     sources:
       - chef-stable-trusty
     packages:
