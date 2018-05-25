@@ -14,6 +14,10 @@ install: echo "skip bundle install"
 
 services: docker
 
+stages:
+  - unit
+  - test
+
 env:
   global:
   - KITCHEN_YAML=.kitchen.yml
@@ -41,3 +45,9 @@ before_script:
   - chef gem install danger
 
 script: kitchen verify ${INSTANCE}
+
+jobs:
+  include:
+    - stage: unit
+      script: chef exec delivery local all
+      env: UNIT_AND_LINT=1
