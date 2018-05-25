@@ -20,6 +20,17 @@ env:
   - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
   matrix:
   - INSTANCE=lwrp-resources-ubuntu-1404
+  - INSTANCE=lwrp-resources-debian-8
+  - INSTANCE=lwrp-resources-centos-6
+  - INSTANCE=lwrp-resources-centos-7
+  - INSTANCE=attribute-resources-linux-ubuntu-1404
+  - INSTANCE=attribute-resources-linux-debian-8
+  - INSTANCE=attribute-resources-linux-centos-6
+  - INSTANCE=attribute-resources-linux-centos-7
+  - INSTANCE=syslog-ubuntu-1404
+  - INSTANCE=syslog-debian-8
+  - INSTANCE=syslog-centos-6
+  - INSTANCE=syslog-centos-7
 
 before_script:
   - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
