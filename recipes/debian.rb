@@ -19,13 +19,13 @@
 
 package 'libapr1'
 
-if node['platform_version'].to_f >= 8.0
-  suffix = '_debian_jessie'
-  package 'libperl5.20'
-  package 'libdbi1'
-else
+if node['platform_version'].to_f < 8.0
   raise "Debian #{node['platform_version']} is not supported"
 end
+
+suffix = '_debian_jessie'
+package 'libperl5.20'
+package 'libdbi1'
 
 package_name = "nxlog-ce_#{node['nxlog']['version']}#{suffix}_amd64.deb"
 

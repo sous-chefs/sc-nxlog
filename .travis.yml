@@ -1,16 +1,53 @@
-language: ruby
-gemfile:
-- Gemfile
-rvm:
-- 2.2
-bundler_args: "--without development integration"
-before_script: bundle exec berks install
-script: bundle exec rake test
-notifications:
-  email:
-  - travis-ci@widgit.com
-  hipchat:
-    room:
-      secure: W0Lh9bsy1k2XtUhRLjUpehH2wT0r2ulmnbHYo4qDfce76wo+1V0GgIf/K+YKTYpqvNrFiQVq5i7sVq8t7KWxnxgSqTP8x+mIIPNqbNkoB6NIsCMtiDqHTCc3zw8hNdAj9StV0F9usLhhZ7qLVZNlkxwHVxieJwrVEMexW1Lrpuw=
-    rooms:
-      secure: C2dfJ2jYvKuS85lm+bfVwdonx82sN5y3lXSQeW7Az8cIRl6xri/SYxUo6zC+GKPAaWdohhcVebrO8GqmHv3bBAvIeY0/oEtOGNjNBfRM/UpNapMmKTgwgkQjlD11ob6S15gfOYUaQaLPR6pR3fvFXF/ECfnz9cKaOFp7aIGCdDs=
+sudo: required
+dist: trusty
+
+addons:
+  apt:
+    update: true
+    sources:
+      - chef-stable-trusty
+    packages:
+      - chefdk=2.4.17-1
+
+# Don't `bundle install` which takes a long time
+install: echo "skip bundle install"
+
+services: docker
+
+stages:
+  - unit
+  - test
+
+env:
+  global:
+  - KITCHEN_YAML=.kitchen.yml
+  - KITCHEN_LOCAL_YAML=.kitchen.dokken.yml
+  matrix:
+  - INSTANCE=lwrp-resources-ubuntu-1404
+  - INSTANCE=lwrp-resources-debian-8
+  - INSTANCE=lwrp-resources-centos-6
+  - INSTANCE=lwrp-resources-centos-7
+  - INSTANCE=attribute-resources-linux-ubuntu-1404
+  - INSTANCE=attribute-resources-linux-debian-8
+  - INSTANCE=attribute-resources-linux-centos-6
+  - INSTANCE=attribute-resources-linux-centos-7
+  - INSTANCE=syslog-ubuntu-1404
+  - INSTANCE=syslog-debian-8
+  - INSTANCE=syslog-centos-6
+  - INSTANCE=syslog-centos-7
+
+before_script:
+  - sudo iptables -L DOCKER || ( echo "DOCKER iptables chain missing" ; sudo iptables -N DOCKER )
+  - eval "$(shell-init bash)"
+  - chef --version
+  - cookstyle --version
+  - foodcritic --version
+  - chef gem install danger
+
+script: kitchen verify ${INSTANCE}
+
+jobs:
+  include:
+    - stage: unit
+      script: chef exec delivery local all
+      env: UNIT_AND_LINT=1

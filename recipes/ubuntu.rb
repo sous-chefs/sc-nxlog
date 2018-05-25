@@ -20,12 +20,12 @@
 package 'libapr1'
 package 'libdbi1'
 
-if node['platform_version'].to_f > 14.0
-  perl_package         = 'libperl5.18'
-  nxlog_package_suffix = '_ubuntu_1404'
-else
+if node['platform_version'].to_f < 14.0
   raise "Ubuntu #{node['platform_version']} is not supported"
 end
+
+perl_package         = 'libperl5.18'
+nxlog_package_suffix = '_ubuntu_1404'
 
 package perl_package
 
