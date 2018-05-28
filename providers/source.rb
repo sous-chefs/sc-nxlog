@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_source
+
 def whyrun_supported?
   true
 end
@@ -127,11 +129,11 @@ action :create do
     end
 
     destinations = [*n.destination]
-    destinations.map! { |v| v == NxLog::DEFAULTS_KEY ? '%DEFAULT_OUTPUTS%' : v }
+    destinations.map! { |v| v == ScNxLog::DEFAULTS_KEY ? '%DEFAULT_OUTPUTS%' : v }
 
     # create template with above parameters
     template config_filename(n.name) do
-      cookbook 'nxlog'
+      cookbook 'sc-nxlog'
       source 'resources/source.conf.erb'
 
       variables name: n.name,

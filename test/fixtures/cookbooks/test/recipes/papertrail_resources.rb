@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
-include_recipe 'nxlog::papertrail'
+include_recipe 'sc-nxlog::default'
+include_recipe 'sc-nxlog::papertrail'
 
 nxlog_papertrail 'my_papertrail' do
   port 11111

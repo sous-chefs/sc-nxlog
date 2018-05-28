@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_papertrail
+
 def whyrun_supported?
   true
 end

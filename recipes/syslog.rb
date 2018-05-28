@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'
 
 if node['platform_family'] == 'windows'
   Chef::Application.fatal!('Syslog recipe is not supported on Windows')

@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'
 
 directory File.join(node['nxlog']['conf_dir'], 'certs')
 

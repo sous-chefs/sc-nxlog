@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
-include_recipe 'nxlog::syslog'
+include_recipe 'sc-nxlog::default'
+include_recipe 'sc-nxlog::syslog'
 
 nxlog_destination 'test' do
   file '/tmp/test.log'

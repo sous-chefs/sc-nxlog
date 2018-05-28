@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_destination
+
 actions :create, :delete
 default_action :create
 

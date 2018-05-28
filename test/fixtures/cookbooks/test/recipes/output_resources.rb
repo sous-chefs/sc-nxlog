@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'
 
 nxlog_destination 'test_om_file' do
   file '/var/log/test.log'

@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe 'nxlog::syslog' do
+describe 'sc-nxlog::syslog' do
   let(:chef_run) do
     stub_command('test -L /dev/log').and_return(false)
     ChefSpec::SoloRunner.converge(described_recipe)
@@ -29,7 +29,7 @@ describe 'nxlog::syslog' do
       uds: '/var/run/nxlog/devlog',
       exec: 'parse_syslog_bsd();',
       flow_control: false,
-      destination: [NxLog::DEFAULTS_KEY]
+      destination: [ScNxLog::DEFAULTS_KEY]
     )
   end
 end

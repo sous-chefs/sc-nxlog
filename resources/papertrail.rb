@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_papertrail
+
 actions :create, :delete
 default_action :create
 

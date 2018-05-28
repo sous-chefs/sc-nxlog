@@ -89,4 +89,4 @@ node.override['nxlog'] = JSON.parse(<<EOT)
 }
 EOT
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'

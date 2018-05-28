@@ -1,6 +1,6 @@
 require_relative 'spec_helper'
 
-describe 'nxlog::default' do
+describe 'sc-nxlog::default' do
   let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
 
   it 'installs nxlog' do

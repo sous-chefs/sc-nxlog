@@ -17,8 +17,8 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
-include_recipe 'nxlog::papertrail'
+include_recipe 'sc-nxlog::default'
+include_recipe 'sc-nxlog::papertrail'
 
 nxlog_destination 'test' do
   if platform? 'windows'
@@ -47,7 +47,7 @@ nxlog_source 'mark' do
   input_module 'im_mark'
   mark '-> -> MARK <- <-'
   mark_interval 1
-  destination ['test', NxLog::DEFAULTS_KEY]
+  destination ['test', ScNxLog::DEFAULTS_KEY]
 end
 
 # wait for the mark to appear in the log output by explicitly starting nxlog

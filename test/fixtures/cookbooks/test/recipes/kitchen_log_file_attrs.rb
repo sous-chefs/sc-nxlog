@@ -19,8 +19,8 @@
 
 # create the resources from the node attributes, restart and wait
 
-include_recipe 'nxlog::default'
-include_recipe 'nxlog::papertrail'
+include_recipe 'sc-nxlog::default'
+include_recipe 'sc-nxlog::papertrail'
 
 # wait for the mark to appear in the log output by explicitly starting nxlog
 # and waiting for a set time
