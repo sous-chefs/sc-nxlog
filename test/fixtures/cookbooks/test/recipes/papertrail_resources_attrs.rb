@@ -33,5 +33,5 @@ node.override['nxlog'] = JSON.parse(<<EOT)
 }
 EOT
 
-include_recipe 'nxlog::default'
-include_recipe 'nxlog::papertrail'
+include_recipe 'sc-nxlog::default'
+include_recipe 'sc-nxlog::papertrail'

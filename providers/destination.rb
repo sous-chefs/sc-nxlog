@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_destination
+
 def whyrun_supported?
   true
 end
@@ -123,7 +125,7 @@ action :create do
 
     # create template with above parameters
     template config_filename(n.name) do
-      cookbook 'nxlog'
+      cookbook 'sc-nxlog'
       source 'resources/destination.conf.erb'
       variables name: n.name, params: params
       notifies :restart, 'service[nxlog]', :delayed
@@ -131,7 +133,7 @@ action :create do
 
     # create default definition file if this is a default destination
     template default_filename(n.name) do
-      cookbook 'nxlog'
+      cookbook 'sc-nxlog'
       source 'resources/destination.default.erb'
       variables name: n.name
       notifies :restart, 'service[nxlog]', :delayed
@@ -145,14 +147,14 @@ action :delete do
     n = new_resource
 
     template config_filename(new_resource.name) do
-      cookbook 'nxlog'
+      cookbook 'sc-nxlog'
       source 'resources/destination.conf.erb'
       action :delete
       notifies :restart, 'service[nxlog]', :delayed
     end
 
     template default_filename(n.name) do
-      cookbook 'nxlog'
+      cookbook 'sc-nxlog'
       source 'resources/destination.default.erb'
       action :delete
       notifies :restart, 'service[nxlog]', :delayed

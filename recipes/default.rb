@@ -20,14 +20,14 @@
 case node['platform_family']
 when 'debian'
   if node['platform'] == 'ubuntu'
-    include_recipe 'nxlog::ubuntu'
+    include_recipe 'sc-nxlog::ubuntu'
   else
-    include_recipe 'nxlog::debian'
+    include_recipe 'sc-nxlog::debian'
   end
 when 'rhel'
-  include_recipe 'nxlog::redhat'
+  include_recipe 'sc-nxlog::redhat'
 when 'windows'
-  include_recipe 'nxlog::windows'
+  include_recipe 'sc-nxlog::windows'
 else
   Chef::Application.fatal!('Attempted to install on an unsupported platform')
 end
@@ -72,4 +72,4 @@ end
 
 directory "#{node['nxlog']['conf_dir']}/nxlog.conf.d"
 
-include_recipe 'nxlog::resources_from_attributes'
+include_recipe 'sc-nxlog::resources_from_attributes'

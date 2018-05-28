@@ -17,6 +17,8 @@
 # limitations under the License.
 #
 
+provides :nxlog_source
+
 actions :create, :delete
 default_action :create
 
@@ -27,7 +29,7 @@ attribute :input_module, kind_of: String, default: 'im_file', required: true,
                          equal_to: %w(im_exec im_file im_internal im_kernel
                                       im_mark im_mseventlog im_msvistalog
                                       im_null im_ssl im_tcp im_udp im_uds)
-attribute :destination, kind_of: [String, Array], default: NxLog::DEFAULTS_KEY
+attribute :destination, kind_of: [String, Array], default: ScNxLog::DEFAULTS_KEY
 attribute :input_type, kind_of: String
 attribute :exec, kind_of: String
 attribute :flow_control, kind_of: [TrueClass, FalseClass]

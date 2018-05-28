@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'
 
 def symbolize_attrs(obj)
   if obj.is_a? String

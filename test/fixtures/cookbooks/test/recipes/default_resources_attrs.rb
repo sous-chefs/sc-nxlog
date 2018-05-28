@@ -52,10 +52,10 @@ node.override['nxlog'] = JSON.parse(<<EOT)
     "test_im_mark_4": {
       "input_module": "im_mark",
       "mark_interval": 1,
-      "destination": ["foo", "bar", "#{NxLog::DEFAULTS_KEY}"]
+      "destination": ["foo", "bar", "#{ScNxLog::DEFAULTS_KEY}"]
     }
   }
 }
 EOT
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'

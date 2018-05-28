@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-include_recipe 'nxlog::default'
+include_recipe 'sc-nxlog::default'
 
 nxlog_destination 'test_om_file_1' do
   file '/var/log/mark.log'
@@ -53,5 +53,5 @@ end
 nxlog_source 'test_im_mark_4' do
   input_module 'im_mark'
   mark_interval 1
-  destination ['foo', 'bar', NxLog::DEFAULTS_KEY]
+  destination ['foo', 'bar', ScNxLog::DEFAULTS_KEY]
 end
