@@ -39,6 +39,7 @@ platforms:
 
 suites:
   - name: lwrp_resources
+    verifier: inspec
     run_list:
       - recipe[test::kitchen_log_file]
     attributes:
@@ -115,3 +116,9 @@ suites:
       nxlog:
         syslog:
           destinations: ['test']
+
+  - name: papertrail
+    verifier: inspec
+    run_list:
+      - recipe[sc-nxlog::papertrail]
+    attributes:
