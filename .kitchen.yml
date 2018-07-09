@@ -15,6 +15,9 @@ provisioner:
   name: chef_solo
   require_chef_omnibus: true
 
+verifier:
+  name: inspec
+
 platforms:
   - name: ubuntu-14.04
     run_list:
@@ -39,7 +42,6 @@ platforms:
 
 suites:
   - name: lwrp_resources
-    verifier: inspec
     run_list:
       - recipe[test::kitchen_log_file]
     attributes:
@@ -109,6 +111,7 @@ suites:
               - defaults
 
   - name: syslog
+    verifier: busser
     run_list:
       - recipe[test::kitchen_syslog]
     excludes: *linux_excludes
@@ -118,7 +121,6 @@ suites:
           destinations: ['test']
 
   - name: papertrail
-    verifier: inspec
     run_list:
       - recipe[sc-nxlog::papertrail]
     attributes:

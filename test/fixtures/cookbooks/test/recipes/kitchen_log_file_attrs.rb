@@ -20,18 +20,3 @@
 # create the resources from the node attributes, restart and wait
 
 include_recipe 'sc-nxlog::default'
-include_recipe 'sc-nxlog::papertrail'
-
-# wait for the mark to appear in the log output by explicitly starting nxlog
-# and waiting for a set time
-service 'nxlog_restart' do
-  service_name 'nxlog'
-  action :restart
-end
-
-ruby_block 'sleep' do
-  block do
-    sleep 70
-  end
-  action :run
-end
