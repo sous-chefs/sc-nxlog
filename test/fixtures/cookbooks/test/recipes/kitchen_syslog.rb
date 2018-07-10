@@ -23,9 +23,3 @@ include_recipe 'sc-nxlog::syslog'
 nxlog_destination 'test' do
   file '/tmp/test.log'
 end
-
-# get something written to the output
-
-execute 'sudo_something' do
-  command 'sudo bash -c "echo foo"'
-end

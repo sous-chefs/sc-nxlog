@@ -111,7 +111,6 @@ suites:
               - defaults
 
   - name: syslog
-    verifier: busser
     run_list:
       - recipe[test::kitchen_syslog]
     excludes: *linux_excludes
