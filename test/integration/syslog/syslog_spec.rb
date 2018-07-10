@@ -42,22 +42,14 @@ describe parse_config_file("#{conf_dir}/nxlog.conf.d/10_op_test.conf", nxlog_con
   its('Output test.File')   { should eq "\"/tmp/test.log\"" }
 end
 
-describe file("#{conf_dir}/nxlog.conf.d/20_ip_syslog.conf") do
-  it { should be_file }
-  its(:content) { should start_with(<<EOT) }
-define DEFAULT_OUTPUTS null_output
+describe parse_config_file("#{conf_dir}/nxlog.conf.d/20_ip_syslog.conf", nxlog_config_parse_opts) do
+  its('define')  { should eq 'DEFAULT_OUTPUTS null_output' }
+  its('include') { should eq "#{conf_dir}/nxlog.conf.d/*.default" }
 
-include #{conf_dir}/nxlog.conf.d/*.default
+  its('Input syslog.Module') { should eq 'im_uds' }
+  its('Input syslog.Exec')   { should eq 'parse_syslog_bsd();' }
+  its('Input syslog.FlowControl') { should eq 'FALSE' }
+  its('Input syslog.UDS') { should eq '/var/run/nxlog/devlog' }
 
-<Input syslog>
-  Module im_uds
-  Exec parse_syslog_bsd();
-  FlowControl FALSE
-  UDS /var/run/nxlog/devlog
-</Input>
-
-<Route r_syslog>
-  Path syslog => test
-</Route>
-EOT
+  its('Route r_syslog.Path') { should eq 'syslog => test' }
 end
