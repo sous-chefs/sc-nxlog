@@ -32,14 +32,16 @@ describe.one do
     # its('shallow_link_path') { should eq '/var/run/nxlog/devlog' }
     its('link_path') { should eq '/var/run/nxlog/devlog' }
   end
-
 end
 
-nxlog_config_parse_opts = {assignment_regex: /^\s*([A-Za-z]+)\s+(.*?)\s*$/, group_re: /^\s*<([_A-Za-z0-9 ]+)>/}
+nxlog_config_parse_opts = {
+  assignment_regex: /^\s*([A-Za-z]+)\s+(.*?)\s*$/,
+  group_re: /^\s*<([_A-Za-z0-9 ]+)>/,
+}
 
 describe parse_config_file("#{conf_dir}/nxlog.conf.d/10_op_test.conf", nxlog_config_parse_opts) do
-  its('Output test.Module') { should eq 'om_file'                 }
-  its('Output test.File')   { should eq "\"/tmp/test.log\"" }
+  its('Output test.Module') { should eq 'om_file' }
+  its('Output test.File')   { should eq '"/tmp/test.log"' }
 end
 
 describe parse_config_file("#{conf_dir}/nxlog.conf.d/20_ip_syslog.conf", nxlog_config_parse_opts) do
