@@ -17,6 +17,7 @@ services: docker
 stages:
   - unit
   - test
+  - danger
 
 env:
   global:
@@ -51,3 +52,7 @@ jobs:
     - stage: unit
       script: chef exec delivery local all
       env: UNIT_AND_LINT=1
+
+    - stage: danger
+      script: chef exec danger
+      env: DANGER
