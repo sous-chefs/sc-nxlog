@@ -18,7 +18,6 @@
 #
 
 include_recipe 'sc-nxlog::default'
-include_recipe 'sc-nxlog::papertrail'
 
 nxlog_destination 'test' do
   if platform? 'windows'
@@ -34,12 +33,6 @@ nxlog_destination 'test_2' do
   else
     file '/var/log/nxlog/test2.log'
   end
-  default true
-end
-
-nxlog_papertrail 'papertrail' do
-  port 17992
-  host 'logs2'
   default true
 end
 

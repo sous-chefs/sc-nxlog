@@ -15,6 +15,9 @@ provisioner:
   name: chef_solo
   require_chef_omnibus: true
 
+verifier:
+  name: inspec
+
 platforms:
   - name: ubuntu-14.04
     run_list:
@@ -30,11 +33,11 @@ platforms:
     - recipe[yum::default]
   - name: windows-2016
     driver:
-      box: mwrock/Windows2016
+      box: tas50/windows_2016
       gui: false
   - name: windows-2012r2
     driver:
-      box: mwrock/Windows2012R2
+      box: tas50/windows_2012r2
       gui: false
 
 suites:
@@ -115,3 +118,8 @@ suites:
       nxlog:
         syslog:
           destinations: ['test']
+
+  - name: papertrail
+    run_list:
+      - recipe[sc-nxlog::papertrail]
+    attributes:
