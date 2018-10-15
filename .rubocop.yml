@@ -1,10 +1,3 @@
 AllCops:
   Exclude:
-    - '.kitchen/**/*'
-    - 'vendor/bundle/**/*'
-
-Layout/SpaceBeforeFirstArg:
-  Enabled: false
-
-Style/NumericLiterals:
-  Enabled: false
+    - 'Dangerfile'
