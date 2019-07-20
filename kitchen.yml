@@ -1,11 +1,6 @@
 ---
 driver:
   name: vagrant
-<% if ENV['TEAMCITY'] == '1' %>
-  synced_folders:
-  - '.junit'
-  - '/.junit'
-<% end %>
 
 driver_config:
   customize:
