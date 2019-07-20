@@ -3,7 +3,8 @@ driver:
   name: vagrant
 <% if ENV['TEAMCITY'] == '1' %>
   synced_folders:
-    - ['.junit', '/.junit']
+  - '.junit'
+  - '/.junit'
 <% end %>
 
 driver_config:
@@ -45,7 +46,7 @@ suites:
     run_list:
       - recipe[test::kitchen_log_file]
     attributes:
-    
+
   - name: attribute_resources_linux
     run_list:
       - recipe[test::kitchen_log_file_attrs]
