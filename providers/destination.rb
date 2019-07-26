@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: nxlog
+# Cookbook:: nxlog
 # Provider:: log_destination
 #
-# Copyright (C) 2014 Simon Detheridge
+# Copyright:: (C) 2014 Simon Detheridge
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
