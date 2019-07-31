@@ -44,9 +44,9 @@ downloads and may block your IP address if you try! The original author of this 
 
 ## Supported Platforms
 
-* Windows Server 2012r2-2016 (2008r2 did work, but is no longer tested)
-* Ubuntu/Debian Linux
-* RHEL/Centos Linux
+- Windows Server 2012r2-2016 (2008r2 did work, but is no longer tested)
+- Ubuntu/Debian Linux
+- RHEL/Centos Linux
 
 This cookbook supports Chef 12 through 14
 
@@ -179,10 +179,20 @@ The following describes each LWRP provided by this cookbook.
 
 It is also possible to create the resources using node attributes as described
 above. To do so, create them as hashes within:
-```node['nxlog']['sources']```
-```node['nxlog']['destinations']```
+
+```ruby
+node['nxlog']['sources']
+```
+
+```ruby
+node['nxlog']['destinations']
+```
+
 or
-```node['nxlog']['papertrails']```
+
+```ruby
+node['nxlog']['papertrails']
+```
 
 The name attribute should be the hash key for the object, and all attributes
 supported by the relevant LWRP are supported as name/value pairs inside the
@@ -211,13 +221,13 @@ nxlog_source "name" do
 end
 ```
 
-* `name` is a unique name for the log resource
-* `attributes` define how the log source should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the log resource
+- `attributes` define how the log source should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
-```ruby
+```json
 {
   "nxlog": {
     "sources": {
@@ -229,9 +239,9 @@ end
 }
 ```
 
-* `name` is a unique name for the log resource
-* `attributes` define how the log source should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the log resource
+- `attributes` define how the log source should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_source attributes
 
@@ -247,14 +257,14 @@ end
 
 **Notes:**
 
-* input_module must be one of the modules defined below
-* to send log data to specific log destinations in addition to the defaults, include `:defaults` in the destination array. For example:
+- input_module must be one of the modules defined below
+- to send log data to specific log destinations in addition to the defaults, include `:defaults` in the destination array. For example:
 
 ```ruby
   destination ['my_special_destination', :defaults]
 ```
 
-* it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
+- it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
   log data needs to be transformed by a method such as `to_syslog_ietf()`
 
 ##### 'im_file' module
@@ -265,18 +275,18 @@ end
 
 | Attribute name     | Description                                                      | Type    | Default              |
 | ------------------ | ---------------------------------------------------------------- | ------- | -------------------  |
-| file               | The file to read log data from                                   | String  | none - **Required**  |
+| file               | The file to read log data from                                   | String  | none - **Required*-  |
 | recursive          | Whether to recurse into subdirectories                           | boolean | false                |
 | rename_check       | Check whether files are renamed (e.g. logrotate)                 | boolean | false                |
 | close_when_idle    | Whether to close the file when not being read                    | boolean | false                |
 | poll_interval      | How often to check for new data                                  | float   | 1.0                  |
-| dir_check_interval | How often to check for new files when `file` contains a wildcard | float   | 2 * `poll_interval`  |
+| dir_check_interval | How often to check for new files when `file` contains a wildcard | float   | 2 - `poll_interval`  |
 | active_files       | Maximum number of files to monitor simultaneously                | integer | 10                   |
 | save_pos           | Whether to save the file position when nxlog exits               | boolean | true                 |
 
 **Notes:**
 
-* `recursive` works in a way that you might not expect. Read the nxlog docs if you plan to use it.
+- `recursive` works in a way that you might not expect. Read the nxlog docs if you plan to use it.
 
 ##### 'im_exec' module
 
@@ -286,7 +296,7 @@ end
 
 | Attribute name     | Description                                  | Type    | Default             |
 | ------------------ | -------------------------------------------- | ------- | ------------------- |
-| command            | The command to execute                       | String  | none - **Required** |
+| command            | The command to execute                       | String  | none - **Required*- |
 | args               | An array of arguments to pass to the command | Array   | none                |
 | restart            | Whether to restart the command on exit       | boolean | false               |
 
@@ -321,7 +331,7 @@ end
 
 'im_mseventlog' reads from the Windows XP (Server 2003) event log.
 
-**NOTE:** For modern Windows (Vista and above) use 'im_msvistalog'
+**NOTE:*- For modern Windows (Vista and above) use 'im_msvistalog'
 
 [http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mseventlog](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mseventlog)
 
@@ -370,7 +380,7 @@ is encrypted.
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host            | The ip or hostname to listen on                                  | String  | 'localhost'         |
-| port            | The tcp port to listen on                                        | Integer | none - **Required** |
+| port            | The tcp port to listen on                                        | Integer | none - **Required*- |
 | cert_file       | Path to the https certificate file                               | String  | none                |
 | cert_key_file   | Path to the https certificate key file                           | String  | none                |
 | key_pass        | Password for the certificate key file                            | String  | none                |
@@ -392,7 +402,7 @@ to all addresses.
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host            | The ip or hostname to listen on                                  | String  | 'localhost'         |
-| port            | The tcp port to listen on                                        | Integer | none - **Required** |
+| port            | The tcp port to listen on                                        | Integer | none - **Required*- |
 
 ##### 'im_udp' module
 
@@ -406,13 +416,13 @@ to all addresses.
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host           | The host to listen on                                            | String  | 'localhost'         |
-| port           | The udp port to connect to                                       | Integer | none - **Required** |
+| port           | The udp port to connect to                                       | Integer | none - **Required*- |
 | sock_buf_size  | Sets the socket buffer size                                      | Integer | OS defaults         |
 
 ##### 'im_uds' module
 
 'im_uds' messages are read from a unix domain socket, such as `/dev/log`. This module
-will read from `/dev/log` if the *uds* attribute is not specified.
+will read from `/dev/log` if the *uds- attribute is not specified.
 
 [http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_uds](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_uds)
 
@@ -422,7 +432,7 @@ will read from `/dev/log` if the *uds* attribute is not specified.
 
 **Notes:**
 
-* Only SOCK_DGRAM type sockets are currently supported by nxlog
+- Only SOCK_DGRAM type sockets are currently supported by nxlog
 
 ### nxlog_destination
 
@@ -447,9 +457,9 @@ nxlog_destination "name" do
 end
 ```
 
-* `name` is a unique name for the destination resource
-* `attributes` define how the log destination should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the destination resource
+- `attributes` define how the log destination should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
@@ -465,9 +475,9 @@ end
 }
 ```
 
-* `name` is a unique name for the destination resource
-* `attributes` define how the log destination should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the destination resource
+- `attributes` define how the log destination should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_destination attributes
 
@@ -482,10 +492,10 @@ end
 
 **Notes:**
 
-* output_module must be one of the modules defined below
-* it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
+- output_module must be one of the modules defined below
+- it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
   log data needs to be transformed by a method such as `to_syslog_ietf()`
-* destinations marked as default will receive log data from all input sources,
+- destinations marked as default will receive log data from all input sources,
   unless they specifically specify otherwise
 
 ##### 'om_file' module
@@ -496,7 +506,7 @@ end
 
 | Attribute name     | Description                                                         | Type    | Default              |
 | ------------------ | ------------------------------------------------------------------- | ------- | -------------------- |
-| file               | The file to write log data to                                       | String  | none - **Required**  |
+| file               | The file to write log data to                                       | String  | none - **Required*-  |
 | create_dir         | Whether to create a directory for the log file if it does not exist | boolean | false                |
 | truncate           | Whether to truncate the log file before writing                     | boolean | false                |
 | sync               | Whether to sync the log file after each message, flushing buffers   | boolean | false                |
@@ -517,14 +527,14 @@ end
 
 | Attribute name | Description                                                 | Type   | Default             |
 | ---------------| ----------------------------------------------------------- | ------ | ------------------- |
-| driver         | The dbi driver to use                                       | String | none - **Required** |
-| sql            | The SQL to execute to insert the log data                   | String | none - **Required** |
-| options        | Engine-specific options such as host, username and password | Array  | none - **Required** |
+| driver         | The dbi driver to use                                       | String | none - **Required*- |
+| sql            | The SQL to execute to insert the log data                   | String | none - **Required*- |
+| options        | Engine-specific options such as host, username and password | Array  | none - **Required*- |
 
 **Notes:**
 
-* Requires libdbi the relevant libdbi driver to be installed
-* See the nxlog docs for details on how to format SQL and options
+- Requires libdbi the relevant libdbi driver to be installed
+- See the nxlog docs for details on how to format SQL and options
 
 ##### 'om_exec' module
 
@@ -534,12 +544,12 @@ end
 
 | Attribute name | Description                                  | Type   | Default             |
 | ---------------| -------------------------------------------- | ------ | ------------------- |
-| command        | The command to execute                       | String | none - **Required** |
+| command        | The command to execute                       | String | none - **Required*- |
 | args           | An array of arguments to pass to the command | Array  | none                |
 
 **Notes:**
 
-* The command is executed when nxlog starts, and must not terminate until it shuts down
+- The command is executed when nxlog starts, and must not terminate until it shuts down
 
 ##### 'om_http' module
 
@@ -549,7 +559,7 @@ end
 
 | Attribute name        | Description                                                      | Type    | Default             |
 | ----------------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| url                   | The url to post the data to                                      | String  | none - **Required** |
+| url                   | The url to post the data to                                      | String  | none - **Required*- |
 | content-type          | The content-type header of the http request                      | String  | 'text/plain'        |
 | https_cert_file       | Path to the https certificate file                               | String  | none                |
 | https_cert_key_file   | Path to the https certificate key file                           | String  | none                |
@@ -580,8 +590,8 @@ is encrypted.
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host            | The host to connect to                                           | String  | none - **Required** |
-| port            | The tcp port to connect to                                       | Integer | none - **Required** |
+| host            | The host to connect to                                           | String  | none - **Required*- |
+| port            | The tcp port to connect to                                       | Integer | none - **Required*- |
 | cert_file       | Path to the https certificate file                               | String  | none                |
 | cert_key_file   | Path to the https certificate key file                           | String  | none                |
 | key_pass        | Password for the certificate key file                            | String  | none                |
@@ -599,8 +609,8 @@ is encrypted.
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host            | The host to connect to                                           | String  | none - **Required** |
-| port            | The tcp port to connect to                                       | Integer | none - **Required** |
+| host            | The host to connect to                                           | String  | none - **Required*- |
+| port            | The tcp port to connect to                                       | Integer | none - **Required*- |
 
 ##### 'om_udp' module
 
@@ -610,14 +620,14 @@ is encrypted.
 
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host           | The host to connect to                                           | String  | none - **Required** |
-| port           | The udp port to connect to                                       | Integer | none - **Required** |
+| host           | The host to connect to                                           | String  | none - **Required*- |
+| port           | The udp port to connect to                                       | Integer | none - **Required*- |
 | sock_buf_size  | Sets the socket buffer size                                      | Integer | OS defaults         |
 
 ##### 'om_uds' module
 
 'om_uds' messages are written to a unix domain socket, such as `/dev/log`. This module
-will write to `/dev/log` if the *uds* attribute is not specified.
+will write to `/dev/log` if the *uds- attribute is not specified.
 
 [http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_uds](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_uds)
 
@@ -643,9 +653,9 @@ nxlog_papertrail "name" do
 end
 ```
 
-* `name` is a unique name for the papertrail resource
-* `attributes` define how the papertrail log destination should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the papertrail resource
+- `attributes` define how the papertrail log destination should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
@@ -661,15 +671,15 @@ end
 }
 ```
 
-* `name` is a unique name for the papertrail resource
-* `attributes` define how the papertrail log destination should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the papertrail resource
+- `attributes` define how the papertrail log destination should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_papertrail attributes
 
 | Attribute name | Description                                                       | Type    | Default             |
 | ---------------| ----------------------------------------------------------------- | ------- | ------------------- |
-| port           | The port for your papertrail log destination                      | String  | none - **Required** |
+| port           | The port for your papertrail log destination                      | String  | none - **Required*- |
 | host           | The \*.papertrailapp.com host to log to (e.g. 'logs', 'logs2')    | String  | 'logs'              |
 | default        | Whether this is a default log destination (see nxlog_destination) | boolean | false               |
 
@@ -694,16 +704,6 @@ for your platform without modification.
 | sources                         | An array of log source objects                        | nil                                                                            |
 | destinations                    | An array of log destination objects                   | nil                                                                            |
 | papertrails                     | An array of papertrail log destination objects        | nil                                                                            |
-
-## Contributing
-
-You know the drill:
-
-1. Fork
-2. Branch
-3. Change
-4. Test
-5. Pull request
 
 ## Contributors
 
