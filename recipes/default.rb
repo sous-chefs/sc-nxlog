@@ -1,8 +1,8 @@
 #
-# Cookbook Name:: nxlog
+# Cookbook:: nxlog
 # Recipe:: default
 #
-# Copyright (C) 2014 Simon Detheridge
+# Copyright:: (C) 2014 Simon Detheridge
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -38,14 +38,14 @@ if node['nxlog']['checksums'][package_name]
   remote_file 'nxlog' do
     path "#{Chef::Config[:file_cache_path]}/#{package_name}"
     source "#{node['nxlog']['package_source']}/#{package_name}"
-    mode 0o644
+    mode '644'
     checksum node['nxlog']['checksums'][package_name]
   end
 else
   remote_file 'nxlog' do
     path "#{Chef::Config[:file_cache_path]}/#{package_name}"
     source "#{node['nxlog']['package_source']}/#{package_name}"
-    mode 0o644
+    mode '644'
   end
 end
 
