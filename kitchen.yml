@@ -1,10 +1,6 @@
 ---
 driver:
   name: vagrant
-<% if ENV['TEAMCITY'] == '1' %>
-  synced_folders:
-    - ['.junit', '/.junit']
-<% end %>
 
 driver_config:
   customize:
@@ -21,16 +17,16 @@ verifier:
 platforms:
   - name: ubuntu-14.04
     run_list:
-    - recipe[apt::default]
+      - recipe[apt::default]
   - name: debian-8
     run_list:
-    - recipe[apt::default]
+      - recipe[apt::default]
   - name: centos-6.6
     run_list:
-    - recipe[yum::default]
+      - recipe[yum::default]
   - name: centos-7
     run_list:
-    - recipe[yum::default]
+      - recipe[yum::default]
   - name: windows-2016
     driver:
       box: tas50/windows_2016
@@ -45,7 +41,7 @@ suites:
     run_list:
       - recipe[test::kitchen_log_file]
     attributes:
-    
+
   - name: attribute_resources_linux
     run_list:
       - recipe[test::kitchen_log_file_attrs]

@@ -1,3 +1,4 @@
+---
 driver:
   name: dokken
   privileged: true
@@ -7,7 +8,8 @@ transport:
   name: dokken
 
 verifier:
-  root_path: '/opt/verifier' # required because we're not using InSpec
+  # required because we're not using InSpec
+  root_path: '/opt/verifier'
 
 provisioner:
   name: dokken

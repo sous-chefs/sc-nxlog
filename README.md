@@ -35,7 +35,7 @@ service that can receive logs from multiple servers and display them all in once
 You may also create nxlog resources via node attributes, which saves you from
 having to write a recipe for each one.
 
-It is worth reading the [NXLog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928) 
+It is worth reading the [NXLog documentation](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928)
 to get a better idea of how this stuff works.
 
 You will also need a download mirror to store the installation packages, as the NXLog website does not allow unattended
@@ -44,9 +44,9 @@ downloads and may block your IP address if you try! The original author of this 
 
 ## Supported Platforms
 
- * Windows Server 2012r2-2016 (2008r2 did work, but is no longer tested)
- * Ubuntu/Debian Linux
- * RHEL/Centos Linux
+- Windows Server 2012r2-2016 (2008r2 did work, but is no longer tested)
+- Ubuntu/Debian Linux
+- RHEL/Centos Linux
 
 This cookbook supports Chef 12 through 14
 
@@ -54,7 +54,7 @@ This cookbook supports Chef 12 through 14
 
 Include `nxlog` in your node's `run_list`:
 
-```
+```ruby
 {
     "run_list": [
         "recipe[nxlog::default]"
@@ -64,7 +64,7 @@ Include `nxlog` in your node's `run_list`:
 
 If you wish to enable Papertrail support, also include the papertrail recipe:
 
-```
+```ruby
 {
     "run_list": [
          "recipe[nxlog::default]"
@@ -75,7 +75,7 @@ If you wish to enable Papertrail support, also include the papertrail recipe:
 
 To set up nxlog as the sytem logger you should include the syslog recipe:
 
-```
+```ruby
 {
     "run_list": [
          "recipe[nxlog::default]"
@@ -84,7 +84,7 @@ To set up nxlog as the sytem logger you should include the syslog recipe:
 }
 ```
 
-The syslog recipe will disable rsyslog. If you are expecting another logging 
+The syslog recipe will disable rsyslog. If you are expecting another logging
 daemon you should specify this in node attributes. The default behaviour is
 to send its log output to the default destinations, but this can be reconfigured
 in node attributes.
@@ -109,7 +109,8 @@ end
 ```
 
 This can also be accomplished using node attributes as follows:
-```
+
+```ruby
 {
   "nxlog": {
     "destinations": {
@@ -150,7 +151,7 @@ end
 
 Again, this can be accomplished using node attributes:
 
-```
+```ruby
 {
   "nxlog": {
     "papertrails": {
@@ -178,25 +179,35 @@ The following describes each LWRP provided by this cookbook.
 
 It is also possible to create the resources using node attributes as described
 above. To do so, create them as hashes within:
-```node['nxlog']['sources']```
-```node['nxlog']['destinations']```
-or
-```node['nxlog']['papertrails']```
 
-The name attribute should be the hash key for the object, and all attributes 
+```ruby
+node['nxlog']['sources']
+```
+
+```ruby
+node['nxlog']['destinations']
+```
+
+or
+
+```ruby
+node['nxlog']['papertrails']
+```
+
+The name attribute should be the hash key for the object, and all attributes
 supported by the relevant LWRP are supported as name/value pairs inside the
 object. See above for examples.
 
 ### nxlog_source
 
-`nxlog_source` defines a source of log data which will be sent to one or more 
+`nxlog_source` defines a source of log data which will be sent to one or more
 the defined log destinations.
 
 NXLog has many different input modules that enable log data to be read from
 a variety of log sources. The default is to read from a file, but any supported
 module can be selected using the `input_module` attribute.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_input
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_input](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_input)
 
 #### Syntax
 
@@ -210,13 +221,13 @@ nxlog_source "name" do
 end
 ```
 
-* `name` is a unique name for the log resource
-* `attributes` define how the log source should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the log resource
+- `attributes` define how the log source should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
-```
+```json
 {
   "nxlog": {
     "sources": {
@@ -228,9 +239,9 @@ end
 }
 ```
 
-* `name` is a unique name for the log resource
-* `attributes` define how the log source should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the log resource
+- `attributes` define how the log source should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_source attributes
 
@@ -246,45 +257,46 @@ end
 
 **Notes:**
 
-* input_module must be one of the modules defined below
-* to send log data to specific log destinations in addition to the defaults, 
-  include `:defaults` in the destination array. For example:
+- input_module must be one of the modules defined below
+- to send log data to specific log destinations in addition to the defaults, include `:defaults` in the destination array. For example:
+
 ```ruby
   destination ['my_special_destination', :defaults]
 ```
-* it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
+
+- it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
   log data needs to be transformed by a method such as `to_syslog_ietf()`
 
 ##### 'im_file' module
 
 'im_file' defines a file-based log source
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_file
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_file](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_file)
 
 | Attribute name     | Description                                                      | Type    | Default              |
 | ------------------ | ---------------------------------------------------------------- | ------- | -------------------  |
-| file               | The file to read log data from                                   | String  | none - **Required**  |
+| file               | The file to read log data from                                   | String  | none - **Required*-  |
 | recursive          | Whether to recurse into subdirectories                           | boolean | false                |
 | rename_check       | Check whether files are renamed (e.g. logrotate)                 | boolean | false                |
 | close_when_idle    | Whether to close the file when not being read                    | boolean | false                |
 | poll_interval      | How often to check for new data                                  | float   | 1.0                  |
-| dir_check_interval | How often to check for new files when `file` contains a wildcard | float   | 2 * `poll_interval`  |
+| dir_check_interval | How often to check for new files when `file` contains a wildcard | float   | 2 - `poll_interval`  |
 | active_files       | Maximum number of files to monitor simultaneously                | integer | 10                   |
 | save_pos           | Whether to save the file position when nxlog exits               | boolean | true                 |
 
 **Notes:**
 
-* `recursive` works in a way that you might not expect. Read the nxlog docs if you plan to use it.
+- `recursive` works in a way that you might not expect. Read the nxlog docs if you plan to use it.
 
 ##### 'im_exec' module
 
 'im_exec' executes a command and reads log data from stdout
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_exec
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_exec](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_exec)
 
 | Attribute name     | Description                                  | Type    | Default             |
 | ------------------ | -------------------------------------------- | ------- | ------------------- |
-| command            | The command to execute                       | String  | none - **Required** |
+| command            | The command to execute                       | String  | none - **Required*- |
 | args               | An array of arguments to pass to the command | Array   | none                |
 | restart            | Whether to restart the command on exit       | boolean | false               |
 
@@ -292,7 +304,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 'im_internal' specifies nxlog's internal logs
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_internal
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_internal](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_internal)
 
 *There are no module-specific attributes for this module.*
 
@@ -300,7 +312,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 'im_kernel' defines the kernel logs on Linux systems (e.g. `dmesg`)
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_kernel
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_kernel](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_kernel)
 
 *There are no module-specific attributes for this module.*
 
@@ -308,7 +320,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 'im_mark' periodically writes a specific string to the destination(s)
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mark
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mark](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mark)
 
 | Attribute name | Description                                         | Type    | Default      |
 | -------------- | --------------------------------------------------- | ------- | ------------ |
@@ -319,9 +331,9 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 'im_mseventlog' reads from the Windows XP (Server 2003) event log.
 
-**NOTE:** For modern Windows (Vista and above) use 'im_msvistalog'
+**NOTE:*- For modern Windows (Vista and above) use 'im_msvistalog'
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mseventlog
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mseventlog](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_mseventlog)
 
 | Attribute name | Description                            | Type    | Default            |
 | -------------- | ---------------------------------------| ------- | ------------------ |
@@ -332,11 +344,11 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 'im_msvistalog' reads from the Windows (post-XP / Server 2003) event log.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_msvistalog
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_msvistalog](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_msvistalog)
 
 You may also want to read:
 
-https://technet.microsoft.com/en-us/library/cc722404.aspx
+[https://technet.microsoft.com/en-us/library/cc722404.aspx](https://technet.microsoft.com/en-us/library/cc722404.aspx)
 
 | Attribute name | Description                                         | Type    | Default            |
 | -------------- | --------------------------------------------------- | ------- | ------------------ |
@@ -349,7 +361,7 @@ https://technet.microsoft.com/en-us/library/cc722404.aspx
 'im_null' never generates any messages. However, commands
 can be executed with the `exec` common attribute.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_null
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_null](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_null)
 
 *There are no module-specific attributes for this module.*
 
@@ -363,12 +375,12 @@ to all addresses.
 This module works identically to the im_tcp module, except that the connection
 is encrypted.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_ssl
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_ssl](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_ssl)
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host            | The ip or hostname to listen on                                  | String  | 'localhost'         |
-| port            | The tcp port to listen on                                        | Integer | none - **Required** |
+| port            | The tcp port to listen on                                        | Integer | none - **Required*- |
 | cert_file       | Path to the https certificate file                               | String  | none                |
 | cert_key_file   | Path to the https certificate key file                           | String  | none                |
 | key_pass        | Password for the certificate key file                            | String  | none                |
@@ -385,12 +397,12 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 Default behaviour is to listen on 'localhost', but you can use '0.0.0.0' to bind
 to all addresses.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_tcp
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_tcp](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_tcp)
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host            | The ip or hostname to listen on                                  | String  | 'localhost'         |
-| port            | The tcp port to listen on                                        | Integer | none - **Required** |
+| port            | The tcp port to listen on                                        | Integer | none - **Required*- |
 
 ##### 'im_udp' module
 
@@ -399,20 +411,20 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 Default behaviour is to listen on 'localhost', but you can use '0.0.0.0' to bind
 to all addresses.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_udp
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_udp](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_udp)
 
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------- |
 | host           | The host to listen on                                            | String  | 'localhost'         |
-| port           | The udp port to connect to                                       | Integer | none - **Required** |
+| port           | The udp port to connect to                                       | Integer | none - **Required*- |
 | sock_buf_size  | Sets the socket buffer size                                      | Integer | OS defaults         |
 
 ##### 'im_uds' module
 
 'im_uds' messages are read from a unix domain socket, such as `/dev/log`. This module
-will read from `/dev/log` if the *uds* attribute is not specified.
+will read from `/dev/log` if the *uds- attribute is not specified.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_uds
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_uds](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#im_uds)
 
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------  |
@@ -420,18 +432,18 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#i
 
 **Notes:**
 
-* Only SOCK_DGRAM type sockets are currently supported by nxlog
+- Only SOCK_DGRAM type sockets are currently supported by nxlog
 
 ### nxlog_destination
 
 `nxlog_destination` defines a destination where log data from one or more
-sources will be sent. 
+sources will be sent.
 
 NXLog has many different output modules that enable log data to be sent to
 a variety of log sources. The default is to read from a file, but any supported
 module can be selected using the `output_module` attribute.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_output
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_output](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#modules_output)
 
 #### Syntax
 
@@ -445,13 +457,13 @@ nxlog_destination "name" do
 end
 ```
 
-* `name` is a unique name for the destination resource
-* `attributes` define how the log destination should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the destination resource
+- `attributes` define how the log destination should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
-```
+```json
 {
   "nxlog": {
     "destinations": {
@@ -463,9 +475,9 @@ end
 }
 ```
 
-* `name` is a unique name for the destination resource
-* `attributes` define how the log destination should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the destination resource
+- `attributes` define how the log destination should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_destination attributes
 
@@ -478,24 +490,23 @@ end
 | exec           | commands to execute on the log data              | String          | none      |
 | default        | whether the destination is a default destination | boolean         | false     |
 
-
 **Notes:**
 
-* output_module must be one of the modules defined below
-* it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
+- output_module must be one of the modules defined below
+- it is worth reading the documentation on `Exec` in the nxlog docs. Quite often
   log data needs to be transformed by a method such as `to_syslog_ietf()`
-* destinations marked as default will receive log data from all input sources,
+- destinations marked as default will receive log data from all input sources,
   unless they specifically specify otherwise
 
 ##### 'om_file' module
 
 'om_file' defines a file-based log destination
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_file
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_file](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_file)
 
 | Attribute name     | Description                                                         | Type    | Default              |
 | ------------------ | ------------------------------------------------------------------- | ------- | -------------------- |
-| file               | The file to write log data to                                       | String  | none - **Required**  |
+| file               | The file to write log data to                                       | String  | none - **Required*-  |
 | create_dir         | Whether to create a directory for the log file if it does not exist | boolean | false                |
 | truncate           | Whether to truncate the log file before writing                     | boolean | false                |
 | sync               | Whether to sync the log file after each message, flushing buffers   | boolean | false                |
@@ -504,7 +515,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 
 'om_blocker' is a testing output module which simply blocks, simulation an blocked route.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_blocker
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_blocker](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_blocker)
 
 *There are no module-specific attributes for this module.*
 
@@ -512,43 +523,43 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 
 'om_dbi' writes log data to a database
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_dbi
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_dbi](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_dbi)
 
 | Attribute name | Description                                                 | Type   | Default             |
 | ---------------| ----------------------------------------------------------- | ------ | ------------------- |
-| driver         | The dbi driver to use                                       | String | none - **Required** |
-| sql            | The SQL to execute to insert the log data                   | String | none - **Required** |
-| options        | Engine-specific options such as host, username and password | Array  | none - **Required** |
+| driver         | The dbi driver to use                                       | String | none - **Required*- |
+| sql            | The SQL to execute to insert the log data                   | String | none - **Required*- |
+| options        | Engine-specific options such as host, username and password | Array  | none - **Required*- |
 
 **Notes:**
 
-* Requires libdbi the relevant libdbi driver to be installed
-* See the nxlog docs for details on how to format SQL and options
+- Requires libdbi the relevant libdbi driver to be installed
+- See the nxlog docs for details on how to format SQL and options
 
 ##### 'om_exec' module
 
 'om_exec' executes a command and pipes log data into it
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_exec
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_exec](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_exec)
 
 | Attribute name | Description                                  | Type   | Default             |
 | ---------------| -------------------------------------------- | ------ | ------------------- |
-| command        | The command to execute                       | String | none - **Required** |
+| command        | The command to execute                       | String | none - **Required*- |
 | args           | An array of arguments to pass to the command | Array  | none                |
 
 **Notes:**
 
-* The command is executed when nxlog starts, and must not terminate until it shuts down
+- The command is executed when nxlog starts, and must not terminate until it shuts down
 
 ##### 'om_http' module
 
 'om_http' posts log data to a specific url over http or https
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_http
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_http](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_http)
 
 | Attribute name        | Description                                                      | Type    | Default             |
 | ----------------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| url                   | The url to post the data to                                      | String  | none - **Required** |
+| url                   | The url to post the data to                                      | String  | none - **Required*- |
 | content-type          | The content-type header of the http request                      | String  | 'text/plain'        |
 | https_cert_file       | Path to the https certificate file                               | String  | none                |
 | https_cert_key_file   | Path to the https certificate key file                           | String  | none                |
@@ -564,7 +575,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 'om_null' messages are discarded and never written anywhere. However, commands
 can be executed on the log data with the `exec` common attribute.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_null
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_null](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_null)
 
 *There are no module-specific attributes for this module.*
 
@@ -575,12 +586,12 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 This module works identically to the om_tcp module, except that the connection
 is encrypted.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_ssl
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_ssl](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_ssl)
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host            | The host to connect to                                           | String  | none - **Required** |
-| port            | The tcp port to connect to                                       | Integer | none - **Required** |
+| host            | The host to connect to                                           | String  | none - **Required*- |
+| port            | The tcp port to connect to                                       | Integer | none - **Required*- |
 | cert_file       | Path to the https certificate file                               | String  | none                |
 | cert_key_file   | Path to the https certificate key file                           | String  | none                |
 | key_pass        | Password for the certificate key file                            | String  | none                |
@@ -594,31 +605,31 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 
 'om_tcp' messages are sent over a TCP connection.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_tcp
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_tcp](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_tcp)
 
 | Attribute name  | Description                                                      | Type    | Default             |
 | ----------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host            | The host to connect to                                           | String  | none - **Required** |
-| port            | The tcp port to connect to                                       | Integer | none - **Required** |
+| host            | The host to connect to                                           | String  | none - **Required*- |
+| port            | The tcp port to connect to                                       | Integer | none - **Required*- |
 
 ##### 'om_udp' module
 
 'om_udp' messages are sent over a UDP connection.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_udp
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_udp](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_udp)
 
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------- |
-| host           | The host to connect to                                           | String  | none - **Required** |
-| port           | The udp port to connect to                                       | Integer | none - **Required** |
+| host           | The host to connect to                                           | String  | none - **Required*- |
+| port           | The udp port to connect to                                       | Integer | none - **Required*- |
 | sock_buf_size  | Sets the socket buffer size                                      | Integer | OS defaults         |
 
 ##### 'om_uds' module
 
 'om_uds' messages are written to a unix domain socket, such as `/dev/log`. This module
-will write to `/dev/log` if the *uds* attribute is not specified.
+will write to `/dev/log` if the *uds- attribute is not specified.
 
-http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_uds
+[http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_uds](http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#om_uds)
 
 | Attribute name | Description                                                      | Type    | Default             |
 | ---------------| ---------------------------------------------------------------- | ------- | ------------------- |
@@ -627,7 +638,7 @@ http://nxlog.org/documentation/nxlog-community-edition-reference-manual-v20928#o
 ### nxlog_papertrail
 
 `nxlog_papertrail` defines a special kind of om_ssl destination that is pre-configured
-to log to papertrail (https://papertrailapp.com/) and thus requiring only a few options
+to log to [papertrail](https://papertrailapp.com/) and thus requiring only a few options
 to set up.
 
 #### Syntax
@@ -642,13 +653,13 @@ nxlog_papertrail "name" do
 end
 ```
 
-* `name` is a unique name for the papertrail resource
-* `attributes` define how the papertrail log destination should be configured
-* `action` should be either :create, or :delete *\[default: :create\]*
+- `name` is a unique name for the papertrail resource
+- `attributes` define how the papertrail log destination should be configured
+- `action` should be either :create, or :delete *\[default: :create\]*
 
 **json**:
 
-```
+```json
 {
   "nxlog": {
     "sources": {
@@ -660,22 +671,22 @@ end
 }
 ```
 
-* `name` is a unique name for the papertrail resource
-* `attributes` define how the papertrail log destination should be configured
-* `action` is always :create and should not be specified
+- `name` is a unique name for the papertrail resource
+- `attributes` define how the papertrail log destination should be configured
+- `action` is always :create and should not be specified
 
 #### nxlog_papertrail attributes
 
 | Attribute name | Description                                                       | Type    | Default             |
 | ---------------| ----------------------------------------------------------------- | ------- | ------------------- |
-| port           | The port for your papertrail log destination                      | String  | none - **Required** |
+| port           | The port for your papertrail log destination                      | String  | none - **Required*- |
 | host           | The \*.papertrailapp.com host to log to (e.g. 'logs', 'logs2')    | String  | 'logs'              |
 | default        | Whether this is a default log destination (see nxlog_destination) | boolean | false               |
 
 ## Cookbook Attributes
 
 The attributes mostly concern default config locations and will most likely work
-for your platform without modification. 
+for your platform without modification.
 
 | Key                             | Description                                           | Default                                                                        |
 | ------------------------------- | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -686,23 +697,13 @@ for your platform without modification.
 | conf_dir                        | The directory for the nxlog configuration files       | platform-specific                                                              |
 | log_file                        | The location of the nxlog log file                    | platform-specific                                                              |
 | checksums::\<package_filename\> | The sha256sum of the specified package                | nxlog version-specific                                                         |
-| package_source                  | The base URL for downloading nxlog packages           | https://mirror.widgit.com/nxlog                                                |
+| package_source                  | The base URL for downloading nxlog packages           | <https://mirror.widgit.com/nxlog>                                                |
 | papertrail::bundle_url          | The URL to the papertrail CA bundle                   | [papertrail-bundle.pem](https://papertrailapp.com/tools/papertrail-bundle.pem) |
 | syslog::logger_disable          | The logger service to disable in favour of nxlog      | 'rsyslog'                                                                      |
 | syslog::destinations            | The destinations to log syslog data to                | :defaults                                                                      |
 | sources                         | An array of log source objects                        | nil                                                                            |
 | destinations                    | An array of log destination objects                   | nil                                                                            |
 | papertrails                     | An array of papertrail log destination objects        | nil                                                                            |
-
-## Contributing
-
-You know the drill:
-
-1. Fork
-2. Branch
-3. Change
-4. Test
-5. Pull request
 
 ## Contributors
 
