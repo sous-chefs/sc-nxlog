@@ -19,7 +19,7 @@
 
 case node['platform_family']
 when 'debian'
-  if node['platform'] == 'ubuntu'
+  if platform?('ubuntu')
     include_recipe 'sc-nxlog::ubuntu'
   else
     include_recipe 'sc-nxlog::debian'

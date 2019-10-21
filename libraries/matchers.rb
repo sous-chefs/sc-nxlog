@@ -16,20 +16,3 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 #
-
-if defined? ChefSpec
-  def create_nxlog_destination(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_destination', 'create', resource_name)
-  end
-
-  def create_nxlog_source(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_source', 'create', resource_name)
-  end
-
-  def create_nxlog_papertrail(resource_name)
-    ChefSpec::Matchers::ResourceMatcher.new(
-      'nxlog_papertrail', 'create', resource_name)
-  end
-end

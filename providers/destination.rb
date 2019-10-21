@@ -19,10 +19,6 @@
 
 provides :nxlog_destination
 
-def whyrun_supported?
-  true
-end
-
 def config_filename(name)
   "#{node['nxlog']['conf_dir']}/nxlog.conf.d/10_op_#{name}.conf"
 end
