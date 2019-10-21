@@ -4,15 +4,12 @@ lint_and_unit: &lint_and_unit
   - danger
   - lint-yaml
   - lint-markdown
-
 version: 2.1
 orbs:
   kitchen: sous-chefs/kitchen@2
-
 workflows:
   kitchen:
     jobs:
-      # Lint and Unit Test
       - kitchen/yamllint:
           name: lint-yaml
       - kitchen/mdlint:
@@ -23,22 +20,66 @@ workflows:
       - kitchen/delivery:
           name: delivery
       - kitchen/dokken-single:
-          name: lwrp-resources
-          suite: lwrp-resources
-          requires:
-            *lint_and_unit
+          name: lwrp-resources-ubuntu-1404
+          suite: lwrp-resources-ubuntu-1404
+          requires: *lint_and_unit
       - kitchen/dokken-single:
-          name: attribute-resources
-          suite: attribute-resources
-          requires:
-            *lint_and_unit
+          name: lwrp-resources-debian-8
+          suite: lwrp-resources-debian-8
+          requires: *lint_and_unit
       - kitchen/dokken-single:
-          name: syslog
-          suite: syslog
-          requires:
-            *lint_and_unit
+          name: lwrp-resources-centos-6
+          suite: lwrp-resources-centos-6
+          requires: *lint_and_unit
       - kitchen/dokken-single:
-          name: papertrail
-          suite: papertrail
-          requires:
-            *lint_and_unit
+          name: lwrp-resources-centos-7
+          suite: lwrp-resources-centos-7
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: attribute-resources-linux-ubuntu-1404
+          suite: attribute-resources-linux-ubuntu-1404
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: attribute-resources-linux-debian-8
+          suite: attribute-resources-linux-debian-8
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: attribute-resources-linux-centos-6
+          suite: attribute-resources-linux-centos-6
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: attribute-resources-linux-centos-7
+          suite: attribute-resources-linux-centos-7
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: syslog-ubuntu-1404
+          suite: syslog-ubuntu-1404
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: syslog-debian-8
+          suite: syslog-debian-8
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: syslog-centos-6
+          suite: syslog-centos-6
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: syslog-centos-7
+          suite: syslog-centos-7
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: papertrail-ubuntu-1404
+          suite: papertrail-ubuntu-1404
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: papertrail-debian-8
+          suite: papertrail-debian-8
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: papertrail-centos-6
+          suite: papertrail-centos-6
+          requires: *lint_and_unit
+      - kitchen/dokken-single:
+          name: papertrail-centos-7
+          suite: papertrail-centos-7
+          requires: *lint_and_unit
