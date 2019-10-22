@@ -19,10 +19,6 @@
 
 provides :nxlog_papertrail
 
-def whyrun_supported?
-  true
-end
-
 action :create do
   converge_by("Create #{new_resource}") do
     n = new_resource

@@ -1,55 +1,93 @@
 # Changelog
 
-## 0.8.7
+All notable changes to this project will be documented in this file.
 
-* Prevent installation of package config from .deb packages
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## 0.8.6
+## [Unreleased]
 
-* Update nokogiri gem due to security alert
+### Added
 
-## 0.8.5
+### Changed
 
-* Point nxlog base URL at mirror, as nxlog keep taking down old versions and breaking the cookbook
-* Add cookbook attribute to allow different base URLs
+### Deprecated
 
-## 0.8.4
+### Removed
 
-* Nxlog version bump
-* Fix integration tests for Chef 12.5
+## [0.9.0] - 2018-09-19
 
-## 0.8.3
+### Added
 
-* Added json extension module
+### Changed
 
-## 0.8.2
+- Raised minimum Ubuntu version from 12.04 to 14.04
+- Raised minimum Debian version from 6.0 to 8.0
+- Migrated to Sous-Chefs
+- Changed cookbook name from `nxlog` to `sc-nxlog`
 
-* Added checksum validation to nxlog remote_file packages
+### Deprecated
 
-## 0.8.1
+### Removed
 
-* Remove input_type equal_to validation
+## [0.8.7] - 2015-12-22
 
-## 0.8.0
+### Added
 
-* Add syslog recipe
+### Changed
 
-## 0.7.2
+- Prevent installation of package config from .deb packages
 
-* Add support for the FlowControl directive in input modules
+### Deprecated
 
-## 0.7.1
+### Remove
 
-* Update documentation to link to github page, as it looks better than on the supermarket
+## [0.8.6]
 
-## 0.7.0
+- Update nokogiri gem due to security alert
 
-* Add support for creating log resources from node attributes
+## [0.8.5]
 
-## 0.6.0
+- Point nxlog base URL at mirror, as nxlog keep taking down old versions and breaking the cookbook
+- Add cookbook attribute to allow different base URLs
 
-* Fix issue with LWRPs not working in other recipes
+## [0.8.4]
 
-## 0.5.0
+- Nxlog version bump
+- Fix integration tests for Chef 12.5
 
-* Initial release of nxlog cookbook
+## [0.8.3]
+
+- Added json extension module
+
+## [0.8.2]
+
+- Added checksum validation to nxlog remote_file packages
+
+## [0.8.1]
+
+- Remove input_type equal_to validation
+
+## [0.8.0]
+
+- Add syslog recipe
+
+## [0.7.2]
+
+- Add support for the FlowControl directive in input modules
+
+## [0.7.1]
+
+- Update documentation to link to github page, as it looks better than on the supermarket
+
+## [0.7.0]
+
+- Add support for creating log resources from node attributes
+
+## [0.6.0]
+
+- Fix issue with LWRPs not working in other recipes
+
+## [0.5.0]
+
+- Initial release of nxlog cookbook

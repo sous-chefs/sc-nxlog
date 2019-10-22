@@ -19,7 +19,7 @@
 
 include_recipe 'sc-nxlog::default'
 
-if node['platform_family'] == 'windows'
+if platform_family?('windows')
   Chef::Application.fatal!('Syslog recipe is not supported on Windows')
 end
 
