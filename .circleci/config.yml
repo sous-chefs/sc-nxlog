@@ -1,4 +1,12 @@
 ---
+jobs:
+  final:
+    docker:
+      - image: bash:latest
+    steps:
+      - run:
+          name: Finish cooking
+          command: echo "Finished cooking"
 lint_and_unit: &lint_and_unit
   - delivery
   - danger
@@ -83,3 +91,21 @@ workflows:
           name: papertrail-centos-7
           suite: papertrail-centos-7
           requires: *lint_and_unit
+      - final:
+          requires:
+            - lwrp-resources-ubuntu-1404
+            - lwrp-resources-debian-8
+            - lwrp-resources-centos-6
+            - lwrp-resources-centos-7
+            - attribute-resources-linux-ubuntu-1404
+            - attribute-resources-linux-debian-8
+            - attribute-resources-linux-centos-6
+            - attribute-resources-linux-centos-7
+            - syslog-ubuntu-1404
+            - syslog-debian-8
+            - syslog-centos-6
+            - syslog-centos-7
+            - papertrail-ubuntu-1404
+            - papertrail-debian-8
+            - papertrail-centos-6
+            - papertrail-centos-7
