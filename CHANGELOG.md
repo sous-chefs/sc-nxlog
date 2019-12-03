@@ -15,6 +15,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 
+- Removed unnecessary actions method usage in the resources
+
 ## [0.9.0] - 2018-09-19
 
 ### Added
