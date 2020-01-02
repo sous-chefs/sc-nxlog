@@ -23,7 +23,7 @@ default_action :create
 attribute :name, name_attribute: true, kind_of: String, required: true
 
 # global parameters
-attribute :output_module, kind_of: String, default: 'om_file', required: true,
+attribute :output_module, kind_of: String, required: true,
                           equal_to: %w(om_blocker om_dbi om_exec om_file om_http
                                        om_null om_ssl om_tcp om_udp om_ssl
                                        om_uds)

@@ -11,6 +11,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Removed unnecessary default values from the source and destination resources.
+- Removed unnecessary name property from the papertrail resource
+
 ### Deprecated
 
 ### Removed
