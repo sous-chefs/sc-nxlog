@@ -23,13 +23,13 @@ default_action :create
 attribute :name, name_attribute: true, kind_of: String, required: true
 
 # global parameters
-attribute :output_module, kind_of: String, default: 'om_file', required: true,
+attribute :output_module, kind_of: String, required: true,
                           equal_to: %w(om_blocker om_dbi om_exec om_file om_http
                                        om_null om_ssl om_tcp om_udp om_ssl
                                        om_uds)
 attribute :exec, kind_of: String
 attribute :output_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
-attribute :default, kind_of: [TrueClass, FalseClass]
+attribute :default, kind_of: [true, false]
 
 # om_blocker
 
@@ -44,9 +44,9 @@ attribute :args, kind_of: Array
 
 # om_file
 attribute :file, kind_of: String # required
-attribute :create_dir, kind_of: [TrueClass, FalseClass]
-attribute :truncate, kind_of: [TrueClass, FalseClass]
-attribute :sync, kind_of: [TrueClass, FalseClass]
+attribute :create_dir, kind_of: [true, false]
+attribute :truncate, kind_of: [true, false]
+attribute :sync, kind_of: [true, false]
 
 # om_http
 attribute :url, kind_of: String # required
@@ -58,7 +58,7 @@ attribute :https_ca_file, kind_of: String
 attribute :https_ca_dir, kind_of: String
 attribute :https_crl_file, kind_of: String
 attribute :https_crl_dir, kind_of: String
-attribute :https_allow_untrusted, kind_of: [TrueClass, FalseClass]
+attribute :https_allow_untrusted, kind_of: [true, false]
 
 # om_null
 
@@ -74,7 +74,7 @@ attribute :ca_file, kind_of: String
 attribute :ca_dir, kind_of: String
 attribute :crl_file, kind_of: String
 attribute :crl_dir, kind_of: String
-attribute :allow_untrusted, kind_of: [TrueClass, FalseClass]
+attribute :allow_untrusted, kind_of: [true, false]
 
 # om_udp
 attribute :sock_buf_size, kind_of: Integer
