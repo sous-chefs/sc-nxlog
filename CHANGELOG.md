@@ -14,6 +14,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed unnecessary default values from the source and destination resources.
 - Removed unnecessary name property from the papertrail resource
 - Use true/false as types in resource attributes
+- Migrated to Github Actions
 
 ### Deprecated
 
