@@ -43,7 +43,7 @@ when 'windows'
   default['nxlog']['conf_dir'] = "#{root_dir}/conf"
   default['nxlog']['log_file'] = "#{root_dir}/nxlog.log"
 else
-  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+  raise('Attempted to install on an unsupported platform')
 end
 
 default['nxlog']['checksums']['nxlog-ce-2.9.1504-1_rhel6.x86_64.rpm'] =
