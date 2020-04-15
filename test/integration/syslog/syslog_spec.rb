@@ -14,7 +14,7 @@ when 'debian', 'ubuntu'
 when 'redhat'
   conf_dir = '/etc'
 else
-  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+  raise('Attempted to install on an unsupported platform')
 end
 
 describe file('/var/run/nxlog/devlog') do

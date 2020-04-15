@@ -20,14 +20,14 @@
 include_recipe 'sc-nxlog::default'
 
 if platform_family?('windows')
-  Chef::Application.fatal!('Syslog recipe is not supported on Windows')
+  raise('Syslog recipe is not supported on Windows')
 end
 
 old_logger = node['nxlog']['syslog']['logger_disable']
 
 service old_logger do
   action %i(disable stop)
-  only_if { !old_logger.empty? }
+  not_if { old_logger.empty? }
 end
 
 destinations = [node['nxlog']['syslog']['destinations']].flatten

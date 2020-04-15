@@ -17,7 +17,7 @@ when 'windows'
   log_dir = 'c:/windows/temp'
   a_prefix = '\\\\'
 else
-  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+  raise('Attempted to install on an unsupported platform')
 end
 
 nxlog_config_parse_opts = {

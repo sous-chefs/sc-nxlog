@@ -29,7 +29,7 @@ when 'rhel'
 when 'windows'
   include_recipe 'sc-nxlog::windows'
 else
-  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+  raise('Attempted to install on an unsupported platform')
 end
 
 package_name = node['nxlog']['installer_package']

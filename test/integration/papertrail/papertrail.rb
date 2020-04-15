@@ -11,7 +11,7 @@ when 'redhat'
 when 'windows'
   conf_dir = 'c:/Program Files (x86)/nxlog/conf'
 else
-  Chef::Application.fatal!('Attempted to install on an unsupported platform')
+  raise('Attempted to install on an unsupported platform')
 end
 
 describe file("#{conf_dir}/certs/papertrail-bundle.pem") do
