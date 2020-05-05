@@ -5,18 +5,7 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
-
-- resolved cookstyle error: attributes/default.rb:46:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/default.rb:32:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/syslog.rb:23:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: recipes/syslog.rb:30:3 refactor: `ChefStyle/NegatingOnlyIf`
-- resolved cookstyle error: test/integration/attribute_resources/attribute_resources_spec.rb:20:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: test/integration/lwrp_resources/lwrp_resources_spec.rb:20:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: test/integration/papertrail/papertrail.rb:14:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-- resolved cookstyle error: test/integration/syslog/syslog_spec.rb:17:3 refactor: `ChefCorrectness/ChefApplicationFatal`
-
-## [Unreleased]
+## [0.10.0]
 
 ### Added
 
@@ -26,6 +15,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Removed unnecessary name property from the papertrail resource
 - Use true/false as types in resource attributes
 - Migrated to Github Actions
+- resolved cookstyle error: attributes/default.rb:46:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/default.rb:32:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/syslog.rb:23:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: recipes/syslog.rb:30:3 refactor: `ChefStyle/NegatingOnlyIf`
+- resolved cookstyle error: test/integration/attribute_resources/attribute_resources_spec.rb:20:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: test/integration/lwrp_resources/lwrp_resources_spec.rb:20:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: test/integration/papertrail/papertrail.rb:14:3 refactor: `ChefCorrectness/ChefApplicationFatal`
+- resolved cookstyle error: test/integration/syslog/syslog_spec.rb:17:3 refactor: `ChefCorrectness/ChefApplicationFatal`
 
 ### Deprecated
 
