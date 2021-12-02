@@ -18,6 +18,7 @@
 #
 
 provides :nxlog_papertrail
+unified_mode true
 default_action :create
 
 attribute :port, kind_of: Integer, required: true
