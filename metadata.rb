@@ -1,5 +1,5 @@
 name             'sc-nxlog'
-version          '0.10.2'
+version          '0.10.3'
 
 description      'Installs and configures NXLog_ce on Linux or Windows'
 
