@@ -40,24 +40,24 @@ jobs:
     strategy:
       matrix:
         os:
-          - 'debian-8'
-          - 'centos-6'
-          - 'centos-7'
-          - 'ubuntu-1404'
+          - "debian-8"
+          - "centos-6"
+          - "centos-7"
+          - "ubuntu-1404"
         suite:
-          - 'lwrp-resources'
-          - 'attribute-resources-linux'
-          - 'syslog'
-          - 'papertrail'
+          - "lwrp-resources"
+          - "attribute-resources-linux"
+          - "syslog"
+          - "papertrail"
       fail-fast: false
 
     steps:
       - name: Check out code
         uses: actions/checkout@v2
       - name: Install Chef
-        uses: actionshub/chef-install@main
+        uses: actionshub/chef-install@2.0.4
       - name: Dokken
-        uses: actionshub/test-kitchen@main
+        uses: actionshub/test-kitchen@2.1.0
         env:
           CHEF_LICENSE: accept-no-persist
           KITCHEN_LOCAL_YAML: kitchen.dokken.yml
