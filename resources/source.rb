@@ -18,6 +18,7 @@
 #
 
 provides :nxlog_source
+unified_mode true
 default_action :create
 
 attribute :name, name_attribute: true, kind_of: String, required: true
