@@ -18,9 +18,8 @@
 #
 
 provides :nxlog_destination
+unified_mode true
 default_action :create
-
-attribute :name, name_attribute: true, kind_of: String, required: true
 
 # global parameters
 attribute :output_module, kind_of: String, required: true,

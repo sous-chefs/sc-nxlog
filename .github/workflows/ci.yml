@@ -4,12 +4,11 @@ name: ci
 "on":
   pull_request:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   lint-unit:
-    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@0.0.3
+    uses: sous-chefs/.github/.github/workflows/lint-unit.yml@0.1.0
     permissions:
       actions: write
       checks: write
@@ -19,15 +18,15 @@ jobs:
 
   integration:
     needs: "lint-unit"
-
     runs-on: ubuntu-latest
     strategy:
       matrix:
         os:
-          - "debian-8"
-          - "centos-6"
+          - "debian-9"
           - "centos-7"
-          - "ubuntu-1404"
+          - "centos-8"
+          - "ubuntu-1804"
+          - "ubuntu-2004"
         suite:
           - "lwrp-resources"
           - "attribute-resources-linux"
