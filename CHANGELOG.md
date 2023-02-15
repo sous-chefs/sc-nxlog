@@ -10,6 +10,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - resolved cookstyle error: resources/destination.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
 - resolved cookstyle error: resources/papertrail.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
 - resolved cookstyle error: resources/source.rb:1:1 refactor: `Chef/Deprecations/ResourceWithoutUnifiedTrue`
+- BREAKING CHANGE: Require Chef 16+
+- Remove support for End of Life Operating Systems
+
 ## 0.10.5 - *2023-02-14*
 
 ## 0.10.4 - *2023-02-14*
@@ -20,8 +23,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## 0.10.2 - *2021-08-17*
 
-Standardise files with files in sous-chefs/repo-management
-
+- Standardise files with files in sous-chefs/repo-management
 
 ## [0.10.0]
 
@@ -50,30 +52,14 @@ Standardise files with files in sous-chefs/repo-management
 
 ## [0.9.0] - 2018-09-19
 
-### Added
-
-### Changed
-
 - Raised minimum Ubuntu version from 12.04 to 14.04
 - Raised minimum Debian version from 6.0 to 8.0
 - Migrated to Sous-Chefs
 - Changed cookbook name from `nxlog` to `sc-nxlog`
 
-### Deprecated
-
-### Removed
-
 ## [0.8.7] - 2015-12-22
 
-### Added
-
-### Changed
-
 - Prevent installation of package config from .deb packages
-
-### Deprecated
-
-### Remove
 
 ## [0.8.6]
 

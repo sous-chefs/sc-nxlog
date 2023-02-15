@@ -8,32 +8,32 @@ driver_config:
     cpus: 4
 
 provisioner:
-  name: chef_solo
-  require_chef_omnibus: true
+  name: chef_infra
+  product_name: chef
+  enforce_idempotency: true
+  multiple_converge: 2
+  deprecations_as_errors: true
+  chef_license: accept-no-persist
 
 verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-14.04
+  - name: ubuntu-18.04
     run_list:
       - recipe[apt::default]
-  - name: debian-8
+  - name: debian-9
     run_list:
       - recipe[apt::default]
-  - name: centos-6.6
+  - name: centos-7
     run_list:
       - recipe[yum::default]
-  - name: centos-7
+  - name: centos-8
     run_list:
       - recipe[yum::default]
   - name: windows-2016
     driver:
       box: tas50/windows_2016
-      gui: false
-  - name: windows-2012r2
-    driver:
-      box: tas50/windows_2012r2
       gui: false
 
 suites:
@@ -113,7 +113,7 @@ suites:
     attributes:
       nxlog:
         syslog:
-          destinations: ['test']
+          destinations: ["test"]
 
   - name: papertrail
     run_list:
