@@ -124,7 +124,7 @@ action :create do
 
     end
 
-    destinations = [*n.destination]
+    destinations = Array(n.destination)
     destinations.map! { |v| v == ScNxLog::DEFAULTS_KEY ? '%DEFAULT_OUTPUTS%' : v }
 
     # create template with above parameters
