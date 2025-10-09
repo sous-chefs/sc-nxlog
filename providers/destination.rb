@@ -48,7 +48,7 @@ action :create do
         end
       end
 
-    when 'om_blocker' # rubocop:disable Lint/EmptyWhen
+    when 'om_blocker'
       # nothing to do!
 
     when 'om_exec'
@@ -88,7 +88,7 @@ action :create do
         params << ['HTTPSAllowUntrusted', n.https_allow_untrusted.to_s.upcase]
       end
 
-    when 'om_null' # rubocop:disable Lint/EmptyWhen
+    when 'om_null'
       # nothing to do!
 
     when 'om_ssl'

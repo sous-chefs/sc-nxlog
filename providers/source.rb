@@ -74,10 +74,10 @@ action :create do
 
       params << ['File', n.file =~ /["']/ ? n.file : "\"#{n.file}\""]
 
-    when 'im_internal' # rubocop:disable Lint/EmptyWhen
+    when 'im_internal'
       # nothing to do!
 
-    when 'im_kernel' # rubocop:disable Lint/EmptyWhen
+    when 'im_kernel'
       # nothing to do!
 
     when 'im_mark'
@@ -93,7 +93,7 @@ action :create do
       params << ['Channel', n.channel] unless n.channel.nil?
       params << ['PollInterval', n.poll_interval] unless n.poll_interval.nil?
 
-    when 'im_null' # rubocop:disable Lint/EmptyWhen
+    when 'im_null'
       # nothing to do!
 
     when 'im_ssl'
