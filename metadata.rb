@@ -1,5 +1,5 @@
 name             'sc-nxlog'
-version          '1.0.8'
+version          '1.0.9'
 description      'Installs and configures NXLog_ce on Linux or Windows'
 issues_url       'https://github.com/sous-chefs/sc-nxlog/issues'
 source_url       'https://github.com/sous-chefs/sc-nxlog'
