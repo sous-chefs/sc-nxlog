@@ -1,26 +1,40 @@
-#
-# Cookbook:: nxlog
-# Resouce:: papertrail
-#
-# Copyright:: (C) 2014 Simon Detheridge
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# frozen_string_literal: true
 
 provides :nxlog_papertrail
 unified_mode true
-default_action :create
+include ScNxLog::Helpers
 
-attribute :port, kind_of: Integer, required: true
-attribute :host, kind_of: String, default: 'logs'
-attribute :default, kind_of: [TrueClass, FalseClass], default: false
+use '_partial/_config'
+
+property :port, Integer, required: true
+property :host, String, default: 'logs'
+property :default, [true, false], default: false
+
+action :create do
+  nxlog_destination new_resource.name do
+    conf_dir new_resource.conf_dir
+    restart_service new_resource.restart_service
+    output_module 'om_ssl'
+    host "#{new_resource.host}.papertrailapp.com"
+    port new_resource.port
+    ca_file ::File.join(new_resource.conf_dir, 'certs', 'papertrail-bundle.pem')
+    allow_untrusted false
+    exec '$Hostname = hostname(); to_syslog_ietf();'
+    default new_resource.default
+    action :create
+  end
+end
+
+action :delete do
+  nxlog_destination new_resource.name do
+    conf_dir new_resource.conf_dir
+    restart_service new_resource.restart_service
+    output_module 'om_ssl'
+    host "#{new_resource.host}.papertrailapp.com"
+    port new_resource.port
+    ca_file ::File.join(new_resource.conf_dir, 'certs', 'papertrail-bundle.pem')
+    allow_untrusted false
+    default new_resource.default
+    action :delete
+  end
+end

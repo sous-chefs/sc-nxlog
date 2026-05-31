@@ -1,82 +1,156 @@
-#
-# Cookbook:: nxlog
-# Resouce:: log_destination
-#
-# Copyright:: (C) 2014 Simon Detheridge
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-#
+# frozen_string_literal: true
 
 provides :nxlog_destination
 unified_mode true
-default_action :create
+include ScNxLog::Helpers
 
-# global parameters
-attribute :output_module, kind_of: String, required: true,
-                          equal_to: %w(om_blocker om_dbi om_exec om_file om_http
-                                       om_null om_ssl om_tcp om_udp om_ssl
-                                       om_uds)
-attribute :exec, kind_of: String
-attribute :output_type, kind_of: String, equal_to: %w(LineBased Dgram Binary)
-attribute :default, kind_of: [true, false]
+use '_partial/_config'
 
-# om_blocker
+property :output_module, String,
+         equal_to: %w(om_blocker om_dbi om_exec om_file om_http om_null om_ssl om_tcp om_udp om_uds),
+         default: 'om_file'
+property :exec, String
+property :output_type, String, equal_to: %w(LineBased Dgram Binary)
+property :default, [true, false], default: false
+property :driver, String
+property :sql, String
+property :options, Array
+property :command, String
+property :args, Array
+property :file, String
+property :create_dir, [true, false]
+property :truncate, [true, false]
+property :sync, [true, false]
+property :url, String
+property :content_type, String
+property :https_cert_file, String
+property :https_cert_key_file, String
+property :https_key_pass, String
+property :https_ca_file, String
+property :https_ca_dir, String
+property :https_crl_file, String
+property :https_crl_dir, String
+property :https_allow_untrusted, [true, false]
+property :host, String
+property :port, Integer
+property :cert_file, String
+property :cert_key_file, String
+property :key_pass, String
+property :ca_file, String
+property :ca_dir, String
+property :crl_file, String
+property :crl_dir, String
+property :allow_untrusted, [true, false]
+property :sock_buf_size, Integer
+property :uds, String, default: '/dev/log'
 
-# om_dbi
-attribute :driver, kind_of: String # required
-attribute :sql, kind_of: String    # required
-attribute :options, kind_of: Array
+action_class do
+  include ScNxLog::Helpers
 
-# om_exec
-attribute :command, kind_of: String # required
-attribute :args, kind_of: Array
+  def config_filename
+    "#{new_resource.conf_dir}/nxlog.conf.d/10_op_#{new_resource.name}.conf"
+  end
 
-# om_file
-attribute :file, kind_of: String # required
-attribute :create_dir, kind_of: [true, false]
-attribute :truncate, kind_of: [true, false]
-attribute :sync, kind_of: [true, false]
+  def default_filename
+    "#{new_resource.conf_dir}/nxlog.conf.d/op_#{new_resource.name}.default"
+  end
 
-# om_http
-attribute :url, kind_of: String # required
-attribute :content_type, kind_of: String
-attribute :https_cert_file, kind_of: String
-attribute :https_cert_key_file, kind_of: String
-attribute :https_key_pass, kind_of: String
-attribute :https_ca_file, kind_of: String
-attribute :https_ca_dir, kind_of: String
-attribute :https_crl_file, kind_of: String
-attribute :https_crl_dir, kind_of: String
-attribute :https_allow_untrusted, kind_of: [true, false]
+  def quoted_file(path)
+    path =~ /["']/ ? path : "\"#{path}\""
+  end
 
-# om_null
+  def destination_params
+    params = []
+    params << ['Module', new_resource.output_module]
+    params << ['Exec', new_resource.exec] if new_resource.exec
+    params << ['OutputType', new_resource.output_type] if new_resource.output_type
 
-# om_ssl, om_tcp, om_udp
-attribute :host, kind_of: String # required
-attribute :port, kind_of: Integer # required
+    case new_resource.output_module
+    when 'om_dbi'
+      params << ['Driver', new_resource.driver]
+      params << ['SQL', new_resource.sql]
+      Array(new_resource.options).each { |option| params << ['Option', option] }
+    when 'om_exec'
+      params << ['Command', new_resource.command]
+      Array(new_resource.args).each { |arg| params << ['Arg', arg] }
+    when 'om_file'
+      params << ['CreateDir', new_resource.create_dir] unless new_resource.create_dir.nil?
+      params << ['Truncate', new_resource.truncate] unless new_resource.truncate.nil?
+      params << ['Sync', new_resource.sync] unless new_resource.sync.nil?
+      params << ['File', quoted_file(new_resource.file)]
+    when 'om_http'
+      params << ['Url', new_resource.url]
+      params << ['ContentType', new_resource.content_type] if new_resource.content_type
+      params << ['HTTPSCertFile', new_resource.https_cert_file] if new_resource.https_cert_file
+      params << ['HTTPSCertKeyFile', new_resource.https_cert_key_file] if new_resource.https_cert_key_file
+      params << ['HTTPSKeyPass', new_resource.https_key_pass] if new_resource.https_key_pass
+      params << ['HTTPSCAFile', new_resource.https_ca_file] if new_resource.https_ca_file
+      params << ['HTTPSCADir', new_resource.https_ca_dir] if new_resource.https_ca_dir
+      params << ['HTTPSCRLFile', new_resource.https_crl_file] if new_resource.https_crl_file
+      params << ['HTTPSCRLDir', new_resource.https_crl_dir] if new_resource.https_crl_dir
+      params << ['HTTPSAllowUntrusted', new_resource.https_allow_untrusted.to_s.upcase] unless new_resource.https_allow_untrusted.nil?
+    when 'om_ssl'
+      params << ['Host', new_resource.host]
+      params << ['Port', new_resource.port]
+      params << ['CertFile', new_resource.cert_file] if new_resource.cert_file
+      params << ['CertKeyFile', new_resource.cert_key_file] if new_resource.cert_key_file
+      params << ['KeyPass', new_resource.key_pass] if new_resource.key_pass
+      params << ['CAFile', new_resource.ca_file] if new_resource.ca_file
+      params << ['CADir', new_resource.ca_dir] if new_resource.ca_dir
+      params << ['CRLFile', new_resource.crl_file] if new_resource.crl_file
+      params << ['CRLDir', new_resource.crl_dir] if new_resource.crl_dir
+      params << ['AllowUntrusted', new_resource.allow_untrusted.to_s.upcase] unless new_resource.allow_untrusted.nil?
+    when 'om_tcp', 'om_udp'
+      params << ['Host', new_resource.host]
+      params << ['Port', new_resource.port]
+      params << ['SockBufSize', new_resource.sock_buf_size] unless new_resource.sock_buf_size.nil?
+    when 'om_uds'
+      params << ['UDS', new_resource.uds]
+    when 'om_blocker', 'om_null'
+      nil
+    else
+      raise "Unrecognized NXLog output module: #{new_resource.output_module}"
+    end
 
-# om_ssl
-attribute :cert_file, kind_of: String
-attribute :cert_key_file, kind_of: String
-attribute :key_pass, kind_of: String
-attribute :ca_file, kind_of: String
-attribute :ca_dir, kind_of: String
-attribute :crl_file, kind_of: String
-attribute :crl_dir, kind_of: String
-attribute :allow_untrusted, kind_of: [true, false]
+    params
+  end
+end
 
-# om_udp
-attribute :sock_buf_size, kind_of: Integer
+action :create do
+  service 'nxlog' do
+    supports status: true, restart: true
+    action :nothing
+    only_if { new_resource.restart_service }
+  end
 
-# om_uds
-attribute :uds, kind_of: String, default: '/dev/log'
+  directory "#{new_resource.conf_dir}/nxlog.conf.d" do
+    recursive true
+    action :create
+  end
+
+  template config_filename do
+    cookbook 'sc-nxlog'
+    source 'resources/destination.conf.erb'
+    variables name: new_resource.name, params: destination_params
+    action :create
+    notifies :restart, 'service[nxlog]', :delayed if new_resource.restart_service
+  end
+
+  template default_filename do
+    cookbook 'sc-nxlog'
+    source 'resources/destination.default.erb'
+    variables name: new_resource.name
+    action new_resource.default ? :create : :delete
+    notifies :restart, 'service[nxlog]', :delayed if new_resource.restart_service
+  end
+end
+
+action :delete do
+  file config_filename do
+    action :delete
+  end
+
+  file default_filename do
+    action :delete
+  end
+end
