@@ -1,0 +1,12 @@
+---
+files:
+  - README.md
+  - LIMITATIONS.md
+  - migration.md
+  - documentation/sc-nxlog_nxlog_destination.md
+  - documentation/sc-nxlog_nxlog_install.md
+  - documentation/sc-nxlog_nxlog_papertrail.md
+  - documentation/sc-nxlog_nxlog_papertrail_bundle.md
+  - documentation/sc-nxlog_nxlog_source.md
+  - documentation/sc-nxlog_nxlog_syslog.md
+useGitIgnore: true

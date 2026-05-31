@@ -17,28 +17,26 @@ jobs:
       issues: write
 
   integration:
-    needs: "lint-unit"
+    needs: lint-unit
     runs-on: ubuntu-latest
     strategy:
       matrix:
         os:
-          - "debian-9"
-          - "centos-7"
-          - "centos-8"
-          - "ubuntu-1804"
-          - "ubuntu-2004"
+          - almalinux-9
+          - debian-11
+          - rockylinux-9
+          - ubuntu-2204
         suite:
-          - "lwrp-resources"
-          - "attribute-resources-linux"
-          - "syslog"
-          - "papertrail"
+          - default
+          - papertrail
+          - syslog
       fail-fast: false
 
     steps:
       - name: Check out code
         uses: actions/checkout@v6
-      - name: Install Chef
-        uses: actionshub/chef-install@6.0.0
+      - name: Install Cinc Workstation
+        uses: sous-chefs/.github/.github/actions/install-workstation@6.0.0
       - name: Dokken
         uses: actionshub/test-kitchen@3.0.0
         env:

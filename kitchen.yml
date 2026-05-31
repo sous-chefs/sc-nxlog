@@ -2,120 +2,54 @@
 driver:
   name: vagrant
 
-driver_config:
-  customize:
-    memory: 2048
-    cpus: 4
-
 provisioner:
   name: chef_infra
   product_name: chef
-  enforce_idempotency: true
-  multiple_converge: 2
+  product_version: <%= ENV['CHEF_VERSION'] || 'latest' %>
+  channel: stable
+  install_strategy: once
+  chef_license: accept
+  enforce_idempotency: <%= ENV['ENFORCE_IDEMPOTENCY'] || true %>
+  multiple_converge: <%= ENV['MULTIPLE_CONVERGE'] || 2 %>
   deprecations_as_errors: true
-  chef_license: accept-no-persist
 
 verifier:
   name: inspec
 
 platforms:
-  - name: ubuntu-18.04
-    run_list:
-      - recipe[apt::default]
-  - name: debian-9
-    run_list:
-      - recipe[apt::default]
-  - name: centos-7
-    run_list:
-      - recipe[yum::default]
-  - name: centos-8
-    run_list:
-      - recipe[yum::default]
-  - name: windows-2016
-    driver:
-      box: tas50/windows_2016
-      gui: false
+  - name: almalinux-9
+  - name: debian-11
+  - name: rockylinux-9
+  - name: ubuntu-22.04
+
+x-run_lists:
+  default: &default_run_list
+    - recipe[test::default]
+  papertrail: &papertrail_run_list
+    - recipe[test::papertrail]
+  syslog: &syslog_run_list
+    - recipe[test::syslog]
+
+x-verifiers:
+  default: &default_verifier
+    inspec_tests:
+      - path: test/integration/default
+  papertrail: &papertrail_verifier
+    inspec_tests:
+      - path: test/integration/papertrail
+  syslog: &syslog_verifier
+    inspec_tests:
+      - path: test/integration/syslog
 
 suites:
-  - name: lwrp_resources
-    run_list:
-      - recipe[test::kitchen_log_file]
-    attributes:
-
-  - name: attribute_resources_linux
-    run_list:
-      - recipe[test::kitchen_log_file_attrs]
-    excludes: &linux_excludes
-      - windows-2016
-      - windows-2012r2
-    verifier:
-      suite_name: attribute_resources
-    attributes:
-      nxlog:
-        destinations:
-          test:
-            file: /var/log/nxlog/test.log
-          test_2:
-            file: /var/log/nxlog/test2.log
-            default: true
-          test_om_file_2:
-            file: /var/log/nxlog/mark3.log
-        papertrails:
-          papertrail:
-            port: 17992
-            host: logs2
-            default: true
-        sources:
-          mark:
-            input_module: im_mark
-            mark_interval: 1
-            mark: -> -> MARK <- <-
-            destination:
-              - test
-              - defaults
-
-  - name: attribute_resources_windows
-    run_list:
-      - recipe[test::kitchen_log_file_attrs]
-    includes:
-      - windows-2016
-      - windows-2012r2
-    verifier:
-      suite_name: attribute_resources
-    attributes:
-      nxlog:
-        destinations:
-          test:
-            file: c:/windows/temp/test.log
-          test_2:
-            file: c:/windows/temp/test2.log
-            default: true
-          test_om_file_2:
-            file: c:/windows/temp/mark3.log
-        papertrails:
-          papertrail:
-            port: 17992
-            host: logs2
-            default: true
-        sources:
-          mark:
-            input_module: im_mark
-            mark_interval: 1
-            mark: -> -> MARK <- <-
-            destination:
-              - test
-              - defaults
-
-  - name: syslog
-    run_list:
-      - recipe[test::kitchen_syslog]
-    excludes: *linux_excludes
-    attributes:
-      nxlog:
-        syslog:
-          destinations: ["test"]
+  - name: default
+    run_list: *default_run_list
+    verifier: *default_verifier
 
   - name: papertrail
-    run_list:
-      - recipe[sc-nxlog::papertrail]
-    attributes:
+    run_list: *papertrail_run_list
+    verifier: *papertrail_verifier
+
+  - name: syslog
+    run_list: *syslog_run_list
+    verifier: *syslog_verifier
