@@ -5,6 +5,22 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0](https://github.com/sous-chefs/sc-nxlog/compare/v1.0.9...v2.0.0) (2026-05-31)
+
+
+### ⚠ BREAKING CHANGES
+
+* migrate sc-nxlog to custom resources ([#81](https://github.com/sous-chefs/sc-nxlog/issues/81))
+
+### Features
+
+* migrate sc-nxlog to custom resources ([#81](https://github.com/sous-chefs/sc-nxlog/issues/81)) ([c56f0e2](https://github.com/sous-chefs/sc-nxlog/commit/c56f0e24fd8a23b767bef0f2398a3d2de2c12167))
+
+
+### Bug Fixes
+
+* **ci:** Update workflows to use release pipeline ([#76](https://github.com/sous-chefs/sc-nxlog/issues/76)) ([b13e40c](https://github.com/sous-chefs/sc-nxlog/commit/b13e40ce3849976e890e5088a00e3a1e21e346f8))
+
 ## [1.0.9](https://github.com/sous-chefs/sc-nxlog/compare/v1.0.8...v1.0.9) (2025-10-16)
 
 

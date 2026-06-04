@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 name             'sc-nxlog'
-version          '1.0.9'
+version          '2.0.0'
 description      'Provides NXLog install and configuration custom resources'
 issues_url       'https://github.com/sous-chefs/sc-nxlog/issues'
 source_url       'https://github.com/sous-chefs/sc-nxlog'
