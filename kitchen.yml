@@ -43,13 +43,16 @@ x-verifiers:
 
 suites:
   - name: default
+    named_run_list: default
     run_list: *default_run_list
     verifier: *default_verifier
 
   - name: papertrail
+    named_run_list: papertrail
     run_list: *papertrail_run_list
     verifier: *papertrail_verifier
 
   - name: syslog
+    named_run_list: syslog
     run_list: *syslog_run_list
     verifier: *syslog_verifier
